@@ -1,172 +1,232 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Generic - Editorial by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Vật lý</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        /* CSS tùy chỉnh để làm iframe responsive */
+        .phet-simulation {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%; /* Tỷ lệ 4:3 cho simulation */
+            margin-bottom: 2em;
+        }
+        .phet-simulation iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .simulation-item {
+            margin-bottom: 3em;
+        }
+        .simulation-item h3 {
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+        .simulation-item p {
+            margin-bottom: 1em;
+            color: #666;
+        }
+    </style>
+</head>
+<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
+                <!-- Header -->
+                <header id="header">
+                    <a href="index.html" class="logo"><strong>Vật lý</strong></a>
+                    <ul class="icons">
+                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    </ul>
+                </header>
 
-							<!-- Content -->
-								<section>
-									<header class="main">
-										<h1>Generic</h1>
-									</header>
+                <!-- Content -->
+                <section>
+                    <header class="major">
+                        <h1>Cơ học</h1>
+                        <p>Khám phá các nguyên lý cơ học qua các mô phỏng tương tác từ PhET. Bạn có thể thử nghiệm, quan sát và hiểu rõ hơn về chuyển động, lực, năng lượng.</p>
+                    </header>
 
-									<span class="image main"><img src="images/pic11.jpg" alt="" /></span>
+                    <!-- Mô phỏng 1: Chuyển động ném (Projectile Motion) -->
+                    <div class="simulation-item">
+                        <h3>Chuyển động ném (Projectile Motion)</h3>
+                        <p>Thử nghiệm cách các vật thể di chuyển dưới tác dụng của trọng lực. Điều chỉnh góc bắn, vận tốc ban đầu để quan sát quỹ đạo parabol.</p>
+                        <div class="phet-simulation">
+                            <iframe src="https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_vi.html" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-									<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+                    <!-- Mô phỏng 2: Lực và chuyển động cơ bản (Forces and Motion: Basics) -->
+                    <div class="simulation-item">
+                        <h3>Lực và chuyển động cơ bản (Forces and Motion: Basics)</h3>
+                        <p>Khám phá mối quan hệ giữa lực đẩy, ma sát và chuyển động của vật. Kéo vật để xem gia tốc thay đổi như thế nào.</p>
+                        <div class="phet-simulation">
+                            <iframe src="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_vi.html" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
-									<hr class="major" />
+                    <!-- Mô phỏng 3: Ma sát (Friction) -->
+                    <div class="simulation-item">
+                        <h3>Ma sát (Friction)</h3>
+                        <p>Quan sát lực ma sát tĩnh và động ảnh hưởng đến chuyển động. Thử các bề mặt khác nhau để hiểu hệ số ma sát.</p>
+                        <div class="phet-simulation">
+                            <iframe src="https://phet.colorado.edu/sims/html/friction/latest/friction_vi.html" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
-									<h2>Interdum sed dapibus</h2>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+                    <!-- Mô phỏng 4: Vận động trượt năng lượng (Energy Skate Park) -->
+                    <div class="simulation-item">
+                        <h3>Vận động trượt năng lượng (Energy Skate Park)</h3>
+                        <p>Xây dựng đường trượt để khám phá bảo toàn năng lượng động học và thế năng. Theo dõi biểu đồ năng lượng thay đổi.</p>
+                        <div class="phet-simulation">
+                            <iframe src="https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_vi.html" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
-									<hr class="major" />
+                    <!-- Mô phỏng 5: Quay vòng (Ladybug Revolution) -->
+                    <div class="simulation-item">
+                        <h3>Quay vòng (Ladybug Revolution)</h3>
+                        <p>Quan sát chuyển động tròn đều và gia tốc hướng tâm qua hành trình của chú bọ cánh cứng.</p>
+                        <div class="phet-simulation">
+                            <iframe src="https://phet.colorado.edu/sims/html/ladybug-revolution/latest/ladybug-revolution_vi.html" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
-									<h2>Magna etiam veroeros</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-									<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+                    <ul class="actions">
+                        <li><a href="https://phet.colorado.edu/vi/simulations/category/physics/motion" class="button" target="_blank">Khám phá thêm mô phỏng PhET</a></li>
+                    </ul>
+                </section>
 
-									<hr class="major" />
+            </div>
+        </div>
 
-									<h2>Lorem aliquam bibendum</h2>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
 
-								</section>
+                <!-- Search -->
+                <section id="search" class="alt">
+                    <form method="post" action="#">
+                        <input type="text" name="query" id="query" placeholder="Search" />
+                    </form>
+                </section>
 
-						</div>
-					</div>
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
 
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
+                        <li>
+                            <span class="opener">Vật lý</span>
+                            <ul>
+                                <li><a href="cohoc.html">Cơ học</a></li>
+                                <li><a href="amhoc.html">Âm học & Sóng</a></li>
+                                <li><a href="cong-nangluong.html">Công, năng lượng & công suất</a></li>
+                                <li><a href="nhiethoc.html">Nhiệt & Nhiệt động lực học</a></li>
+                                <li><a href="luongtu.html">Hiện tượng lượng tử</a></li>
+                                <li><a href="quanghoc.html">Ánh sáng & Bức xạ</a></li>
+                                <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
+                            </ul>
+                        </li>
 
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
+                        <li>
+                            <span class="opener">Toán và Thống kê</span>
+                            <ul>
+                                <li><a href="toanhoc.html">Khái niệm toán học</a></li>
+                                <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
+                            </ul>
+                        </li>
 
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="generic.html">Generic</a></li>
-										<li><a href="elements.html">Elements</a></li>
-										<li>
-											<span class="opener">Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Etiam Dolore</a></li>
-										<li><a href="#">Adipiscing</a></li>
-										<li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Maximus Erat</a></li>
-										<li><a href="#">Sapien Mauris</a></li>
-										<li><a href="#">Amet Lacinia</a></li>
-									</ul>
-								</nav>
+                        <li>
+                            <span class="opener">Hoá học</span>
+                            <ul>
+                                <li><a href="hoahoc.html">Hoá đại cương</a></li>
+                                <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
+                            </ul>
+                        </li>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Ante interdum</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section>
+                        <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
+                        <li><a href="sinhhoc.html">Sinh học</a></li>
+                        <li><a href="minigame.html">Mini game</a></li>
+                    </ul>
+                </nav>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-										<li class="icon solid fa-phone">(000) 000-0000</li>
-										<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-										Nashville, TN 00000-0000</li>
-									</ul>
-								</section>
+                <!-- Section: Một số Mini game (Sidebar) -->
+                <section>
+                    <header class="major">
+                        <h2>Một số Mini game</h2>
+                    </header>
+                    <div class="posts">
+                        <article>
+                            <a href="#" class="image"><img src="images/pic01.jpg" alt="Game bắn bóng" /></a>
+                            <h3>🎯 Game Bắn Bóng</h3>
+                            <p>Đọc câu hỏi ở trên cùng, ngắm và bắn vào quả bóng mang đáp án đúng để ghi điểm. Càng bắn nhanh, càng nhiều điểm!</p>
+                            <ul class="actions">
+                                <li><a href="#" class="button">Chơi ngay</a></li>
+                            </ul>
+                        </article>
 
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
+                        <article>
+                            <a href="#" class="image"><img src="images/pic02.jpg" alt="Game sắp xếp số" /></a>
+                            <h3>🔢 Game Sắp Xếp Số</h3>
+                            <p>Kéo thả hoặc nhấp để sắp xếp các con số theo thứ tự tăng hoặc giảm. Luyện tư duy logic và khả năng quan sát nhanh!</p>
+                            <ul class="actions">
+                                <li><a href="#" class="button">Chơi ngay</a></li>
+                            </ul>
+                        </article>
+                    </div>
+                    <ul class="actions">
+                        <li><a href="minigame.html" class="button">Xem thêm</a></li>
+                    </ul>
+                </section>
 
-						</div>
-					</div>
+                <!-- Section: Liên hệ -->
+                <section>
+                    <header class="major">
+                        <h2>Liên hệ</h2>
+                    </header>
+                    <p>Liên hệ với IBME Lab:</p>
+                    <ul class="contact">
+                        <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+                        <li class="icon solid fa-phone">(000) 000-0000</li>
+                        <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
+                        Nashville, TN 00000-0000</li>
+                    </ul>
+                </section>
 
-			</div>
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
+                </footer>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+            </div>
+        </div>
 
-	</body>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
 </html>
