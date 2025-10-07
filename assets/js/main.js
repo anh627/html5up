@@ -76,31 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const parent = this.parentElement;
             const submenu = parent.querySelector('ul');
             
-            // Toggle active class
-            parent.classList.toggle('active');
-            this.classList.toggle('active');
-            
-            // Close other open menus
-            openers.forEach(other => {
-                if (other !== this) {
-                    other.classList.remove('active');
-                    other.parentElement.classList.remove('active');
-                }
-            });
-        });
-    });
-    
-    // Mobile menu toggle
-    const menuToggle = document.createElement('div');
-    menuToggle.className = 'menu-toggle';
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    document.body.appendChild(menuToggle);
-    
-    menuToggle.addEventListener('click', function() {
-        document.getElementById('sidebar').classList.toggle('active');
-    });
-});
-
+          
 	// Sidebar.
 		var $sidebar = $('#sidebar'),
 			$sidebar_inner = $sidebar.children('.inner');
@@ -230,4 +206,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 })(jQuery);
+
 
