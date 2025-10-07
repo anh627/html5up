@@ -1,6 +1,6 @@
 /* ============================================
    VUI HỌC STEM - PERFECT EDITION
-   Version: 6.1 - FIXED BANNER + SIDEBAR SCROLL
+   Version: 6.2 - Fixed Sidebar Scroll & Smaller Title
    ============================================ */
 
 /* ============================================
@@ -128,20 +128,6 @@ body {
     color: var(--gray-700);
     min-height: 100vh;
     overflow-x: hidden;
-    position: relative;
-}
-
-/* FIXED: Sidebar Background Extension - NO MORE JUMP */
-body::before {
-    content: '';
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: var(--sidebar-width);
-    height: 100%;
-    background: linear-gradient(180deg, #1A1B3A 0%, #2D2E5F 50%, #3D3E7F 100%);
-    z-index: 999;
-    pointer-events: none;
 }
 
 /* Preload state */
@@ -233,7 +219,7 @@ strong, b {
 }
 
 /* ============================================
-   6. SIDEBAR - FIXED NO JUMP ISSUE
+   6. SIDEBAR - FULLY FIXED (NO SCROLL ISSUES)
    ============================================ */
 #sidebar {
     position: fixed;
@@ -241,47 +227,55 @@ strong, b {
     top: 0;
     width: var(--sidebar-width);
     height: 100vh;
-    background: transparent;
+    background: linear-gradient(180deg, #1A1B3A 0%, #2D2E5F 50%, #3D3E7F 100%);
     box-shadow: 5px 0 30px rgba(0, 0, 0, 0.15);
-    overflow-y: auto;
-    overflow-x: hidden;
     z-index: 1000;
+    /* Fix overflow and scrolling */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* Always show scrollbar to prevent jumping */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
 }
 
-/* Remove ::after - now handled by body::before */
-#sidebar::after {
-    display: none;
-}
-
-#sidebar .inner {
-    padding: 2rem 1.5rem;
-    color: var(--white);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
+/* Custom scrollbar for Webkit browsers - always visible */
 #sidebar::-webkit-scrollbar {
-    width: 6px;
+    width: 10px;
+    display: block !important;
 }
 
 #sidebar::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
 }
 
 #sidebar::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
 }
 
 #sidebar::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
 }
 
+/* Sidebar inner content with extra space at bottom */
+#sidebar .inner {
+    padding: 2rem 1.5rem;
+    color: var(--white);
+    /* Ensure content is always scrollable */
+    min-height: calc(100vh + 100px);
+    display: flex;
+    flex-direction: column;
+    /* Extra padding at bottom to ensure all content is accessible */
+    padding-bottom: 10rem;
+}
+
 /* Search Box - Enhanced */
 #search {
     margin-bottom: 2rem;
+    flex-shrink: 0;
 }
 
 #search form {
@@ -326,7 +320,7 @@ strong, b {
 /* Menu - FULLY FUNCTIONAL */
 #menu {
     margin-bottom: 2rem;
-    flex: 1;
+    flex: 1 1 auto;
 }
 
 #menu header.major {
@@ -451,6 +445,7 @@ strong, b {
     margin-top: auto;
     padding-top: 2rem;
     border-top: 2px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 #sidebar section header.major h2 {
@@ -521,6 +516,7 @@ strong, b {
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
+    flex-shrink: 0;
 }
 
 #footer .copyright {
@@ -781,16 +777,16 @@ strong, b {
 }
 
 /* ============================================
-   BANNER - FIXED: SMALLER + MOVED DOWN
+   BANNER - EVEN SMALLER TITLE (FIXED)
    ============================================ */
 #banner {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    gap: 2.5rem; /* Reduced from 4rem */
+    gap: 3rem;
     align-items: center;
-    padding: 2.5rem; /* Reduced from 4rem */
-    margin-top: 2rem; /* NEW: Move down */
-    margin-bottom: 4rem; /* Reduced from 5rem */
+    padding: 3rem;
+    margin-top: 2rem; /* Add space from top */
+    margin-bottom: 4rem; /* Reduce bottom margin */
     background: linear-gradient(135deg, rgba(91, 95, 222, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
     border-radius: var(--radius-2xl);
     box-shadow: 0 20px 60px rgba(91, 95, 222, 0.15);
@@ -838,11 +834,11 @@ strong, b {
     z-index: 2;
 }
 
-/* Fixed font for banner title - SMALLER */
+/* EVEN SMALLER BANNER TITLE */
 #banner .content header h1 {
-    font-size: 2.5rem; /* Reduced from 3.5rem */
+    font-size: 2rem; /* Further reduced from 2.5rem */
     line-height: 1.2;
-    margin-bottom: 0.8rem; /* Reduced from 1rem */
+    margin-bottom: 0.8rem;
     position: relative;
     font-family: 'Poppins', 'Inter', 'Roboto', sans-serif !important;
     font-weight: 900 !important;
@@ -885,17 +881,17 @@ strong, b {
 }
 
 #banner .content header p {
-    font-size: 1.1rem; /* Reduced from 1.3rem */
+    font-size: 1rem; /* Further reduced from 1.1rem */
     color: var(--primary);
     font-weight: 600;
-    margin-bottom: 1.5rem; /* Reduced from 2rem */
+    margin-bottom: 1.5rem;
     font-family: 'Poppins', 'Inter', sans-serif !important;
     animation: fadeInUp 1s ease 0.3s both;
 }
 
 #banner .content > p {
-    font-size: 1rem; /* Reduced from 1.1rem */
-    line-height: 1.7;
+    font-size: 0.95rem; /* Further reduced from 1rem */
+    line-height: 1.8;
     color: var(--gray-600);
     font-family: var(--font-primary);
     animation: fadeInUp 1s ease 0.5s both;
@@ -1223,22 +1219,17 @@ ul.actions {
         --sidebar-width: 280px;
     }
     
-    body::before {
-        width: 280px;
-    }
-    
     #main > .inner {
         padding: 2rem;
     }
     
     #banner {
         grid-template-columns: 1fr;
-        padding: 2rem;
-        gap: 2rem;
+        padding: 2.5rem;
     }
     
     #banner .content header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .features {
@@ -1257,15 +1248,6 @@ ul.actions {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
-    body::before {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-    
-    body.sidebar-active::before {
-        transform: translateX(0);
-    }
-    
     #sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
@@ -1275,25 +1257,7 @@ ul.actions {
         transform: translateX(0);
     }
     
-    /* Mobile Menu Toggle */
-    .menu-toggle {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 1001;
-        width: 50px;
-        height: 50px;
-        background: var(--gradient-primary);
-        border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--white);
-        font-size: 1.5rem;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
+      
     #main {
         margin-left: 0;
     }
@@ -1304,20 +1268,12 @@ ul.actions {
     }
     
     #banner {
-        padding: 1.5rem;
+        padding: 2rem;
         margin-top: 1rem;
     }
     
     #banner .content header h1 {
-        font-size: 1.8rem;
-    }
-    
-    #banner .content header p {
-        font-size: 1rem;
-    }
-    
-    #banner .content > p {
-        font-size: 0.95rem;
+        font-size: 1.5rem;
     }
     
     .features {
@@ -1345,19 +1301,11 @@ ul.actions {
     }
     
     #banner {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
     
     #banner .content header h1 {
-        font-size: 1.5rem;
-    }
-    
-    #banner .content header p {
-        font-size: 0.95rem;
-    }
-    
-    #banner .content > p {
-        font-size: 0.9rem;
+        font-size: 1.3rem;
     }
     
     .features article {
