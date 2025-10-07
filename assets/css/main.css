@@ -1455,7 +1455,7 @@ ul.contact {
       font-family: 'Font Awesome 5 Free';
       font-weight: 400; }
     ul.contact li:before {
-      background: var(--bg-gradient);
+      background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -2186,7 +2186,7 @@ button,
   display: flex; /* Sử dụng flex để căn chỉnh biểu tượng và văn bản */
   align-items: center;
   justify-content: center;
-  height: 7.5em;
+  height: 3em;
   left: 26em;
   line-height: 7.5em;
   outline: 0;
@@ -2194,7 +2194,7 @@ button,
   text-align: center;
   white-space: nowrap;
   top: 0;
-  width: 4em; /* Giảm độ rộng từ 6em xuống 4em */
+  width: 3em; /* Giảm độ rộng từ 6em xuống 4em */
   z-index: 10000;
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); /* Gradient xanh-tím */
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); /* Shadow đồng bộ */
@@ -2607,4 +2607,5 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #764ba2, #667eea);
 }
+
 
