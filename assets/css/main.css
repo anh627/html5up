@@ -1,18 +1,20 @@
 /* ============================================
    VUI HỌC STEM - PERFECT EDITION
-   Version: 6.0 - Final Ultimate
+   Version: 6.0 - Final Ultimate Enhanced
    ============================================ */
 
 /* ============================================
-   1. IMPORTS & FONTS - FIXED
+   1. IMPORTS & FONTS - FIXED + ICON LIBRARIES
    ============================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 /* ============================================
-   2. CSS VARIABLES - ENHANCED
+   2. CSS VARIABLES - ENHANCED WITH ANIMATED GRADIENTS
    ============================================ */
 :root {
     /* Vibrant Primary Colors */
@@ -36,10 +38,11 @@
     --gradient-nature: linear-gradient(135deg, #00B09B 0%, #96C93D 100%);
     --gradient-cosmic: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
     
-    /* Animated Background Gradient */
+    /* Animated Background Gradient - ENHANCED */
     --gradient-animated-bg: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     --gradient-animated-bg2: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
     --gradient-animated-bg3: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #fda085 100%);
+    --gradient-animated-ultra: linear-gradient(270deg, #08AEEA 0%, #2AF598 25%, #FE6DA8 50%, #FD8E3E 75%, #C32BAD 100%);
     
     /* Neutrals */
     --white: #FFFFFF;
@@ -130,6 +133,38 @@ body {
     overflow-x: hidden;
 }
 
+/* ULTRA ANIMATED GRADIENT BACKGROUND */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-animated-ultra);
+    background-size: 300% 300%;
+    animation: ultraGradient 20s ease infinite;
+    z-index: -2;
+}
+
+@keyframes ultraGradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
 /* Preload state */
 body.is-preload *,
 body.is-preload *:before,
@@ -153,6 +188,100 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* ============================================
+   3.1 FLOATING ANIMATED ICONS
+   ============================================ */
+.floating-icons {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.floating-icon {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.1;
+    animation: floatIcon 20s infinite linear;
+}
+
+.floating-icon:nth-child(1) {
+    left: 10%;
+    top: 20%;
+    animation-delay: 0s;
+    color: #FF6B6B;
+}
+
+.floating-icon:nth-child(2) {
+    left: 20%;
+    top: 80%;
+    animation-delay: 2s;
+    color: #4ECDC4;
+}
+
+.floating-icon:nth-child(3) {
+    left: 60%;
+    top: 10%;
+    animation-delay: 4s;
+    color: #45B7D1;
+}
+
+.floating-icon:nth-child(4) {
+    left: 80%;
+    top: 60%;
+    animation-delay: 6s;
+    color: #F7DC6F;
+}
+
+.floating-icon:nth-child(5) {
+    left: 90%;
+    top: 30%;
+    animation-delay: 8s;
+    color: #BB8FCE;
+}
+
+.floating-icon:nth-child(6) {
+    left: 30%;
+    top: 50%;
+    animation-delay: 10s;
+    color: #85C1E2;
+}
+
+.floating-icon:nth-child(7) {
+    left: 50%;
+    top: 90%;
+    animation-delay: 12s;
+    color: #F8B739;
+}
+
+.floating-icon:nth-child(8) {
+    left: 70%;
+    top: 40%;
+    animation-delay: 14s;
+    color: #52BE80;
+}
+
+@keyframes floatIcon {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
 }
 
 /* ============================================
@@ -219,7 +348,7 @@ strong, b {
 }
 
 /* ============================================
-   6. SIDEBAR - EXTENDED TO FULL HEIGHT
+   6. SIDEBAR - EXTENDED TO FULL HEIGHT WITH ANIMATED ICONS
    ============================================ */
 #sidebar {
     position: fixed;
@@ -310,7 +439,7 @@ strong, b {
     pointer-events: none;
 }
 
-/* Menu - FULLY FUNCTIONAL */
+/* Menu - FULLY FUNCTIONAL WITH ANIMATED ICONS */
 #menu {
     margin-bottom: 2rem;
     flex: 1;
@@ -332,7 +461,7 @@ strong, b {
     font-weight: 600;
 }
 
-/* Main menu items */
+/* Main menu items with animated icons */
 #menu > ul {
     list-style: none;
     padding: 0;
@@ -357,6 +486,73 @@ strong, b {
     transition: var(--transition-base);
     position: relative;
     overflow: hidden;
+}
+
+/* Add animated icon before menu items */
+#menu > ul > li > a::before,
+#menu > ul > li > .opener::before {
+    content: '';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 0.8rem;
+    font-size: 1.1rem;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+/* Specific icons for each menu item */
+#menu > ul > li:nth-child(1) > a::before,
+#menu > ul > li:nth-child(1) > .opener::before {
+    content: '\f015'; /* home */
+}
+
+#menu > ul > li:nth-child(2) > a::before,
+#menu > ul > li:nth-child(2) > .opener::before {
+    content: '\f19d'; /* graduation-cap */
+    animation: iconRotate 3s linear infinite;
+}
+
+#menu > ul > li:nth-child(3) > a::before,
+#menu > ul > li:nth-child(3) > .opener::before {
+    content: '\f11b'; /* gamepad */
+    animation: iconBounce 1.5s ease-in-out infinite;
+}
+
+#menu > ul > li:nth-child(4) > a::before,
+#menu > ul > li:nth-child(4) > .opener::before {
+    content: '\f0eb'; /* lightbulb */
+    animation: iconGlow 2s ease-in-out infinite;
+}
+
+#menu > ul > li:nth-child(5) > a::before,
+#menu > ul > li:nth-child(5) > .opener::before {
+    content: '\f2bd'; /* user-circle */
+}
+
+/* Icon animations */
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes iconRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes iconGlow {
+    0%, 100% { 
+        opacity: 0.6;
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+    50% { 
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
 }
 
 #menu > ul > li > a:hover,
@@ -433,7 +629,7 @@ strong, b {
     opacity: 1;
 }
 
-/* Contact Section - WHITE TEXT */
+/* Contact Section - WHITE TEXT WITH ANIMATED ICONS */
 #sidebar > .inner > section:last-of-type {
     margin-top: auto;
     padding-top: 2rem;
@@ -490,6 +686,13 @@ strong, b {
     border-radius: var(--radius-sm);
     color: var(--white);
     font-size: 0.9rem;
+    animation: iconSpin 4s linear infinite;
+}
+
+@keyframes iconSpin {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(5deg) scale(1.05); }
+    75% { transform: rotate(-5deg) scale(1.05); }
 }
 
 .contact li a {
@@ -517,28 +720,76 @@ strong, b {
 }
 
 /* ============================================
-   7. MAIN CONTENT - ANIMATED GRADIENT BG
+   7. MAIN CONTENT - ULTRA ANIMATED GRADIENT BG
    ============================================ */
 #main {
     margin-left: var(--sidebar-width);
     flex: 1;
     min-height: 100vh;
     position: relative;
-    /* Animated gradient background */
-    background: var(--gradient-animated-bg);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    /* Multi-layer animated gradient background */
+    background: 
+        linear-gradient(270deg, rgba(8, 174, 234, 0.8), rgba(42, 245, 152, 0.8), rgba(254, 109, 168, 0.8), rgba(253, 142, 62, 0.8)),
+        linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5), rgba(240, 147, 251, 0.5), rgba(245, 87, 108, 0.5));
+    background-size: 400% 400%, 600% 600%;
+    animation: 
+        gradientShift 15s ease infinite,
+        gradientRotate 20s linear infinite;
 }
 
 @keyframes gradientShift {
     0% {
-        background-position: 0% 50%;
+        background-position: 0% 50%, 50% 0%;
+    }
+    25% {
+        background-position: 50% 100%, 100% 50%;
     }
     50% {
-        background-position: 100% 50%;
+        background-position: 100% 50%, 50% 100%;
+    }
+    75% {
+        background-position: 50% 0%, 0% 50%;
     }
     100% {
-        background-position: 0% 50%;
+        background-position: 0% 50%, 50% 0%;
+    }
+}
+
+@keyframes gradientRotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* Particle effects overlay */
+#main::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 60% 60%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    animation: particleFloat 30s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
     }
 }
 
@@ -625,7 +876,38 @@ strong, b {
     font-family: 'Poppins', 'Inter', sans-serif !important;
 }
 
-/* Banner - VIBRANT ANIMATION WITH FIXED FONTS */
+/* Menu Toggle Icon for mobile - ANIMATED */
+#header .menu-toggle {
+    display: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    position: relative;
+}
+
+#header .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-primary);
+    margin: 6px 0;
+    transition: var(--transition-spring);
+    border-radius: 2px;
+}
+
+#header .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+#header .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+#header .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Banner - VIBRANT ANIMATION WITH FIXED FONTS AND ANIMATED ICONS */
 #banner {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -661,6 +943,68 @@ strong, b {
     height: 150%;
     background: radial-gradient(circle, rgba(91, 95, 222, 0.2) 0%, transparent 70%);
     animation: float 20s ease-in-out infinite reverse;
+}
+
+/* Add floating animated icons in banner */
+.banner-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.banner-icon {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.15;
+    animation: floatBannerIcon 15s infinite linear;
+}
+
+.banner-icon:nth-child(1) {
+    left: 5%;
+    top: 10%;
+    animation-delay: 0s;
+    color: #FFD700;
+}
+
+.banner-icon:nth-child(2) {
+    right: 10%;
+    top: 20%;
+    animation-delay: 3s;
+    color: #FF6B6B;
+}
+
+.banner-icon:nth-child(3) {
+    left: 15%;
+    bottom: 20%;
+    animation-delay: 6s;
+    color: #4ECDC4;
+}
+
+.banner-icon:nth-child(4) {
+    right: 5%;
+    bottom: 10%;
+    animation-delay: 9s;
+    color: #45B7D1;
+}
+
+@keyframes floatBannerIcon {
+    0% {
+        transform: translateX(-100px) translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.15;
+    }
+    90% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(-30px) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 @keyframes float {
@@ -768,7 +1112,7 @@ strong, b {
     transform: scale(1.1);
 }
 
-/* Features Section - 3 COLUMNS GRID */
+/* Features Section - 3 COLUMNS GRID WITH ANIMATED ICONS */
 section header.major {
     text-align: center;
     margin-bottom: 4rem;
@@ -836,18 +1180,41 @@ section header.major h2 {
     color: var(--white);
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Animated icons in features */
+.features article .icon i {
+    animation: featureIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes featureIconFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.1); }
 }
 
 .features article:nth-child(1) .icon {
     background: var(--gradient-fire);
 }
 
+.features article:nth-child(1) .icon i {
+    animation-delay: 0s;
+}
+
 .features article:nth-child(2) .icon {
     background: var(--gradient-ocean);
 }
 
+.features article:nth-child(2) .icon i {
+    animation-delay: 0.5s;
+}
+
 .features article:nth-child(3) .icon {
     background: var(--gradient-nature);
+}
+
+.features article:nth-child(3) .icon i {
+    animation-delay: 1s;
 }
 
 .features article .content h3 {
@@ -865,7 +1232,7 @@ section header.major h2 {
     font-family: var(--font-primary);
 }
 
-/* Mini Games Section - With Fixed Title Font */
+/* Mini Games Section - With Fixed Title Font and Animated Icon */
 section:has(.posts) {
     position: relative;
 }
@@ -882,12 +1249,19 @@ section:has(.posts) header.major h2::before {
     position: absolute;
     left: 0;
     font-size: 2rem;
-    animation: bounce 2s ease-in-out infinite;
+    animation: gameIconRotate 2s ease-in-out infinite;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+@keyframes gameIconRotate {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+    }
+    25% { 
+        transform: translateY(-5px) rotate(10deg);
+    }
+    75% { 
+        transform: translateY(-5px) rotate(-10deg);
+    }
 }
 
 .posts {
@@ -932,6 +1306,24 @@ section:has(.posts) header.major h2::before {
     transform: scale(1.1);
 }
 
+/* Add play icon on hover */
+.posts article .image::after {
+    content: '\f04b';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s ease;
+}
+
+.posts article:hover .image::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
 .posts article h3 {
     padding: 1.5rem 1.5rem 0.5rem;
     color: var(--gray-900);
@@ -951,9 +1343,11 @@ section:has(.posts) header.major h2::before {
     padding: 1rem 1.5rem 1.5rem;
 }
 
-/* Buttons - Enhanced */
+/* Buttons - Enhanced with Icons */
 .button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     background: var(--gradient-primary);
     color: var(--white) !important;
     padding: 0.9rem 2.2rem;
@@ -982,9 +1376,21 @@ section:has(.posts) header.major h2::before {
     transition: width 0.6s ease, height 0.6s ease;
 }
 
+.button::after {
+    content: '\f061';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
 .button:hover::before {
     width: 300px;
     height: 300px;
+}
+
+.button:hover::after {
+    transform: translateX(5px);
 }
 
 .button:hover {
@@ -1064,6 +1470,10 @@ ul.actions {
     }
     
     /* Mobile Menu Toggle */
+    #header .menu-toggle {
+        display: block;
+    }
+    
     .menu-toggle {
         position: fixed;
         top: 1rem;
@@ -1105,6 +1515,10 @@ ul.actions {
     
     .posts {
         grid-template-columns: 1fr;
+    }
+    
+    .floating-icons {
+        display: none;
     }
 }
 
