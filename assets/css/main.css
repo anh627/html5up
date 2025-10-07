@@ -1,5 +1,5 @@
-@import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url("fontawesome-all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Roboto+Slab:wght@400;700&display=swap");
 
 /* Variables for color scheme */
 :root {
@@ -176,7 +176,8 @@ h1 {
   background: var(--bg-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; }
+  background-clip: text;
+  color: #667eea; /* Fallback */ }
 
 h2 {
   font-size: 1.75em; }
@@ -1215,19 +1216,7 @@ input[type="checkbox"] + label:before {
 input[type="radio"] + label:before {
   border-radius: 100%; }
 
-::-webkit-input-placeholder {
-  color: #a0aec0 !important;
-  opacity: 1.0; }
-
-:-moz-placeholder {
-  color: #a0aec0 !important;
-  opacity: 1.0; }
-
-::-moz-placeholder {
-  color: #a0aec0 !important;
-  opacity: 1.0; }
-
-:-ms-input-placeholder {
+::placeholder {
   color: #a0aec0 !important;
   opacity: 1.0; }
 
@@ -1784,6 +1773,7 @@ button,
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        color: #667eea; /* Fallback */
         font-size: 2.75rem;
         position: relative;
         top: 0.05em;
@@ -1994,7 +1984,7 @@ button,
           width: calc(100% + 4.5em); }
         .posts article:nth-last-child(3) {
           margin-bottom: 4.5em; } }
-@media screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) {
     .posts {
       margin: 0 0 2em 0;
       width: 100%; }
@@ -2644,4 +2634,3 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #764ba2, #667eea);
 }
-        
