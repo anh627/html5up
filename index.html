@@ -7,7 +7,8 @@
     <meta name="description" content="Khám phá thế giới khoa học cùng Vui học STEM – học tập trực quan, trải nghiệm thực tế, khơi nguồn sáng tạo cho học sinh.">
     <link rel="icon" href="images/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOMq3Z4b1pVq+U9q6QvF4GmX1Fz0z1e6z8g6v9t3gJ8m3d4g8y0v9v8Z7Yk2DQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="is-preload">
@@ -20,12 +21,12 @@
             <div class="inner">
 
                 <!-- Header -->
-                <header id="header">
+                <header id="header" role="banner">
                     <a href="index.html" class="logo"><strong>Trang chủ</strong></a>
                 </header>
 
                 <!-- Banner -->
-                <section id="banner">
+                <section id="banner" aria-label="Banner chính">
                     <div class="content">
                         <header>
                             <h1>Khám phá thế giới khoa học cùng<br><strong>Vui học STEM</strong></h1>
@@ -40,19 +41,20 @@
                             <li><a href="#" class="button big">Tìm hiểu ngay</a></li>
                         </ul>
                     </div>
-                    <span class="image object">
+                    <span class="image object" aria-hidden="true">
                         <img src="images/pic10.jpg" alt="Hình ảnh minh họa học tập STEM">
                     </span>
                 </section>
 
                 <!-- Section: Tính năng -->
-                <section>
+                <section aria-label="Tính năng">
                     <header class="major">
                         <h2>Tính năng</h2>
                     </header>
                     <div class="features">
                         <article>
-                            <span class="icon fa-gem"></span>
+                            <!-- FA6: sử dụng i.fa-solid... giữ class icon để CSS vẫn áp dụng -->
+                            <i class="fa-solid fa-gem icon" aria-hidden="true"></i>
                             <div class="content">
                                 <h3>Học tập qua mô phỏng</h3>
                                 <p>Các mô phỏng trực quan giúp học sinh hiểu sâu hơn các hiện tượng và công thức trong vật lý, toán học, hóa học...</p>
@@ -60,7 +62,7 @@
                         </article>
 
                         <article>
-                            <span class="icon solid fa-paper-plane"></span>
+                            <i class="fa-solid fa-paper-plane icon" aria-hidden="true"></i>
                             <div class="content">
                                 <h3>Chơi mà học</h3>
                                 <p>Mini game giáo dục rèn luyện tư duy, trí nhớ và sự nhanh nhẹn. Phù hợp cho mọi lứa tuổi, vừa chơi vừa học.</p>
@@ -68,7 +70,7 @@
                         </article>
 
                         <article>
-                            <span class="icon solid fa-signal"></span>
+                            <i class="fa-solid fa-signal icon" aria-hidden="true"></i>
                             <div class="content">
                                 <h3>Rèn luyện</h3>
                                 <p>Kết hợp trải nghiệm – thực hành – kiểm tra. Học sinh vừa quan sát, vừa thử nghiệm và tự rút ra kết luận.</p>
@@ -78,7 +80,7 @@
                 </section>
 
                 <!-- Section: Mini Game -->
-                <section>
+                <section aria-label="Mini game">
                     <header class="major">
                         <h2>Một số Mini game</h2>
                     </header>
@@ -133,24 +135,24 @@
         </div>
 
         <!-- Sidebar -->
-        <div id="sidebar">
+        <aside id="sidebar" role="complementary" aria-label="Thanh điều hướng">
             <div class="inner">
 
                 <!-- Search -->
-                <section id="search" class="alt">
-                    <form method="post" action="#">
+                <section id="search" class="alt" aria-label="Tìm kiếm">
+                    <form method="get" action="#" role="search">
                         <input type="text" name="query" id="query" placeholder="Tìm kiếm...">
                     </form>
                 </section>
 
                 <!-- Menu -->
-                <nav id="menu">
+                <nav id="menu" role="navigation" aria-label="Menu chính">
                     <header class="major"><h2>Menu</h2></header>
                     <ul>
                         <li><a href="index.html">Trang chủ</a></li>
 
                         <li>
-                            <span class="opener">Vật lý</span>
+                            <span class="opener" role="button" tabindex="0">Vật lý</span>
                             <ul>
                                 <li><a href="cohoc.html">Cơ học</a></li>
                                 <li><a href="amhoc.html">Âm học & Sóng</a></li>
@@ -163,7 +165,7 @@
                         </li>
 
                         <li>
-                            <span class="opener">Toán và Thống kê</span>
+                            <span class="opener" role="button" tabindex="0">Toán và Thống kê</span>
                             <ul>
                                 <li><a href="toanhoc.html">Khái niệm toán học</a></li>
                                 <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
@@ -171,7 +173,7 @@
                         </li>
 
                         <li>
-                            <span class="opener">Hoá học</span>
+                            <span class="opener" role="button" tabindex="0">Hoá học</span>
                             <ul>
                                 <li><a href="hoahoc.html">Hoá đại cương</a></li>
                                 <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
@@ -185,22 +187,31 @@
                 </nav>
 
                 <!-- Liên hệ -->
-                <section>
+                <section aria-label="Liên hệ">
                     <header class="major"><h2>Liên hệ</h2></header>
                     <ul class="contact">
-                        <li class="icon solid fa-envelope"><a href="mailto:information@untitled.tld">information@untitled.tld</a></li>
-                        <li class="icon solid fa-phone">(000) 000-0000</li>
-                        <li class="icon solid fa-home">1234 Somewhere Road #8254<br>Nashville, TN 00000-0000</li>
+                        <li>
+                            <i class="fa-solid fa-envelope icon" aria-hidden="true"></i>
+                            <a href="mailto:information@untitled.tld">information@untitled.tld</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone icon" aria-hidden="true"></i>
+                            <span>(000) 000-0000</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-house icon" aria-hidden="true"></i>
+                            <span>1234 Somewhere Road #8254<br>Nashville, TN 00000-0000</span>
+                        </li>
                     </ul>
                 </section>
 
                 <!-- Footer -->
-                <footer id="footer">
+                <footer id="footer" role="contentinfo">
                     <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
                 </footer>
 
             </div>
-        </div>
+        </aside>
 
     </div>
 
