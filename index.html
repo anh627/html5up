@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <!-- Optional: Font Awesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="is-preload">
 
@@ -20,7 +21,11 @@
                 <header id="header">
                     <a href="index.html" class="logo"><strong>Trang chủ</strong></a>
                     <ul class="icons">
-                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon brands fa-facebook-f" aria-label="Facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon brands fa-youtube" aria-label="YouTube"><span class="label">YouTube</span></a></li>
+                        <li><a href="#" class="icon brands fa-instagram" aria-label="Instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon brands fa-twitter" aria-label="Twitter"><span class="label">Twitter</span></a></li>
+                        <a href="#sidebar" class="toggle"><i class="fas fa-bars"></i></a>
                     </ul>
                 </header>
 
@@ -32,11 +37,9 @@
                             <strong>Vui học STEM</strong></h1>
                             <p>Học tập trực quan – Trải nghiệm thực tế – Khơi nguồn sáng tạo</p>
                         </header>
-
                         <p>Bước vào không gian học tập nơi tri thức trở nên sống động! 
                         Tại <strong>Vui học STEM</strong>, học sinh được quan sát, tương tác và khám phá các hiện tượng khoa học qua những mô phỏng sinh động và dễ hiểu. 
                         Từ cơ học, quang học, điện từ, nhiệt học đến toán học – mọi chủ đề đều được thiết kế để kích thích tư duy, nuôi dưỡng đam mê và giúp học sinh hiểu sâu, nhớ lâu.</p>
-
                         <ul class="actions">
                             <li><a href="#" class="button big">Tìm hiểu ngay</a></li>
                         </ul>
@@ -53,28 +56,28 @@
                     </header>
                     <div class="features">
                         <article>
-                            <span class="icon fa-gem"></span>
+                            <span class="icon solid fa-flask" aria-label="Mô phỏng khoa học"></span>
                             <div class="content">
                                 <h3>Học tập qua mô phỏng</h3>
                                 <p>Các mô phỏng trực quan qua các tương tác cơ học, nhiệt học, điện từ, hóa học, quang học, toán học giúp học sinh dễ hiểu các hiện tượng và công thức.</p>
                             </div>
                         </article>
                         <article>
-                            <span class="icon solid fa-paper-plane"></span>
+                            <span class="icon solid fa-gamepad" aria-label="Chơi mà học"></span>
                             <div class="content">
                                 <h3>Chơi mà học</h3>
                                 <p>Mini game giáo dục rèn luyện tư duy, trí nhớ và sự nhanh nhẹn. Phù hợp cho mọi lứa tuổi, vừa chơi vừa tiếp thu kiến thức cơ bản.</p>
                             </div>
                         </article>
                         <article>
-                            <span class="icon solid fa-rocket"></span>
+                            <span class="icon solid fa-rocket" aria-label="Khám phá khoa học"></span>
                             <div class="content">
                                 <h3>Khám phá</h3>
                                 <p>Học sinh có thể tự mình khám phá những chân trời kiến thức khoa học một cách đơn giản nhất.</p>
                             </div>
                         </article>
                         <article>
-                            <span class="icon solid fa-signal"></span>
+                            <span class="icon solid fa-brain" aria-label="Rèn luyện tư duy"></span>
                             <div class="content">
                                 <h3>Rèn luyện</h3>
                                 <p>Kết hợp trải nghiệm – thực hành – kiểm tra. Học sinh có thể vừa quan sát hiện tượng, vừa tự thử nghiệm và rút ra kết luận.</p>
@@ -91,52 +94,47 @@
                     <div class="posts">
                         <article>
                             <a href="#" class="image"><img src="images/pic01.jpg" alt="Game bắn bóng" /></a>
-                            <h3>🎯 Game Bắn Bóng</h3>
+                            <h3><span class="icon solid fa-bullseye"></span> Game Bắn Bóng</h3>
                             <p>Đọc câu hỏi ở trên cùng, ngắm và bắn vào quả bóng mang đáp án đúng để ghi điểm. Càng bắn nhanh, càng nhiều điểm!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
                             </ul>
                         </article>
-
                         <article>
                             <a href="#" class="image"><img src="images/pic02.jpg" alt="Game sắp xếp số" /></a>
-                            <h3>🔢 Game Sắp Xếp Số</h3>
+                            <h3><span class="icon solid fa-sort-numeric-up"></span> Game Sắp Xếp Số</h3>
                             <p>Kéo thả hoặc nhấp để sắp xếp các con số theo thứ tự tăng hoặc giảm. Luyện tư duy logic và khả năng quan sát nhanh!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
                             </ul>
                         </article>
-
                         <article>
                             <a href="#" class="image"><img src="images/pic03.jpg" alt="Game phân loại động vật" /></a>
-                            <h3>🐾 Game Phân Loại Động Vật</h3>
+                            <h3><span class="icon solid fa-paw"></span> Game Phân Loại Động Vật</h3>
                             <p>Quan sát hình ảnh và kéo động vật vào đúng nhóm (ăn cỏ, ăn thịt, lưỡng cư, v.v.). Học nhanh, nhớ lâu qua trò chơi sinh động!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
                             </ul>
                         </article>
-
                         <article>
                             <a href="#" class="image"><img src="images/pic04.jpg" alt="Game đua xe toán học" /></a>
-                            <h3>🏎️ Game Đua Xe Toán Học</h3>
+                            <h3><span class="icon solid fa-car"></span> Game Đua Xe Toán Học</h3>
                             <p>Trả lời đúng các phép tính để xe của bạn tăng tốc và về đích trước đối thủ. Càng chính xác, xe chạy càng nhanh!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
                             </ul>
                         </article>
-
                         <article>
                             <a href="#" class="image"><img src="images/pic05.jpg" alt="Game 2048" /></a>
-                            <h3>🧮 Game 2048</h3>
+                            <h3><span class="icon solid fa-calculator"></span> Game 2048</h3>
                             <p>Dùng các phím mũi tên để ghép các ô cùng số, tạo thành số lớn nhất có thể. Thử xem bạn đạt được 2048 không nào!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
                             </ul>
                         </article>
-
                         <article>
                             <a href="#" class="image"><img src="images/pic06.jpg" alt="Game giải đố hình và số" /></a>
-                            <h3>🧩 Giải Đố Hình & Số</h3>
+                            <h3><span class="icon solid fa-puzzle-piece"></span> Giải Đố Hình & Số</h3>
                             <p>Quan sát, suy luận và chọn đáp án đúng để hoàn thành dãy hình – số. Trò chơi giúp rèn luyện trí nhớ và khả năng suy luận logic!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
@@ -166,7 +164,6 @@
                     </header>
                     <ul>
                         <li><a href="index.html">Trang chủ</a></li>
-
                         <li>
                             <span class="opener">Vật lý</span>
                             <ul>
@@ -179,7 +176,6 @@
                                 <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
                             </ul>
                         </li>
-
                         <li>
                             <span class="opener">Toán và Thống kê</span>
                             <ul>
@@ -187,7 +183,6 @@
                                 <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
                             </ul>
                         </li>
-
                         <li>
                             <span class="opener">Hoá học</span>
                             <ul>
@@ -195,7 +190,6 @@
                                 <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
                             </ul>
                         </li>
-
                         <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
                         <li><a href="sinhhoc.html">Sinh học</a></li>
                         <li><a href="minigame.html">Mini game</a></li>
@@ -210,16 +204,15 @@
                     <div class="posts">
                         <article>
                             <a href="#" class="image"><img src="images/pic01.jpg" alt="Game bắn bóng" /></a>
-                            <h3>🎯 Game Bắn Bóng</h3>
+                            <h3><span class="icon solid fa-bullseye"></span> Game Bắn Bóng</h3>
                             <p>Đọc câu hỏi ở trên cùng, ngắm và bắn vào quả bóng mang đáp án đúng để ghi điểm. Càng bắn nhanh, càng nhiều điểm!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
                             </ul>
                         </article>
-
                         <article>
                             <a href="#" class="image"><img src="images/pic02.jpg" alt="Game sắp xếp số" /></a>
-                            <h3>🔢 Game Sắp Xếp Số</h3>
+                            <h3><span class="icon solid fa-sort-numeric-up"></span> Game Sắp Xếp Số</h3>
                             <p>Kéo thả hoặc nhấp để sắp xếp các con số theo thứ tự tăng hoặc giảm. Luyện tư duy logic và khả năng quan sát nhanh!</p>
                             <ul class="actions">
                                 <li><a href="#" class="button">Chơi ngay</a></li>
@@ -240,6 +233,7 @@
                     <ul class="contact">
                         <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
                         <li class="icon solid fa-phone">(000) 000-0000</li>
+                        <li class="icon solid fa-comment"><a href="#">Chat với chúng tôi</a></li>
                         <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
                         Nashville, TN 00000-0000</li>
                     </ul>
