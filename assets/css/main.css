@@ -1308,7 +1308,7 @@ table.alt tfoot {
   top: 0;
   width: 6em;
   z-index: 10000;
-  background: #f0f0f0;
+  background: #ffffff;
   border-radius: 4px;
 }
 
@@ -2358,3 +2358,4 @@ table.alt tfoot {
     display: none;
   }
 }
+
