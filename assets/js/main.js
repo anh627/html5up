@@ -1,8 +1,4 @@
-/*
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+
 
 (function($) {
 
@@ -68,6 +64,42 @@
 							.css('background-position', $img.css('object-position') ? $img.css('object-position') : 'center');
 
 				});
+	// Menu Toggle for Submenus
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle opener clicks
+    const openers = document.querySelectorAll('#menu .opener');
+    
+    openers.forEach(opener => {
+        opener.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const parent = this.parentElement;
+            const submenu = parent.querySelector('ul');
+            
+            // Toggle active class
+            parent.classList.toggle('active');
+            this.classList.toggle('active');
+            
+            // Close other open menus
+            openers.forEach(other => {
+                if (other !== this) {
+                    other.classList.remove('active');
+                    other.parentElement.classList.remove('active');
+                }
+            });
+        });
+    });
+    
+    // Mobile menu toggle
+    const menuToggle = document.createElement('div');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    document.body.appendChild(menuToggle);
+    
+    menuToggle.addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('active');
+    });
+});
 
 	// Sidebar.
 		var $sidebar = $('#sidebar'),
@@ -258,5 +290,6 @@
 				});
 
 			});
+
 
 })(jQuery);
