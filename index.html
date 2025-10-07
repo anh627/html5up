@@ -1,664 +1,361 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vui Học STEM - Khám Phá Khoa Học Sáng Tạo</title>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vui học STEM - Khám phá Khoa học Thú vị</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
-    <!-- ========== SIDEBAR NAVIGATION ========== -->
-    <aside id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
                 <i class="fas fa-atom"></i>
-                <span>Vui Học STEM</span>
+                <span>Vui học STEM</span>
             </div>
-            <button class="sidebar-toggle" id="sidebarToggle">
-                <i class="fas fa-times"></i>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-        </div>
-
-        <!-- Search Box -->
-        <div class="search-box">
-            <form action="#" method="post">
-                <input type="search" placeholder="Tìm kiếm..." name="search" />
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-
-        <!-- Navigation Menu -->
-        <nav class="sidebar-nav">
-            <ul class="nav-list">
-                <li class="nav-item active">
-                    <a href="index.html">
-                        <i class="fas fa-home"></i>
-                        <span>Trang chủ</span>
-                    </a>
-                </li>
-                
-                <li class="nav-item has-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-atom"></i>
-                        <span>Vật lý</span>
-                        <i class="fas fa-chevron-down arrow"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="cohoc.html"><i class="fas fa-circle-notch"></i> Cơ học</a></li>
-                        <li><a href="amhoc.html"><i class="fas fa-volume-up"></i> Âm học & Sóng</a></li>
-                        <li><a href="cong-nangluong.html"><i class="fas fa-bolt"></i> Công & Năng lượng</a></li>
-                        <li><a href="nhiethoc.html"><i class="fas fa-fire"></i> Nhiệt học</a></li>
-                        <li><a href="luongtu.html"><i class="fas fa-atom"></i> Lượng tử</a></li>
-                        <li><a href="quanghoc.html"><i class="fas fa-lightbulb"></i> Quang học</a></li>
-                        <li><a href="dientu.html"><i class="fas fa-magnet"></i> Điện & Từ</a></li>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Trang chủ</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Vật lý <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="cohoc.html">Cơ học</a></li>
+                        <li><a href="amhoc.html">Âm học & Sóng</a></li>
+                        <li><a href="nhiethoc.html">Nhiệt học</a></li>
+                        <li><a href="quanghoc.html">Quang học</a></li>
+                        <li><a href="dientu.html">Điện từ</a></li>
                     </ul>
                 </li>
-
-                <li class="nav-item has-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-calculator"></i>
-                        <span>Toán học</span>
-                        <i class="fas fa-chevron-down arrow"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="toanhoc.html"><i class="fas fa-square-root-alt"></i> Khái niệm toán</a></li>
-                        <li><a href="toan-ungdung.html"><i class="fas fa-chart-line"></i> Ứng dụng toán</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Toán học <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="toanhoc.html">Khái niệm toán học</a></li>
+                        <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
                     </ul>
                 </li>
-
-                <li class="nav-item has-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-flask"></i>
-                        <span>Hóa học</span>
-                        <i class="fas fa-chevron-down arrow"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="hoahoc.html"><i class="fas fa-vial"></i> Hóa đại cương</a></li>
-                        <li><a href="hoaluongtu.html"><i class="fas fa-atom"></i> Hóa lượng tử</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a href="khoangkhong.html">
-                        <i class="fas fa-globe"></i>
-                        <span>Trái đất & Vũ trụ</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="sinhhoc.html">
-                        <i class="fas fa-dna"></i>
-                        <span>Sinh học</span>
-                    </a>
-                </li>
-
-                <li class="nav-item highlight">
-                    <a href="minigame.html">
-                        <i class="fas fa-gamepad"></i>
-                        <span>Mini Games</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Contact Info -->
-        <div class="sidebar-contact">
-            <h3>Liên hệ</h3>
-            <ul class="contact-list">
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:info@vuhocstem.edu.vn">info@vuhocstem.edu.vn</a>
-                </li>
-                <li>
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:0123456789">0123 456 789</a>
-                </li>
-                <li>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Hà Nội, Việt Nam</span>
-                </li>
+                <li><a href="hoahoc.html" class="nav-link">Hóa học</a></li>
+                <li><a href="sinhhoc.html" class="nav-link">Sinh học</a></li>
+                <li><a href="minigame.html" class="nav-link highlight">Mini Games</a></li>
             </ul>
         </div>
+    </nav>
 
-        <!-- Social Links -->
-        <div class="sidebar-social">
-            <a href="#" class="social-link facebook" aria-label="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-link youtube" aria-label="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="#" class="social-link instagram" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-link twitter" aria-label="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
         </div>
-    </aside>
-
-    <!-- ========== MAIN CONTENT ========== -->
-    <main id="main-content">
-        
-        <!-- Mobile Header -->
-        <header class="mobile-header">
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="mobile-logo">
-                <i class="fas fa-atom"></i>
-                <span>Vui Học STEM</span>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Khám phá thế giới 
+                <span class="gradient-text">Khoa học</span>
+                một cách thú vị
+            </h1>
+            <p class="hero-subtitle">
+                Học tập trực quan • Trải nghiệm thực tế • Khơi nguồn sáng tạo
+            </p>
+            <div class="hero-buttons">
+                <a href="#features" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Bắt đầu khám phá
+                </a>
+                <a href="#demo" class="btn btn-outline">
+                    <i class="fas fa-play-circle"></i> Xem demo
+                </a>
             </div>
-            <div class="mobile-actions">
-                <button class="search-toggle">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </header>
+        </div>
+        <div class="hero-image">
+            <img src="images/hero-illustration.svg" alt="STEM Education">
+        </div>
+    </section>
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-background">
-                <div class="gradient-overlay"></div>
-                <div class="particles" id="particles"></div>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>10,000+</h3>
+                    <p>Học sinh tham gia</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>500+</h3>
+                    <p>Thí nghiệm tương tác</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>50+</h3>
+                    <p>Mini games</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-award"></i>
+                    <h3>98%</h3>
+                    <p>Hài lòng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tính năng nổi bật</h2>
+                <p class="section-subtitle">Những công cụ giúp học tập hiệu quả và thú vị</p>
             </div>
             
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge">
-                        <i class="fas fa-star"></i>
-                        <span>Học tập thông minh</span>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microscope"></i>
                     </div>
-                    <h1 class="hero-title">
-                        Khám phá thế giới <br>
-                        <span class="gradient-text">Khoa học STEM</span>
-                    </h1>
-                    <p class="hero-description">
-                        Trải nghiệm học tập trực quan qua mô phỏng 3D, thí nghiệm ảo và mini games giáo dục. 
-                        Biến mọi khái niệm phức tạp thành những điều thú vị!
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#features" class="btn btn-primary">
-                            <i class="fas fa-rocket"></i>
-                            <span>Bắt đầu học</span>
-                        </a>
-                        <a href="#games" class="btn btn-outline">
-                            <i class="fas fa-gamepad"></i>
-                            <span>Chơi game ngay</span>
-                        </a>
+                    <h3>Thí nghiệm ảo</h3>
+                    <p>Mô phỏng 3D các thí nghiệm khoa học với độ chính xác cao</p>
+                    <a href="#" class="feature-link">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Mô phỏng</div>
+                    <h3>AI Học tập</h3>
+                    <p>Trí tuệ nhân tạo hỗ trợ học tập cá nhân hóa</p>
+                    <a href="#" class="feature-link">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Theo dõi tiến độ</h3>
+                    <p>Báo cáo chi tiết về quá trình học tập và phát triển</p>
+                    <a href="#" class="feature-link">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card featured">
+                    <div class="feature-badge">Phổ biến</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gamification</h3>
+                    <p>Học qua trò chơi với hệ thống điểm thưởng và bảng xếp hạng</p>
+                    <a href="#" class="feature-link">Chơi ngay <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section class="subjects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Môn học</h2>
+                <p class="section-subtitle">Khám phá các lĩnh vực khoa học đa dạng</p>
+            </div>
+
+            <div class="subjects-carousel">
+                <div class="subject-card physics">
+                    <div class="subject-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Vật lý</h3>
+                    <ul>
+                        <li>Cơ học</li>
+                        <li>Điện từ</li>
+                        <li>Quang học</li>
+                    </ul>
+                    <a href="#" class="btn btn-small">Khám phá</a>
+                </div>
+
+                <div class="subject-card math">
+                    <div class="subject-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Toán học</h3>
+                    <ul>
+                        <li>Đại số</li>
+                        <li>Hình học</li>
+                        <li>Thống kê</li>
+                    </ul>
+                    <a href="#" class="btn btn-small">Khám phá</a>
+                </div>
+
+                <div class="subject-card chemistry">
+                    <div class="subject-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Hóa học</h3>
+                    <ul>
+                        <li>Hóa hữu cơ</li>
+                        <li>Hóa vô cơ</li>
+                        <li>Hóa lượng tử</li>
+                    </ul>
+                    <a href="#" class="btn btn-small">Khám phá</a>
+                </div>
+
+                <div class="subject-card biology">
+                    <div class="subject-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Sinh học</h3>
+                    <ul>
+                        <li>Tế bào học</li>
+                        <li>Di truyền</li>
+                        <li>Sinh thái</li>
+                    </ul>
+                    <a href="#" class="btn btn-small">Khám phá</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Showcase -->
+    <section class="games-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Mini Games Học tập</h2>
+                <p class="section-subtitle">Vừa chơi vừa học - Kiến thức dễ dàng tiếp thu</p>
+            </div>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="images/game-1.jpg" alt="Math Racing">
+                        <div class="game-overlay">
+                            <a href="#" class="play-btn"><i class="fas fa-play"></i></a>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Mini Games</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">10K+</div>
-                            <div class="stat-label">Học sinh</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-category">Toán học</span>
+                        <h4>Đua xe Toán học</h4>
+                        <p>Giải toán nhanh để vượt qua đối thủ</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                            <span><i class="fas fa-play"></i> 15K lượt chơi</span>
                         </div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="image-wrapper">
-                        <img src="images/hero-illustration.svg" alt="STEM Learning" />
-                        <div class="floating-elements">
-                            <div class="float-item atom"><i class="fas fa-atom"></i></div>
-                            <div class="float-item flask"><i class="fas fa-flask"></i></div>
-                            <div class="float-item calculator"><i class="fas fa-calculator"></i></div>
-                            <div class="float-item dna"><i class="fas fa-dna"></i></div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="images/game-2.jpg" alt="Chemistry Lab">
+                        <div class="game-overlay">
+                            <a href="#" class="play-btn"><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-category">Hóa học</span>
+                        <h4>Phòng thí nghiệm ảo</h4>
+                        <p>Pha chế và khám phá phản ứng hóa học</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                            <span><i class="fas fa-play"></i> 12K lượt chơi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="images/game-3.jpg" alt="Physics Puzzle">
+                        <div class="game-overlay">
+                            <a href="#" class="play-btn"><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-category">Vật lý</span>
+                        <h4>Giải đố Vật lý</h4>
+                        <p>Áp dụng định luật vật lý để giải câu đố</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                            <span><i class="fas fa-play"></i> 18K lượt chơi</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Features Section -->
-        <section id="features" class="features-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Tính năng nổi bật</span>
-                    <h2 class="section-title">Tại sao chọn Vui Học STEM?</h2>
-                    <p class="section-description">
-                        Phương pháp học tập hiện đại, kết hợp công nghệ và trải nghiệm thực tế
-                    </p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card" data-aos="fade-up">
-                        <div class="feature-icon">
-                            <div class="icon-bg">
-                                <i class="fas fa-microscope"></i>
-                            </div>
-                        </div>
-                        <h3 class="feature-title">Mô phỏng tương tác</h3>
-                        <p class="feature-description">
-                            Quan sát và điều khiển các hiện tượng vật lý, hóa học, sinh học qua mô phỏng 3D sống động
-                        </p>
-                        <a href="#" class="feature-link">
-                            Khám phá <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-icon">
-                            <div class="icon-bg purple">
-                                <i class="fas fa-gamepad"></i>
-                            </div>
-                        </div>
-                        <h3 class="feature-title">Mini Games giáo dục</h3>
-                        <p class="feature-description">
-                            Học mà chơi, chơi mà học với hơn 50 trò chơi giáo dục thú vị, rèn luyện tư duy logic
-                        </p>
-                        <a href="minigame.html" class="feature-link">
-                            Chơi ngay <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="feature-icon">
-                            <div class="icon-bg pink">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                        </div>
-                        <h3 class="feature-title">Học tập thông minh</h3>
-                        <p class="feature-description">
-                            AI cá nhân hóa lộ trình học, theo dõi tiến độ và gợi ý nội dung phù hợp với từng học sinh
-                        </p>
-                        <a href="#" class="feature-link">
-                            Tìm hiểu <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="feature-icon">
-                            <div class="icon-bg orange">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                        <h3 class="feature-title">Cộng đồng học tập</h3>
-                        <p class="feature-description">
-                            Kết nối với bạn bè, chia sẻ kiến thức, thi đua thành tích trên bảng xếp hạng
-                        </p>
-                        <a href="#" class="feature-link">
-                            Tham gia <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="text-center">
+                <a href="minigame.html" class="btn btn-primary">
+                    Xem tất cả games <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Popular Games Section -->
-        <section id="games" class="games-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Mini Games</span>
-                    <h2 class="section-title">Trò chơi phổ biến</h2>
-                    <p class="section-description">
-                        Học tập hiệu quả qua các trò chơi giáo dục được thiết kế bài bản
-                    </p>
-                </div>
-
-                <div class="games-grid">
-                    <!-- Game Card 1 -->
-                    <article class="game-card" data-aos="zoom-in">
-                        <div class="game-image">
-                            <img src="images/pic01.jpg" alt="Game Bắn Bóng" />
-                            <div class="game-overlay">
-                                <a href="#" class="play-btn">
-                                    <i class="fas fa-play"></i>
-                                </a>
-                            </div>
-                            <span class="game-badge hot">HOT</span>
-                        </div>
-                        <div class="game-content">
-                            <div class="game-meta">
-                                <span class="game-category"><i class="fas fa-bullseye"></i> Phản xạ</span>
-                                <span class="game-rating">
-                                    <i class="fas fa-star"></i> 4.8
-                                </span>
-                            </div>
-                            <h3 class="game-title">Game Bắn Bóng</h3>
-                            <p class="game-description">
-                                Đọc câu hỏi và bắn trúng bóng có đáp án đúng. Rèn luyện phản xạ và kiến thức!
-                            </p>
-                            <div class="game-footer">
-                                <div class="game-stats">
-                                    <span><i class="fas fa-users"></i> 2.5K</span>
-                                    <span><i class="fas fa-clock"></i> 5 phút</span>
-                                </div>
-                                <a href="#" class="btn btn-small">Chơi ngay</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Game Card 2 -->
-                    <article class="game-card" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="game-image">
-                            <img src="images/pic02.jpg" alt="Game Sắp Xếp Số" />
-                            <div class="game-overlay">
-                                <a href="#" class="play-btn">
-                                    <i class="fas fa-play"></i>
-                                </a>
-                            </div>
-                            <span class="game-badge new">MỚI</span>
-                        </div>
-                        <div class="game-content">
-                            <div class="game-meta">
-                                <span class="game-category"><i class="fas fa-sort-numeric-up"></i> Toán học</span>
-                                <span class="game-rating">
-                                    <i class="fas fa-star"></i> 4.6
-                                </span>
-                            </div>
-                            <h3 class="game-title">Sắp Xếp Số</h3>
-                            <p class="game-description">
-                                Kéo thả các số theo thứ tự đúng. Phát triển tư duy logic và khả năng quan sát.
-                            </p>
-                            <div class="game-footer">
-                                <div class="game-stats">
-                                    <span><i class="fas fa-users"></i> 1.8K</span>
-                                    <span><i class="fas fa-clock"></i> 3 phút</span>
-                                </div>
-                                <a href="#" class="btn btn-small">Chơi ngay</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Game Card 3 -->
-                    <article class="game-card" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="game-image">
-                            <img src="images/pic03.jpg" alt="Phân Loại Động Vật" />
-                            <div class="game-overlay">
-                                <a href="#" class="play-btn">
-                                    <i class="fas fa-play"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="game-content">
-                            <div class="game-meta">
-                                <span class="game-category"><i class="fas fa-paw"></i> Sinh học</span>
-                                <span class="game-rating">
-                                    <i class="fas fa-star"></i> 4.9
-                                </span>
-                            </div>
-                            <h3 class="game-title">Phân Loại Động Vật</h3>
-                            <p class="game-description">
-                                Kéo động vật vào đúng nhóm phân loại. Học sinh học nhanh nhớ lâu!
-                            </p>
-                            <div class="game-footer">
-                                <div class="game-stats">
-                                    <span><i class="fas fa-users"></i> 3.2K</span>
-                                    <span><i class="fas fa-clock"></i> 4 phút</span>
-                                </div>
-                                <a href="#" class="btn btn-small">Chơi ngay</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Game Card 4 -->
-                    <article class="game-card" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="game-image">
-                            <img src="images/pic04.jpg" alt="Đua Xe Toán Học" />
-                            <div class="game-overlay">
-                                <a href="#" class="play-btn">
-                                    <i class="fas fa-play"></i>
-                                </a>
-                            </div>
-                            <span class="game-badge hot">HOT</span>
-                        </div>
-                        <div class="game-content">
-                            <div class="game-meta">
-                                <span class="game-category"><i class="fas fa-car"></i> Tốc độ</span>
-                                <span class="game-rating">
-                                    <i class="fas fa-star"></i> 4.7
-                                </span>
-                            </div>
-                            <h3 class="game-title">Đua Xe Toán Học</h3>
-                            <p class="game-description">
-                                Giải toán nhanh để xe chạy nhanh! Ai về đích trước sẽ là người chiến thắng.
-                            </p>
-                            <div class="game-footer">
-                                <div class="game-stats">
-                                    <span><i class="fas fa-users"></i> 4.1K</span>
-                                    <span><i class="fas fa-clock"></i> 6 phút</span>
-                                </div>
-                                <a href="#" class="btn btn-small">Chơi ngay</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Game Card 5 -->
-                    <article class="game-card" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="game-image">
-                            <img src="images/pic05.jpg" alt="Game 2048" />
-                            <div class="game-overlay">
-                                <a href="#" class="play-btn">
-                                    <i class="fas fa-play"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="game-content">
-                            <div class="game-meta">
-                                <span class="game-category"><i class="fas fa-calculator"></i> Chiến thuật</span>
-                                <span class="game-rating">
-                                    <i class="fas fa-star"></i> 4.5
-                                </span>
-                            </div>
-                            <h3 class="game-title">Game 2048</h3>
-                            <p class="game-description">
-                                Game puzzle kinh điển. Ghép các ô số để tạo ra 2048. Thách thức trí tuệ!
-                            </p>
-                            <div class="game-footer">
-                                <div class="game-stats">
-                                    <span><i class="fas fa-users"></i> 5.7K</span>
-                                    <span><i class="fas fa-clock"></i> 10 phút</span>
-                                </div>
-                                <a href="#" class="btn btn-small">Chơi ngay</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Game Card 6 -->
-                    <article class="game-card" data-aos="zoom-in" data-aos-delay="500">
-                        <div class="game-image">
-                            <img src="images/pic06.jpg" alt="Giải Đố Hình & Số" />
-                            <div class="game-overlay">
-                                <a href="#" class="play-btn">
-                                    <i class="fas fa-play"></i>
-                                </a>
-                            </div>
-                            <span class="game-badge new">MỚI</span>
-                        </div>
-                        <div class="game-content">
-                            <div class="game-meta">
-                                <span class="game-category"><i class="fas fa-puzzle-piece"></i> IQ</span>
-                                <span class="game-rating">
-                                    <i class="fas fa-star"></i> 4.8
-                                </span>
-                            </div>
-                            <h3 class="game-title">Giải Đố Hình & Số</h3>
-                            <p class="game-description">
-                                Quan sát quy luật và tìm đáp án đúng. Rèn luyện IQ và khả năng suy luận.
-                            </p>
-                            <div class="game-footer">
-                                <div class="game-stats">
-                                    <span><i class="fas fa-users"></i> 2.9K</span>
-                                    <span><i class="fas fa-clock"></i> 7 phút</span>
-                                </div>
-                                <a href="#" class="btn btn-small">Chơi ngay</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="section-footer">
-                    <a href="minigame.html" class="btn btn-outline-large">
-                        Xem tất cả game <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Subjects Section -->
-        <section class="subjects-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Khám phá môn học</span>
-                    <h2 class="section-title">Danh mục STEM</h2>
-                </div>
-
-                <div class="subjects-grid">
-                    <a href="#" class="subject-card physics" data-aos="flip-left">
-                        <div class="subject-icon">
-                            <i class="fas fa-atom"></i>
-                        </div>
-                        <h3>Vật lý</h3>
-                        <p>120+ mô phỏng</p>
-                        <div class="subject-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-
-                    <a href="#" class="subject-card chemistry" data-aos="flip-left" data-aos-delay="100">
-                        <div class="subject-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3>Hóa học</h3>
-                        <p>80+ thí nghiệm</p>
-                        <div class="subject-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-
-                    <a href="#" class="subject-card math" data-aos="flip-left" data-aos-delay="200">
-                        <div class="subject-icon">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <h3>Toán học</h3>
-                        <p>150+ bài tập</p>
-                        <div class="subject-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-
-                    <a href="#" class="subject-card biology" data-aos="flip-left" data-aos-delay="300">
-                        <div class="subject-icon">
-                            <i class="fas fa-dna"></i>
-                        </div>
-                        <h3>Sinh học</h3>
-                        <p>60+ mô hình</p>
-                        <div class="subject-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section">
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
             <div class="cta-content">
-                <div class="cta-text">
-                    <h2>Sẵn sàng khám phá thế giới STEM?</h2>
-                    <p>Tham gia cùng hàng ngàn học sinh đang học tập hiệu quả mỗi ngày</p>
-                </div>
+                <h2>Sẵn sàng bắt đầu hành trình khám phá?</h2>
+                <p>Tham gia cùng hàng nghìn học sinh đang học STEM một cách thú vị</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-white">
-                        <i class="fas fa-user-plus"></i>
-                        Đăng ký miễn phí
-                    </a>
-                    <a href="#" class="btn btn-outline-white">
-                        <i class="fas fa-play-circle"></i>
-                        Xem demo
-                    </a>
+                    <a href="#" class="btn btn-white">Đăng ký miễn phí</a>
+                    <a href="#" class="btn btn-outline-white">Liên hệ tư vấn</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <div class="footer-logo">
-                            <i class="fas fa-atom"></i>
-                            <span>Vui Học STEM</span>
-                        </div>
-                        <p class="footer-description">
-                            Nền tảng học tập STEM trực tuyến hàng đầu Việt Nam, mang đến trải nghiệm học tập hiện đại và hiệu quả.
-                        </p>
-                        <div class="footer-social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Về chúng tôi</h4>
-                        <ul>
-                            <li><a href="#">Giới thiệu</a></li>
-                            <li><a href="#">Đội ngũ</a></li>
-                            <li><a href="#">Tuyển dụng</a></li>
-                            <li><a href="#">Liên hệ</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Hỗ trợ</h4>
-                        <ul>
-                            <li><a href="#">Trung tâm trợ giúp</a></li>
-                            <li><a href="#">Hướng dẫn sử dụng</a></li>
-                            <li><a href="#">Câu hỏi thường gặp</a></li>
-                            <li><a href="#">Báo lỗi</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Liên hệ</h4>
-                        <ul class="footer-contact">
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Hà Nội, Việt Nam</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <span>info@vuhocstem.edu.vn</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-phone"></i>
-                                <span>0123 456 789</span>
-                            </li>
-                        </ul>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Vui học STEM</h3>
+                    <p>Nền tảng học tập STEM tương tác hàng đầu Việt Nam</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
 
-                <div class="footer-bottom">
-                    <p>&copy; 2024 Vui Học STEM. Design by <strong>Nguyễn Quang Ảnh</strong></p>
-                    <div class="footer-links">
-                        <a href="#">Chính sách bảo mật</a>
-                        <a href="#">Điều khoản sử dụng</a>
-                    </div>
+                <div class="footer-column">
+                    <h4>Môn học</h4>
+                    <ul>
+                        <li><a href="#">Vật lý</a></li>
+                        <li><a href="#">Toán học</a></li>
+                        <li><a href="#">Hóa học</a></li>
+                        <li><a href="#">Sinh học</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Tài nguyên</h4>
+                    <ul>
+                        <li><a href="#">Thư viện bài học</a></li>
+                        <li><a href="#">Video hướng dẫn</a></li>
+                        <li><a href="#">Tài liệu PDF</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@vuihocstem.edu.vn</li>
+                        <li><i class="fas fa-phone"></i> (028) 1234 5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</li>
+                    </ul>
                 </div>
             </div>
-        </footer>
-    </main>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Vui học STEM. Thiết kế bởi IBME Lab.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="assets/js/main.js"></script>
 </body>
 </html>
