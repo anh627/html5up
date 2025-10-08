@@ -1074,13 +1074,7 @@ section:has(.posts) header.major h2 {
     font-weight: 800 !important;
 }
 
-section:has(.posts) header.major h2::before {
-    content: '🎮';
-    position: absolute;
-    left: 0;
-    font-size: 2rem;
-    animation: bounce 2s ease-in-out infinite;
-}
+
 
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
@@ -1536,14 +1530,6 @@ ul.actions {
     padding-left: 3rem;
 }
 
-/* Icon cho title */
-.simulation-item h3::before {
-    content: '⚛️'; /* Hoặc dùng Font Awesome: '\f5d2' */
-    position: absolute;
-    left: 0;
-    font-size: 1.5rem;
-    animation: atomFloat 3s ease-in-out infinite;
-}
 
 @keyframes atomFloat {
     0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -2025,6 +2011,7 @@ section:has(.simulation-item) {
 .phet-simulation:hover::before {
     opacity: 1;
 }
+
 
 
 
