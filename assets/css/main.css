@@ -226,13 +226,16 @@ strong, b {
 /* ============================================
    6. SIDEBAR - EXTENDED TO FULL HEIGHT
    ============================================ */
+/* ============================================
+   6. SIDEBAR - SINGLE COLOR UNIFIED DESIGN
+   ============================================ */
 #sidebar {
     position: fixed;
     left: 0;
     top: 0;
     width: var(--sidebar-width);
     height: 100vh;
-    background: linear-gradient(180deg, #1A1B3A 0%, #2D2E5F 50%, #3D3E7F 100%);
+    background: #1e2139; /* Màu xanh đen sang trọng */
     box-shadow: 5px 0 30px rgba(0, 0, 0, 0.15);
     overflow-y: auto;
     z-index: 1000;
@@ -246,7 +249,7 @@ strong, b {
     top: 100vh;
     width: var(--sidebar-width);
     height: 100vh;
-    background: linear-gradient(180deg, #3D3E7F 0%, #2D2E5F 100%);
+    background: #1e2139; /* Cùng màu để thống nhất */
     z-index: -1;
 }
 
@@ -283,8 +286,8 @@ strong, b {
 #search input[type="text"] {
     width: 100%;
     padding: 1rem 3rem 1rem 1.2rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08); /* Điều chỉnh độ trong suốt cho phù hợp */
+    border: 2px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-lg);
     color: var(--white);
     font-size: 0.95rem;
@@ -298,7 +301,7 @@ strong, b {
 
 #search input[type="text"]:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.12);
     border-color: var(--highlight);
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
@@ -366,7 +369,7 @@ strong, b {
 
 #menu > ul > li > a:hover,
 #menu > ul > li > .opener:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08); /* Hover nhẹ nhàng */
     color: var(--highlight);
     padding-left: 1.5rem;
 }
@@ -480,7 +483,7 @@ strong, b {
 }
 
 .contact li:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     transform: translateX(5px);
 }
 
@@ -520,7 +523,6 @@ strong, b {
     font-size: 0.85rem;
     font-family: var(--font-primary);
 }
-
 /* ============================================
    7. MAIN CONTENT - OPTIMIZED GRADIENT BG
    ============================================ */
@@ -1472,3 +1474,4 @@ ul.actions {
         right: 0.5rem;
     }
 }
+
