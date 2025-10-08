@@ -1236,72 +1236,141 @@ ul.actions {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
+    /* Sidebar mặc định ẩn và dùng inactive class */
     #sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-    
-    #sidebar.active {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 260px;
+        height: 100vh;
         transform: translateX(0);
+        transition: transform 0.3s ease;
+        z-index: 9998;
     }
     
-  /* Mobile Menu Toggle */
-.menu-toggle {
-position: fixed;
-top: 1rem;
-right: 1rem;
-z-index: 1001;
-width: 50px;
-height: 50px;
-background: var(--gradient-primary);
-border-radius: var(--radius-lg);
-display: flex;
-align-items: center;
-justify-content: center;
-color: var(--white);
-font-size: 1.5rem;
-cursor: pointer;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Khi inactive (đóng menu) */
+    #sidebar.inactive {
+        transform: translateX(-100%);
+    }
+    
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 9999;
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+        background: var(--gradient-primary);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+        border: none;
+        outline: none;
+    }
+    
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+    
+    /* Overlay khi menu mở */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9997;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+    
+    /* Main content chiếm full width trên mobile */
+    #main {
+        margin-left: 0 !important;
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+    }
+    
+    #main > .inner {
+        padding: 1.5rem;
+        border-radius: 0;
+        width: 100%;
+    }
+    
+    /* Đảm bảo wrapper chiếm full width */
+    #wrapper {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+    }
+    
+    /* Banner adjustments */
+    #banner {
+        padding: 2rem;
+        width: 100%;
+    }
+    
+    #banner .content header h1 {
+        font-size: 2rem;
+    }
+    
+    /* Grid layouts */
+    .features {
+        grid-template-columns: 1fr;
+    }
+    
+    .posts {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Hide most floating icons on mobile */
+    .floating-icon:nth-child(n+4) {
+        display: none;
+    }
+    
+    .floating-icon {
+        font-size: 2rem;
+    }
+    
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Khi menu mở, prevent body scroll */
+    body.menu-open {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
 }
 
-text
-
-#main {
-    margin-left: 0;
-}
-
-#main > .inner {
-    padding: 1.5rem;
-    border-radius: 0;
-}
-
-#banner {
-    padding: 2rem;
-}
-
-#banner .content header h1 {
-    font-size: 2rem;
-}
-
-.features {
-    grid-template-columns: 1fr;
-}
-
-.posts {
-    grid-template-columns: 1fr;
-}
-
-/* Hide most floating icons on mobile */
-.floating-icon:nth-child(n+4) {
-    display: none;
-}
-
-.floating-icon {
-    font-size: 2rem;
-}
-}
 /* Small Mobile */
 @media screen and (max-width: 480px) {
+    #sidebar {
+        width: 240px; /* Sidebar nhỏ hơn trên màn hình nhỏ */
+    }
+    
     #main > .inner {
         padding: 1rem;
     }
@@ -1318,9 +1387,50 @@ text
         padding: 1.5rem;
     }
     
+    .posts article {
+        padding: 1rem;
+    }
+    
     .floating-icon {
         font-size: 1.5rem;
     }
+    
+    .menu-toggle {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        min-height: 45px;
+    }
 }
 
+/* Desktop - Đảm bảo không có menu toggle */
+@media screen and (min-width: 769px) {
+    .menu-toggle {
+        display: none !important;
+    }
+    
+    .sidebar-overlay {
+        display: none !important;
+    }
+    
+    #sidebar {
+        transform: translateX(0) !important;
+        position: fixed;
+    }
+    
+    #main {
+        margin-left: 280px;
+    }
+}
 
+/* Fix cho landscape mode trên mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    #sidebar {
+        width: 240px;
+    }
+    
+    .menu-toggle {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
