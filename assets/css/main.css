@@ -1474,6 +1474,557 @@ ul.actions {
         right: 0.5rem;
     }
 }
+/* ============================================
+   PHET SIMULATIONS - GLASS MORPHISM STYLE
+   ============================================ */
+
+/* Container cho mỗi simulation */
+.simulation-item {
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    /* Glass morphism effect giống features */
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-spring);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect cho container */
+.simulation-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated border top */
+.simulation-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-vibrant);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.simulation-item:hover::before {
+    transform: scaleX(1);
+}
+
+/* Title styling - Phù hợp với theme */
+.simulation-item h3 {
+    color: var(--white) !important;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    position: relative;
+    padding-left: 3rem;
+}
+
+/* Icon cho title */
+.simulation-item h3::before {
+    content: '⚛️'; /* Hoặc dùng Font Awesome: '\f5d2' */
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    animation: atomFloat 3s ease-in-out infinite;
+}
+
+@keyframes atomFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(180deg); }
+}
+
+/* Description text */
+.simulation-item p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: var(--font-primary);
+    padding-left: 3rem;
+}
+
+/* PhET iframe container */
+.phet-simulation {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 65%; /* Tỉ lệ 16:10 cho PhET */
+    margin: 1.5rem 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                    0 0 30px rgba(102, 126, 234, 0.3);
+    }
+    50% { 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                    0 0 50px rgba(118, 75, 162, 0.5);
+    }
+}
+
+/* PhET iframe */
+.phet-simulation iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--radius-lg);
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect cho iframe */
+.phet-simulation:hover iframe {
+    transform: scale(1.02);
+}
+
+/* Loading indicator */
+.phet-simulation::after {
+    content: 'Đang tải mô phỏng...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Interactive badge */
+.simulation-item {
+    position: relative;
+}
+
+.simulation-item::after {
+    content: 'TƯƠNG TÁC';
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: var(--gradient-fire);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    animation: badgePulse 2s ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+@keyframes badgePulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+    }
+}
+
+/* Numbering cho simulation items */
+.simulation-item {
+    counter-increment: sim-counter;
+}
+
+.simulation-item h3::after {
+    content: counter(sim-counter, decimal-leading-zero);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.1;
+    color: var(--white);
+}
+
+/* Reset counter */
+section:has(.simulation-item) {
+    counter-reset: sim-counter;
+}
+
+/* Button styling cập nhật */
+.simulation-item + ul.actions {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.simulation-item + ul.actions .button {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--white) !important;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.simulation-item + ul.actions .button::before {
+    content: '🚀';
+    position: absolute;
+    left: 1.5rem;
+    animation: rocketMove 2s ease-in-out infinite;
+}
+
+@keyframes rocketMove {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .phet-simulation {
+        padding-bottom: 70%;
+    }
+    
+    .simulation-item {
+        padding: 2rem;
+    }
+    
+    .simulation-item h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .phet-simulation {
+        padding-bottom: 75%;
+    }
+    
+    .simulation-item {
+        padding: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .simulation-item h3 {
+        font-size: 1.3rem;
+        padding-left: 2rem;
+    }
+    
+    .simulation-item p {
+        padding-left: 2rem;
+        font-size: 0.95rem;
+    }
+    
+    .simulation-item::after {
+        top: 1rem;
+        right: 1rem;
+        font-size: 0.65rem;
+    }
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+    .simulation-item h3::before,
+    .phet-simulation,
+    .simulation-item::after {
+        animation: none;
+    }
+}
+
+/* Loading state */
+.phet-simulation.loading {
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.1) 25%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: shimmerLoad 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmerLoad {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+/* ============================================
+   FULLSCREEN MODAL FOR PHET SIMULATIONS
+   ============================================ */
+
+/* Modal Overlay */
+.phet-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.phet-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+/* Modal Content Container */
+.phet-modal-content {
+    position: relative;
+    width: 95%;
+    height: 90%;
+    max-width: 1400px;
+    background: rgba(30, 33, 57, 0.98);
+    border-radius: var(--radius-xl);
+    padding: 1rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.7);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.phet-modal.active .phet-modal-content {
+    transform: scale(1);
+}
+
+/* Modal Header */
+.phet-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.phet-modal-title {
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Close Button */
+.phet-modal-close {
+    width: 45px;
+    height: 45px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.phet-modal-close:hover {
+    background: rgba(239, 68, 68, 0.8);
+    border-color: rgba(239, 68, 68, 1);
+    transform: rotate(90deg);
+}
+
+/* Modal Body - iframe container */
+.phet-modal-body {
+    width: 100%;
+    height: calc(100% - 70px);
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #000;
+}
+
+.phet-modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Expand Button on simulation */
+.expand-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.simulation-item:hover .expand-btn {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.expand-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Tooltip cho expand button */
+.expand-btn::before {
+    content: 'Phóng to';
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.expand-btn:hover::before {
+    opacity: 1;
+}
+
+/* Loading spinner */
+.phet-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 3rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Keyboard shortcut hint */
+.phet-modal-hint {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.3rem 1rem;
+    border-radius: var(--radius-full);
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+    .phet-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+    
+    .phet-modal-header {
+        padding: 1rem;
+    }
+    
+    .phet-modal-body {
+        height: calc(100% - 60px);
+    }
+    
+    .expand-btn {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+/* Click hint overlay */
+.phet-simulation {
+    cursor: pointer;
+    position: relative;
+}
+
+.click-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+}
+
+.phet-simulation:hover .click-hint {
+    opacity: 1;
+}
+
+/* Overlay effect khi hover */
+.phet-simulation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: var(--radius-lg);
+    pointer-events: none;
+}
+
+.phet-simulation:hover::before {
+    opacity: 1;
+}
 
 
 
