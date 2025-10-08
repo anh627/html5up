@@ -1716,6 +1716,7 @@ section:has(.simulation-item) {
     .simulation-item {
         padding: 1.5rem;
         margin-bottom: 2.5rem;
+       position: relative;
     }
     
     .simulation-item h3 {
@@ -1728,10 +1729,22 @@ section:has(.simulation-item) {
         font-size: 0.95rem;
     }
     
-    .simulation-item::after {
-        top: 1rem;
-        right: 1rem;
+    . .simulation-item::after {
+        content: 'TƯƠNG TÁC';
+        position: absolute;
+        bottom: 1rem;      /* 👈 DÍNH DƯỚI CÙNG */
+        right: 1rem;       /* 👈 VẪN GIỮ BÊN PHẢI */
+        top: auto;         /* 👈 GỠ BỎ TOP */
+        background: var(--gradient-fire);
+        color: white;
+        padding: 0.4rem 0.8rem; /* Thu nhỏ một chút cho mobile */
+        border-radius: var(--radius-full);
         font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        animation: badgePulse 2s ease-in-out infinite;
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        z-index: 2; /* Đề phòng bị iframe đè */
     }
 }
 
@@ -2011,6 +2024,7 @@ section:has(.simulation-item) {
 .phet-simulation:hover::before {
     opacity: 1;
 }
+
 
 
 
