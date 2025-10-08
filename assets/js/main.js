@@ -82,62 +82,207 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Khởi tạo mobile menu
-    function initMobileMenu() {
-        if (window.innerWidth <= 768) {
-            createMobileMenu();
+    // Biến global để track event listeners
+let mobileMenuInitialized = false;
+let eventListeners = [];
+
+function initMobileMenu() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return; // Guard clause nếu không có sidebar
+    
+    // Clean up old event listeners trước
+    cleanupEventListeners();
+    
+    if (window.innerWidth <= 768) {
+        // === MOBILE MODE ===
+        
+        // Tạo menu toggle và overlay nếu chưa có
+        createMobileMenu();
+        
+        // Lấy lại references sau khi create
+        menuToggle = document.querySelector('.menu-toggle');
+        overlay = document.querySelector('.sidebar-overlay');
+        
+        // Đảm bảo sidebar bắt đầu ở trạng thái đóng trên mobile
+        sidebar.classList.add('inactive');
+        
+        // Hiển thị menu toggle
+        if (menuToggle) {
+            menuToggle.style.display = 'flex';
             
-            // Đảm bảo sidebar bắt đầu ở trạng thái đóng trên mobile
-            sidebar.classList.add('inactive');
-            
-            // Event handlers cho menu toggle
-            if (menuToggle) {
-                // Remove old listeners để tránh duplicate
-                menuToggle.replaceWith(menuToggle.cloneNode(true));
-                menuToggle = document.querySelector('.menu-toggle');
-                
-                // Click event
-                menuToggle.addEventListener('click', toggleMenu);
-                
-                // Touch event cho mobile (ưu tiên)
-                menuToggle.addEventListener('touchstart', function(e) {
+            // Chỉ add event listeners nếu chưa initialized
+            if (!mobileMenuInitialized) {
+                // Click event handler
+                const clickHandler = function(e) {
                     e.preventDefault();
+                    e.stopPropagation();
                     toggleMenu(e);
-                }, { passive: false });
+                };
+                
+                // Touch event handler
+                const touchHandler = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleMenu(e);
+                };
+                
+                menuToggle.addEventListener('click', clickHandler);
+                menuToggle.addEventListener('touchstart', touchHandler, { passive: false });
+                
+                // Lưu references để cleanup sau
+                eventListeners.push({ 
+                    element: menuToggle, 
+                    event: 'click', 
+                    handler: clickHandler 
+                });
+                eventListeners.push({ 
+                    element: menuToggle, 
+                    event: 'touchstart', 
+                    handler: touchHandler 
+                });
             }
-            
-            // Click overlay để đóng menu
-            if (overlay) {
-                overlay.addEventListener('click', closeMenu);
-            }
-            
-            // Đóng menu khi click vào link
+        }
+        
+        // Overlay click handler
+        if (overlay && !mobileMenuInitialized) {
+            const overlayHandler = function() {
+                closeMenu();
+            };
+            overlay.addEventListener('click', overlayHandler);
+            eventListeners.push({ 
+                element: overlay, 
+                event: 'click', 
+                handler: overlayHandler 
+            });
+        }
+        
+        // Sidebar links handlers
+        if (!mobileMenuInitialized) {
             const sidebarLinks = sidebar.querySelectorAll('a:not(.opener)');
             sidebarLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    // Delay để animation smooth
-                    setTimeout(closeMenu, 300);
+                const linkHandler = function(e) {
+                    // Check if it's an anchor link
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        // Delay để animation smooth
+                        setTimeout(closeMenu, 300);
+                    }
+                };
+                link.addEventListener('click', linkHandler);
+                eventListeners.push({ 
+                    element: link, 
+                    event: 'click', 
+                    handler: linkHandler 
                 });
             });
-        } else {
-            // Desktop: ẩn menu toggle và hiện sidebar
-            if (menuToggle) menuToggle.style.display = 'none';
-            if (overlay) overlay.classList.remove('active');
-            sidebar.classList.remove('inactive');
-            document.body.style.overflow = '';
         }
+        
+        mobileMenuInitialized = true;
+        
+    } else {
+        // === DESKTOP MODE ===
+        
+        // Ẩn menu toggle
+        if (menuToggle) {
+            menuToggle.style.display = 'none';
+        }
+        
+        // Ẩn overlay
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+        
+        // Hiện sidebar
+        sidebar.classList.remove('inactive');
+        
+        // Reset body scroll
+        document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
+        
+        mobileMenuInitialized = false;
+    }
+}
+
+// Function cleanup event listeners
+function cleanupEventListeners() {
+    eventListeners.forEach(({ element, event, handler }) => {
+        if (element) {
+            element.removeEventListener(event, handler);
+        }
+    });
+    eventListeners = [];
+}
+
+// Function toggle menu được cải tiến
+function toggleMenu(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
     }
     
-    // Khởi tạo khi load
-    initMobileMenu();
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
     
-    // Xử lý khi resize window
-    let resizeTimer;
-    window.addEventListener('resize', function() {
+    const isOpen = !sidebar.classList.contains('inactive');
+    
+    if (isOpen) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+}
+
+// Function mở menu
+function openMenu() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+    
+    sidebar.classList.remove('inactive');
+    if (overlay) overlay.classList.add('active');
+    if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+    document.body.classList.add('menu-open');
+    document.body.style.overflow = 'hidden';
+}
+
+// Function đóng menu
+function closeMenu() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+    
+    sidebar.classList.add('inactive');
+    if (overlay) overlay.classList.remove('active');
+    if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    document.body.classList.remove('menu-open');
+    document.body.style.overflow = '';
+}
+
+// Khởi tạo khi DOM ready
+initMobileMenu();
+
+// Xử lý resize với debounce tốt hơn
+let resizeTimer;
+let lastWidth = window.innerWidth;
+
+window.addEventListener('resize', function() {
+    const currentWidth = window.innerWidth;
+    
+    // Chỉ re-init nếu cross breakpoint (768px)
+    const crossedBreakpoint = (lastWidth <= 768 && currentWidth > 768) || 
+                             (lastWidth > 768 && currentWidth <= 768);
+    
+    if (crossedBreakpoint) {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
             initMobileMenu();
+            lastWidth = currentWidth;
         }, 250);
-    });
+    }
+});
+
+// Cleanup khi page unload
+window.addEventListener('beforeunload', function() {
+    cleanupEventListeners();
+});
     
     // ============ PHẦN CÒN LẠI GIỮ NGUYÊN ============
     
