@@ -1271,7 +1271,7 @@ ul.actions {
         position: fixed;
         left: 0;
         top: 0;
-        width: 260px;
+        width: 300px;
         height: 100vh;
         transform: translateX(0);
         transition: transform 0.3s ease;
@@ -1408,7 +1408,7 @@ ul.actions {
 /* Small Mobile */
 @media screen and (max-width: 480px) {
     #sidebar {
-        width: 240px; /* Sidebar nhỏ hơn trên màn hình nhỏ */
+        width: 260px; /* Sidebar nhỏ hơn trên màn hình nhỏ */
     }
     
     #main {
@@ -1466,7 +1466,7 @@ ul.actions {
 /* Fix cho landscape mode trên mobile */
 @media screen and (max-width: 768px) and (orientation: landscape) {
     #sidebar {
-        width: 240px;
+        width: 270px;
     }
     
     .menu-toggle {
@@ -1474,4 +1474,5 @@ ul.actions {
         right: 0.5rem;
     }
 }
+
 
