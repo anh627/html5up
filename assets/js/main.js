@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalIframe = document.getElementById('modalIframe');
     const modalTitle = document.getElementById('modalTitle');
     const simCards = document.querySelectorAll('.sim-card');
+    const sidebar = document.getElementById('sidebar');
 
     function openModal(url, title) {
         if (!phetModal || !modalIframe || !modalTitle) return;
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modalIframe.src = url;
         modalTitle.textContent = title;
         phetModal.classList.add('active');
-        document.body.classList.add('menu-open');
+        document.body.classList.add('modal-open'); // Sử dụng class riêng cho modal
         document.body.style.overflow = 'hidden';
 
         modalIframe.onload = () => {
@@ -38,8 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!phetModal || !modalIframe) return;
         modalIframe.src = '';
         phetModal.classList.remove('active');
-        document.body.classList.remove('menu-open');
-        document.body.style.overflow = '';
+        // Chỉ xóa modal-open và overflow nếu sidebar không mở
+        if (sidebar && sidebar.classList.contains('inactive')) {
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+        }
     }
 
     simCards.forEach(card => {
@@ -95,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // === Mobile Menu Toggle ===
     let menuToggle = document.querySelector('.menu-toggle');
     let overlay = document.querySelector('.sidebar-overlay');
-    const sidebar = document.getElementById('sidebar');
     let mobileMenuInitialized = false;
     let eventListeners = [];
 
@@ -119,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.classList.remove('inactive');
         if (overlay) overlay.classList.add('active');
         if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-times"></i>';
-        document.body.classList.add('menu-open');
+        document.body.classList.add('menu-open'); // Sử dụng class riêng cho menu
         document.body.style.overflow = 'hidden';
     }
 
@@ -128,8 +131,11 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.classList.add('inactive');
         if (overlay) overlay.classList.remove('active');
         if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        document.body.classList.remove('menu-open');
-        document.body.style.overflow = '';
+        // Chỉ xóa menu-open và overflow nếu modal không mở
+        if (!phetModal || !phetModal.classList.contains('active')) {
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+        }
     }
 
     function toggleMenu(e) {
@@ -206,8 +212,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (menuToggle) menuToggle.style.display = 'none';
             if (overlay) overlay.classList.remove('active');
             sidebar.classList.remove('inactive');
-            document.body.style.overflow = '';
-            document.body.classList.remove('menu-open');
+            // Chỉ khôi phục overflow nếu modal không mở
+            if (!phetModal || !phetModal.classList.contains('active')) {
+                document.body.style.overflow = '';
+                document.body.classList.remove('menu-open');
+            }
             mobileMenuInitialized = false;
         }
     }
@@ -301,25 +310,3 @@ document.addEventListener('visibilitychange', function() {
         });
     }
 });
-// === FIX: Ngăn iframe PhET chặn click khi menu mở ===
-const phetModalIframe = document.querySelector('#phetModal iframe');
-
-// Quan sát khi class 'menu-open' được thêm / xóa khỏi body
-const observer = new MutationObserver(() => {
-    if (!phetModalIframe) return;
-
-    if (document.body.classList.contains('menu-open')) {
-        // Khi menu mở → cho phép click xuyên qua iframe
-        phetModalIframe.style.pointerEvents = 'none';
-        phetModalIframe.style.opacity = '0.5';
-        phetModalIframe.style.transition = 'opacity 0.3s ease';
-    } else {
-        // Khi menu đóng → trả lại bình thường
-        phetModalIframe.style.pointerEvents = 'auto';
-        phetModalIframe.style.opacity = '1';
-    }
-});
-
-// Theo dõi thay đổi classList của body
-observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
