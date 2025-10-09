@@ -1,9 +1,4 @@
 /* ============================================
-   VUI HỌC STEM - VERSION 7.1 FINAL
-   Fixed: Modal không lấn sidebar, không trùng close/toggle
-   ============================================ */
-
-/* ============================================
    1. IMPORTS & FONTS
    ============================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -34,6 +29,9 @@
     --gradient-fire: linear-gradient(135deg, #F857A6 0%, #FF5858 100%);
     --gradient-nature: linear-gradient(135deg, #00B09B 0%, #96C93D 100%);
     --gradient-cosmic: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+   
+    /* Sidebar Gradient - ĐEN XANH */
+    --gradient-sidebar: linear-gradient(180deg, #000000 0%, #0a192f 50%, #00495e 100%);
    
     /* Animated Background Gradient */
     --gradient-animated-bg: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -108,7 +106,102 @@
 }
 
 /* ============================================
-   3. RESET & BASE STYLES
+   3. ANIMATIONS - GRADIENT MOVEMENT
+   ============================================ */
+@keyframes gradientMove1 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.3;
+    }
+    33% {
+        transform: translate(30%, 30%) rotate(120deg);
+        opacity: 0.5;
+    }
+    66% {
+        transform: translate(-20%, 50%) rotate(240deg);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+@keyframes gradientMove2 {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.25;
+    }
+    50% {
+        transform: translate(-40%, -30%) rotate(180deg) scale(1.2);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg) scale(1);
+        opacity: 0.25;
+    }
+}
+
+@keyframes gradientMove3 {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0.35;
+    }
+    25% {
+        transform: translate(20%, -20%) rotate(135deg);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translate(-30%, 40%) rotate(315deg);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(0, 0) rotate(405deg);
+        opacity: 0.35;
+    }
+}
+
+@keyframes gradientMove4 {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 0.3;
+    }
+    40% {
+        transform: translate(25%, 35%) scale(1.15) rotate(144deg);
+        opacity: 0.45;
+    }
+    80% {
+        transform: translate(-15%, -25%) scale(0.9) rotate(288deg);
+        opacity: 0.35;
+    }
+    100% {
+        transform: translate(0, 0) scale(1) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* ============================================
+   4. RESET & BASE STYLES
    ============================================ */
 * {
     margin: 0;
@@ -137,6 +230,65 @@ body {
     color: var(--gray-700);
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* ============================================
+   5. ANIMATED GRADIENT BACKGROUND LAYERS
+   ============================================ */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: 150vw;
+    height: 150vh;
+    top: -25vh;
+    left: -25vw;
+    z-index: var(--z-base);
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+body::before {
+    background: radial-gradient(circle at 30% 40%, rgba(147, 51, 234, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(91, 95, 222, 0.35) 0%, transparent 60%);
+    animation: gradientMove1 20s ease-in-out infinite;
+    filter: blur(60px);
+}
+
+body::after {
+    background: radial-gradient(circle at 60% 30%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(59, 130, 246, 0.35) 0%, transparent 55%);
+    animation: gradientMove2 25s ease-in-out infinite;
+    filter: blur(80px);
+}
+
+/* Additional Gradient Layers */
+#main::before,
+#main::after {
+    content: '';
+    position: fixed;
+    width: 120vw;
+    height: 120vh;
+    top: -10vh;
+    left: -10vw;
+    z-index: var(--z-particles);
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+#main::before {
+    background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.2) 0%, transparent 50%);
+    animation: gradientMove3 30s ease-in-out infinite;
+    filter: blur(90px);
+}
+
+#main::after {
+    background: radial-gradient(circle at 20% 80%, rgba(239, 68, 68, 0.25) 0%, transparent 55%),
+                radial-gradient(circle at 90% 50%, rgba(14, 165, 233, 0.3) 0%, transparent 60%);
+    animation: gradientMove4 22s ease-in-out infinite;
+    filter: blur(70px);
 }
 
 /* Prevent scroll when menu/modal is open */
@@ -168,7 +320,7 @@ img {
 }
 
 /* ============================================
-   4. TYPOGRAPHY
+   6. TYPOGRAPHY
    ============================================ */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -219,7 +371,7 @@ strong, b {
 }
 
 /* ============================================
-   5. LAYOUT
+   7. LAYOUT
    ============================================ */
 #wrapper {
     display: flex;
@@ -228,7 +380,7 @@ strong, b {
 }
 
 /* ============================================
-   6. SIDEBAR
+   8. SIDEBAR - GRADIENT ĐEN XANH
    ============================================ */
 #sidebar {
     position: fixed;
@@ -236,10 +388,28 @@ strong, b {
     top: 0;
     width: var(--sidebar-width);
     height: 100vh;
-    background: #1e2139;
-    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.15);
+    background: var(--gradient-sidebar);
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3), 
+                inset -1px 0 0 rgba(0, 255, 255, 0.1);
     overflow-y: auto;
     z-index: var(--z-sidebar);
+    border-right: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+/* Subtle animated overlay for sidebar */
+#sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        transparent 0%, 
+        rgba(0, 255, 255, 0.03) 50%, 
+        transparent 100%);
+    pointer-events: none;
+    animation: pulse 4s ease-in-out infinite;
 }
 
 #sidebar .inner {
@@ -248,6 +418,8 @@ strong, b {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 2;
 }
 
 /* Search Box */
@@ -262,8 +434,8 @@ strong, b {
 #search input[type="text"] {
     width: 100%;
     padding: 1rem 3rem 1rem 1.2rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 255, 255, 0.08);
+    border: 2px solid rgba(0, 255, 255, 0.2);
     border-radius: var(--radius-lg);
     color: var(--white);
     font-size: 0.95rem;
@@ -272,14 +444,14 @@ strong, b {
 }
 
 #search input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 #search input[type="text"]:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.12);
-    border-color: var(--highlight);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    background: rgba(0, 255, 255, 0.12);
+    border-color: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 #search form::after {
@@ -291,7 +463,7 @@ strong, b {
     right: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 255, 255, 0.6);
     pointer-events: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -306,17 +478,18 @@ strong, b {
 #menu header.major {
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(0, 255, 255, 0.2);
 }
 
 #menu header.major h2 {
-    color: var(--white);
+    color: rgba(0, 255, 255, 0.9);
     font-size: 1.1rem;
     font-family: var(--font-heading);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 0;
     font-weight: 600;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 #menu > ul {
@@ -343,13 +516,16 @@ strong, b {
     transition: var(--transition-base);
     position: relative;
     overflow: hidden;
+    border: 1px solid transparent;
 }
 
 #menu > ul > li > a:hover,
 #menu > ul > li > .opener:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--highlight);
+    background: rgba(0, 255, 255, 0.1);
+    color: #00ffff;
     padding-left: 1.5rem;
+    border-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
 #menu .opener::after {
@@ -358,12 +534,12 @@ strong, b {
     font-weight: 900;
     font-size: 0.75rem;
     transition: transform 0.3s ease;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 255, 255, 0.6);
 }
 
 #menu > ul > li.active > .opener::after {
     transform: rotate(180deg);
-    color: var(--highlight);
+    color: #00ffff;
 }
 
 #menu ul ul {
@@ -394,14 +570,14 @@ strong, b {
     content: '›';
     position: absolute;
     left: 1rem;
-    color: var(--highlight);
+    color: #00ffff;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 #menu ul ul li a:hover {
-    color: var(--highlight);
-    background: rgba(255, 255, 255, 0.05);
+    color: #00ffff;
+    background: rgba(0, 255, 255, 0.08);
     padding-left: 2.5rem;
 }
 
@@ -413,17 +589,18 @@ strong, b {
 #sidebar > .inner > section:last-of-type {
     margin-top: auto;
     padding-top: 2rem;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid rgba(0, 255, 255, 0.2);
 }
 
 #sidebar section header.major h2 {
-    color: var(--white);
+    color: rgba(0, 255, 255, 0.9);
     font-size: 1.1rem;
     font-family: var(--font-heading);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 0 0 1rem 0;
     font-weight: 600;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 #sidebar section p {
@@ -444,15 +621,18 @@ strong, b {
     gap: 1rem;
     margin-bottom: 1rem;
     padding: 0.8rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 255, 255, 0.08);
     border-radius: var(--radius-md);
     transition: var(--transition-base);
     color: var(--white);
+    border: 1px solid rgba(0, 255, 255, 0.15);
 }
 
 .contact li:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 255, 255, 0.15);
     transform: translateX(5px);
+    border-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
 .contact li .icon {
@@ -462,9 +642,9 @@ strong, b {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-vibrant);
+    background: linear-gradient(135deg, #00ffff 0%, #0088cc 100%);
     border-radius: var(--radius-sm);
-    color: var(--white);
+    color: var(--black);
     font-size: 0.9rem;
 }
 
@@ -475,205 +655,63 @@ strong, b {
 }
 
 .contact li a:hover {
-    color: var(--highlight);
+    color: #00ffff;
 }
 
 /* Footer */
 #footer {
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
     text-align: center;
 }
 
 #footer .copyright {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.85rem;
     font-family: var(--font-primary);
 }
 
+/* Scrollbar cho sidebar */
+#sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ffff 0%, #0088cc 100%);
+    border-radius: 10px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00ffff 0%, #00aaff 100%);
+}
 /* ============================================
-   7. MAIN CONTENT - OPTIMIZED & FIXED
+   7. MAIN CONTENT - OPTIMIZED
    ============================================ */
-
-/* Biến động cho sidebar */
-:root {
-    --sidebar-collapsed-width: 60px;
-    --sidebar-expanded-width: 280px;
-    --sidebar-current-width: var(--sidebar-collapsed-width);
-}
-
-/* Sidebar - Phiên bản mới với collapse/expand */
-#sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: var(--sidebar-current-width);
-    height: 100vh;
-    background: rgba(20, 22, 40, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    z-index: var(--z-sidebar);
-    overflow: hidden;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#sidebar.expanded {
-    --sidebar-current-width: var(--sidebar-expanded-width);
-    width: var(--sidebar-expanded-width);
-}
-
-/* Nút toggle sidebar - Desktop */
-@media screen and (min-width: 769px) {
-    .sidebar-toggle {
-        position: absolute;
-        right: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 60px;
-        background: rgba(20, 22, 40, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-left: none;
-        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: var(--white);
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        z-index: 10;
-    }
-
-    .sidebar-toggle:hover {
-        background: rgba(91, 95, 222, 0.3);
-        right: -22px;
-    }
-
-    .sidebar-toggle i {
-        transition: transform 0.3s ease;
-    }
-
-    #sidebar.expanded .sidebar-toggle i {
-        transform: rotate(180deg);
-    }
-}
-
-/* Content trong sidebar */
-#sidebar .inner {
-    opacity: 0;
-    transition: opacity 0.3s ease 0.1s;
-    padding: 2.5rem;
-}
-
-#sidebar.expanded .inner {
-    opacity: 1;
-}
-
-/* Logo khi collapsed */
-#sidebar:not(.expanded) #logo {
-    position: absolute;
-    top: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 1;
-}
-
-#sidebar:not(.expanded) #logo h1 {
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-#sidebar:not(.expanded) #logo p {
-    display: none;
-}
-
-/* Navigation khi collapsed - chỉ hiện icon */
-#sidebar:not(.expanded) nav ul li {
-    position: relative;
-    margin: 0.5rem 0;
-}
-
-#sidebar:not(.expanded) nav ul li a {
-    padding: 1rem;
-    justify-content: center;
-}
-
-#sidebar:not(.expanded) nav ul li a span:last-child {
-    display: none;
-}
-
-#sidebar:not(.expanded) nav ul li a .icon {
-    margin-right: 0;
-    font-size: 1.3rem;
-}
-
-/* Tooltip cho icon khi collapsed */
-#sidebar:not(.expanded) nav ul li a::after {
-    content: attr(data-title);
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 1rem;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-md);
-    font-size: 0.9rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-#sidebar:not(.expanded) nav ul li a:hover::after {
-    opacity: 1;
-}
-
-/* Main content với sidebar động */
 #main {
-    margin-left: var(--sidebar-current-width);
+    margin-left: var(--sidebar-width);
     padding: 2rem 3rem;
     flex: 1;
     min-height: 100vh;
     position: relative;
-    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 25s ease infinite;
     overflow: hidden;
-    width: calc(100% - var(--sidebar-current-width));
+    width: calc(100% - var(--sidebar-width));
     z-index: var(--z-base);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Gradient animation */
 @keyframes gradientShift {
-    0% { 
-        background-position: 0% 50%;
-        filter: hue-rotate(0deg) brightness(1);
-    }
-    25% {
-        background-position: 50% 25%;
-        filter: hue-rotate(20deg) brightness(1.1);
-    }
-    50% { 
-        background-position: 100% 50%;
-        filter: hue-rotate(40deg) brightness(1);
-    }
-    75% {
-        background-position: 50% 75%;
-        filter: hue-rotate(20deg) brightness(0.95);
-    }
-    100% { 
-        background-position: 0% 50%;
-        filter: hue-rotate(0deg) brightness(1);
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* Overlay tối hơn cho contrast tốt hơn */
 #main::before {
     content: '';
     position: absolute;
@@ -681,18 +719,9 @@ strong, b {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, 
-        rgba(0, 0, 0, 0.2) 0%, 
-        rgba(0, 0, 0, 0.1) 50%, 
-        rgba(0, 0, 0, 0.15) 100%);
+    background: rgba(0, 0, 0, 0.1);
     pointer-events: none;
     z-index: 1;
-}
-
-/* Khi sidebar expanded */
-body.sidebar-expanded #main {
-    margin-left: var(--sidebar-expanded-width);
-    width: calc(100% - var(--sidebar-expanded-width));
 }
 
 #main > * {
@@ -700,21 +729,16 @@ body.sidebar-expanded #main {
     z-index: var(--z-content);
 }
 
-/* Floating Icons */
+/* Floating Icons - FIXED Z-INDEX */
 .floating-icons {
     position: fixed;
     top: 0;
-    left: var(--sidebar-current-width);
+    left: var(--sidebar-width);
     right: 0;
     bottom: 0;
     overflow: hidden;
     pointer-events: none;
     z-index: var(--z-floating-icons);
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body.sidebar-expanded .floating-icons {
-    left: var(--sidebar-expanded-width);
 }
 
 .floating-icon {
@@ -739,20 +763,27 @@ body.sidebar-expanded .floating-icons {
     }
 }
 
-/* Particles */
+.floating-icon:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; animation-duration: 35s; }
+.floating-icon:nth-child(2) { top: 60%; left: 80%; animation-delay: -5s; animation-duration: 40s; }
+.floating-icon:nth-child(3) { top: 30%; left: 70%; animation-delay: -10s; animation-duration: 38s; }
+.floating-icon:nth-child(4) { top: 80%; left: 20%; animation-delay: -15s; animation-duration: 32s; }
+.floating-icon:nth-child(5) { top: 50%; left: 10%; animation-delay: -20s; animation-duration: 36s; }
+
+.floating-icon.math { color: #FFFFFF; }
+.floating-icon.science { color: #FFD700; }
+.floating-icon.tech { color: #FFFFFF; }
+.floating-icon.engineering { color: #FFD700; }
+.floating-icon.creative { color: #FFFFFF; }
+
+/* Particles - FIXED Z-INDEX */
 .particles {
     position: fixed;
     top: 0;
-    left: var(--sidebar-current-width);
+    left: var(--sidebar-width);
     right: 0;
     bottom: 0;
     pointer-events: none;
     z-index: var(--z-particles);
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body.sidebar-expanded .particles {
-    left: var(--sidebar-expanded-width);
 }
 
 .particle {
@@ -767,12 +798,583 @@ body.sidebar-expanded .particles {
     transform: translateZ(0);
 }
 
+@keyframes particleFloat {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    to {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.particle:nth-child(1) { left: 10%; animation-duration: 25s; animation-delay: 0s; }
+.particle:nth-child(2) { left: 30%; animation-duration: 28s; animation-delay: 5s; }
+.particle:nth-child(3) { left: 50%; animation-duration: 30s; animation-delay: 10s; }
+.particle:nth-child(4) { left: 70%; animation-duration: 27s; animation-delay: 15s; }
+.particle:nth-child(5) { left: 90%; animation-duration: 29s; animation-delay: 20s; }
+
+/* Reduce animations on touch devices */
+@media (pointer: coarse) {
+    .floating-icon:nth-child(n+4) { display: none; }
+    .particle:nth-child(n+4) { display: none; }
+}
+
+/* Header */
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+#header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-vibrant);
+    border-radius: 2px;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0.6; transform: scaleX(0.8); }
+    50% { opacity: 1; transform: scaleX(1); }
+}
+
+#header .logo {
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: var(--font-heading);
+}
+
+#header .logo strong {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Banner */
+#banner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    background: rgba(30, 33, 57, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+    #banner {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+}
+
+#banner::before,
+#banner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    animation: float 20s ease-in-out infinite;
+}
+
+#banner::before {
+    top: -50%;
+    right: -10%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+}
+
+#banner::after {
+    bottom: -30%;
+    left: -10%;
+    width: 40%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(91, 95, 222, 0.1) 0%, transparent 70%);
+    animation-direction: reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    33% { transform: translateY(-30px) rotate(120deg) scale(1.1); }
+    66% { transform: translateY(20px) rotate(240deg) scale(0.9); }
+}
+
+#banner .content {
+    position: relative;
+    z-index: 2;
+}
+
+#banner .content header h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5)); }
+    50% { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)); }
+}
+
+#banner .content header h1 strong {
+    background: var(--gradient-sunset);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    animation: colorShift 5s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+    0%, 100% { filter: hue-rotate(0deg) brightness(1.2); }
+    25% { filter: hue-rotate(45deg) brightness(1.3); }
+    50% { filter: hue-rotate(90deg) brightness(1.4); }
+    75% { filter: hue-rotate(-45deg) brightness(1.3); }
+}
+
+#banner .content header p {
+    font-size: 1.3rem;
+    color: var(--highlight);
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-family: var(--font-heading);
+    animation: fadeInUp 1s ease 0.3s both;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#banner .content > p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--white);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    font-family: var(--font-primary);
+    animation: fadeInUp 1s ease 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#banner .image.object {
+    position: relative;
+    z-index: 2;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    animation: imageFloat 4s ease-in-out infinite;
+}
+
+@keyframes imageFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+#banner .image.object img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+#banner .image.object:hover img {
+    transform: scale(1.1);
+}
+
+/* Features Section */
+section header.major {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+section header.major h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+.features article {
+    padding: 2.5rem;
+    background: rgba(30, 33, 57, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-spring);
+    position: relative;
+    overflow: hidden;
+}
+
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+    .features article {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+}
+
+.features article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-vibrant);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.features article:hover::before {
+    transform: scaleX(1);
+}
+
+.features article:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.features article .icon {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    color: var(--white);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0);
+    }
+}
+
+.features article:hover .icon {
+    animation: iconBounce 0.6s ease;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    50% { transform: scale(1.15) rotate(5deg); }
+    75% { transform: scale(1.1) rotate(-3deg); }
+}
+
+.features article:nth-child(1) .icon { background: var(--gradient-fire); }
+.features article:nth-child(2) .icon { background: var(--gradient-ocean); }
+.features article:nth-child(3) .icon { background: var(--gradient-nature); }
+
+.features article:hover .icon i {
+    animation: iconRotate 0.8s ease;
+}
+
+@keyframes iconRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.features article .content h3 {
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.features article .content p {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 1.8;
+    margin: 0;
+    font-family: var(--font-primary);
+}
+
+/* Posts Section */
+.posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+.posts article {
+    background: rgba(30, 33, 57, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-spring);
+    cursor: pointer;
+}
+
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+    .posts article {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+}
+
+.posts article:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.posts article .image {
+    height: 220px;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.posts article .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.posts article:hover .image img {
+    transform: scale(1.1);
+}
+
+.posts article h3 {
+    padding: 1.5rem 1.5rem 0.5rem;
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 1.3rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.posts article p {
+    padding: 0 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 1.7;
+    font-family: var(--font-primary);
+}
+
+.posts article .actions {
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-spring);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    color: var(--white);
+}
+
+ul.actions {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
 /* ============================================
-   9. FULLSCREEN MODAL - ENHANCED WITH HISTORY API
+  /* ============================================
+   8. PHET SIMULATIONS - CARD LAYOUT
    ============================================ */
 
+/* Lưới chứa các thẻ mô phỏng */
+.sim-grid {
+    display: grid;
+    /* Tạo các cột tự động, mỗi cột rộng tối thiểu 300px */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem; /* Khoảng cách giữa các thẻ */
+    margin-bottom: 3rem;
+}
+
+/* Kiểu dáng cho mỗi thẻ mô phỏng (thay thế .simulation-item cũ) */
+.sim-card {
+    background: rgba(30, 33, 57, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-spring);
+    overflow: hidden; /* Quan trọng để bo góc hình ảnh */
+    position: relative; /* Để định vị nút expand */
+    display: flex;
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+}
+
+/* Hiệu ứng kính mờ (nếu trình duyệt hỗ trợ) */
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+    .sim-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+}
+
+/* Hiệu ứng khi di chuột vào thẻ */
+.sim-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hình ảnh của thẻ */
+.sim-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    transition: transform 0.4s ease;
+}
+
+.sim-card:hover img {
+    transform: scale(1.05); /* Hiệu ứng phóng to ảnh khi hover */
+}
+
+/* Tiêu đề thẻ (đã bỏ padding-left và ::before) */
+.sim-card h3 {
+    color: var(--white);
+    font-size: 1.3rem;
+    font-family: var(--font-heading);
+    margin: 0;
+    padding: 1rem 1.5rem 0.5rem; /* Canh lề cho tiêu đề */
+}
+
+/* Mô tả thẻ (đã bỏ padding-left) */
+.sim-card p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0 1.5rem 1.5rem;
+    flex-grow: 1; /* Giúp các thẻ có cùng chiều cao */
+}
+
+/* Nút mở rộng toàn màn hình */
+.expand-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-base);
+    opacity: 0.7;
+}
+
+.sim-card:hover .expand-btn {
+    opacity: 1;
+    transform: scale(1.1);
+    background: var(--primary);
+}
+
+
+/* ============================================
+   9. FULLSCREEN MODAL - SIMPLIFIED
+   ============================================ */
 .phet-modal {
-    display: none;
+    display: none; /* Mặc định ẩn */
     position: fixed;
     top: 0;
     left: 0;
@@ -787,40 +1389,38 @@ body.sidebar-expanded .particles {
     justify-content: center;
 }
 
-/* Active state */
+/* Lớp .active sẽ được thêm bằng JS để hiện modal */
 .phet-modal.active {
     display: flex;
     opacity: 1;
 }
 
-/* Modal content */
 .phet-modal-content {
     position: relative;
     width: 95%;
     height: 95%;
     max-width: 1600px;
-    background: #1e2139;
+    background: #1e2139; /* Nền tối hơn */
     border-radius: var(--radius-lg);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-    transform: scale(0.85);
-    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
     padding: 1rem;
 }
 
 .phet-modal.active .phet-modal-content {
-    transform: scale(1);
+    transform: scale(1); /* Hiệu ứng phóng to khi hiện ra */
 }
 
-/* Modal header */
 .phet-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0.5rem 0.8rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Header không co lại */
 }
 
 .phet-modal-title {
@@ -829,7 +1429,7 @@ body.sidebar-expanded .particles {
     font-weight: 600;
 }
 
-/* Close button */
+/* Nút đóng modal (cho cả desktop và mobile) */
 .phet-modal-close {
     background: transparent;
     border: none;
@@ -839,7 +1439,6 @@ body.sidebar-expanded .particles {
     padding: 0.5rem;
     line-height: 1;
     transition: var(--transition-base);
-    z-index: var(--z-modal-close);
 }
 
 .phet-modal-close:hover {
@@ -847,12 +1446,11 @@ body.sidebar-expanded .particles {
     transform: rotate(90deg);
 }
 
-/* Modal body */
 .phet-modal-body {
-    flex-grow: 1;
+    flex-grow: 1; /* Body chiếm hết không gian còn lại */
     margin-top: 1rem;
-    overflow: hidden;
     border-radius: var(--radius-md);
+    overflow: hidden; /* Quan trọng để iframe bo góc */
     background: #000;
 }
 
@@ -862,281 +1460,346 @@ body.sidebar-expanded .particles {
     border: none;
 }
 
-/* ============================================
-   10. RESPONSIVE DESIGN - MOBILE OPTIMIZED
-   ============================================ */
+/* Gợi ý thoát (nếu cần) */
+.phet-modal-hint {
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
 
+/* Trên desktop, modal không che sidebar */
+@media screen and (min-width: 1025px) {
+    .phet-modal {
+        left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+}
+/* ============================================
+   10. RESPONSIVE DESIGN
+   ============================================ */
 /* Tablet */
 @media screen and (max-width: 1024px) {
     :root {
+        --sidebar-width: 260px;
         --content-padding: 1.5rem;
     }
-
-    #sidebar {
-        --sidebar-collapsed-width: 0px;
-        transform: translateX(-100%);
-    }
-    
-    #sidebar.expanded {
-        transform: translateX(0);
-    }
-
+   
     #main {
-        margin-left: 0;
-        width: 100%;
         padding: var(--content-padding);
+        width: calc(100% - var(--sidebar-width));
     }
-
-    .features { 
-        grid-template-columns: repeat(2, 1fr); 
+   
+    #banner {
+        grid-template-columns: 1fr;
+        padding: 3rem;
     }
-}
-
-/* Mobile - Fixed Toggle Position */
-@media screen and (max-width: 768px) {
-    /* Hide desktop sidebar */
-    #sidebar {
-        --sidebar-collapsed-width: 0px;
-        --sidebar-expanded-width: 280px;
-        transform: translateX(-100%);
-        z-index: var(--z-sidebar);
+   
+    #banner .content header h1 {
+        font-size: 2.5rem;
+    }
+   
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+   
+    .posts {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+   
+    .floating-icon:nth-child(n+6) {
+        display: none;
     }
     
-    #sidebar.expanded {
-        transform: translateX(0);
+    /* Modal on tablet - full screen */
+    .phet-modal {
+        left: 0 !important;
+        width: 100% !important;
     }
     
-    /* Mobile Toggle Button - Fixed Position */
-    .sidebar-toggle {
-        position: fixed !important;
-        top: 1rem !important;
-        left: 1rem !important;
-        right: auto !important;
-        transform: none !important;
-        width: 48px;
-        height: 48px;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: var(--radius-lg);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        z-index: var(--z-menu-toggle);
+    .phet-modal-close {
+        display: none;
+    }
+    
+    .phet-modal-close-text {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--primary);
-        font-size: 1.3rem;
-        transition: all 0.3s ease;
     }
     
-    /* Toggle button when sidebar is open */
-    body.sidebar-open .sidebar-toggle {
-        background: rgba(0, 0, 0, 0.8);
+    .phet-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+    
+    .phet-modal-body {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    #sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 300px;
+        height: 100vh;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+        z-index: var(--z-sidebar);
+    }
+   
+    #sidebar.inactive {
+        transform: translateX(-100%);
+    }
+   
+    .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: var(--z-menu-toggle);
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: var(--white);
-        left: auto !important;
-        right: 1rem !important;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
     }
     
-    /* Hide toggle when modal is open */
-    body.modal-open .sidebar-toggle {
-        display: none !important;
+    /* Safe area for menu toggle */
+    @supports (top: env(safe-area-inset-top)) {
+        .menu-toggle {
+            top: calc(1rem + env(safe-area-inset-top));
+            right: calc(1rem + env(safe-area-inset-right));
+        }
     }
-    
-    /* Overlay for sidebar */
+   
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+   
     .sidebar-overlay {
         position: fixed;
-        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background: rgba(0, 0, 0, 0.5);
+        z-index: var(--z-sidebar-overlay);
         display: none;
         opacity: 0;
         transition: opacity 0.3s ease;
-        z-index: calc(var(--z-sidebar) - 1);
         pointer-events: none;
     }
-    
-    body.sidebar-open .sidebar-overlay {
+   
+    .sidebar-overlay.active {
         display: block;
         opacity: 1;
         pointer-events: auto;
     }
-    
-    /* Prevent body scroll when sidebar is open */
-    body.sidebar-open {
-        overflow: hidden;
-    }
-
-    /* Safe area for iOS */
-    @supports (top: env(safe-area-inset-top)) {
-        .sidebar-toggle {
-            top: calc(1rem + env(safe-area-inset-top)) !important;
-            left: calc(1rem + env(safe-area-inset-left)) !important;
-        }
-        
-        body.sidebar-open .sidebar-toggle {
-            right: calc(1rem + env(safe-area-inset-right)) !important;
-        }
-    }
-
-    /* Main content adjustments */
+   
     #main {
         margin-left: 0;
-        padding: 4rem 1.5rem 1.5rem;
+        padding: 1rem 1.5rem;
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+    }
+   
+    #wrapper {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+    }
+   
+    #banner {
+        padding: 2rem;
         width: 100%;
     }
-
-    /* Modal on mobile - Full screen */
-    .phet-modal {
-        z-index: var(--z-modal);
+   
+    #banner .content header h1 {
+        font-size: 2rem;
     }
-
+   
+    .features {
+        grid-template-columns: 1fr;
+    }
+   
+    .posts {
+        grid-template-columns: 1fr;
+    }
+   
+    .floating-icon:nth-child(n+4) {
+        display: none;
+    }
+   
+    .floating-icon {
+        font-size: 2rem;
+    }
+   
+    body {
+        overflow-x: hidden;
+    }
+   
+    .floating-icons {
+        left: 0;
+    }
+   
+    .particles {
+        left: 0;
+    }
+    
+    /* PhET Simulation on mobile */
+    .phet-simulation {
+        padding-bottom: 75%;
+    }
+   
+    .simulation-item {
+        padding: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+   
+    .simulation-item h3 {
+        font-size: 1.3rem;
+        padding-left: 2rem;
+    }
+    
+    .simulation-item h3::before {
+        font-size: 1rem;
+    }
+   
+    .simulation-item p {
+        padding-left: 2rem;
+        font-size: 0.95rem;
+    }
+    
+    /* Modal on mobile */
     .phet-modal-content {
         width: 100%;
         height: 100%;
         max-width: none;
         border-radius: 0;
         padding: 0;
-        transform: none !important;
     }
-
-    .phet-modal-header {
-        padding: 1rem;
-        background: rgba(30, 33, 57, 0.98);
-    }
-
-    /* Modal close button on mobile */
+    
     .phet-modal-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        width: 40px;
-        height: 40px;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 50%;
+        display: none;
+    }
+    
+    .phet-modal-close-text {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-    }
-
-    /* Prevent modal from affecting sidebar state */
-    body.modal-open #sidebar {
-        transform: translateX(-100%) !important;
-    }
-    
-    body.modal-open .sidebar-overlay {
-        display: none !important;
-    }
-
-    /* Grid adjustments */
-    #banner {
-        grid-template-columns: 1fr;
-        padding: 2rem;
-    }
-
-    .features, 
-    .posts, 
-    .sim-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .floating-icons,
-    .particles {
-        left: 0;
     }
 }
 
-/* Very Small Mobile */
+/* Small Mobile */
 @media screen and (max-width: 480px) {
-    .sidebar-toggle {
-        width: 44px;
-        height: 44px;
-        top: 0.75rem !important;
-        left: 0.75rem !important;
+    #sidebar {
+        width: 260px;
+    }
+   
+    #main {
+        padding: 1.5rem 1rem;
+    }
+   
+    #banner {
+        padding: 1.5rem;
+    }
+   
+    #banner .content header h1 {
+        font-size: 1.5rem;
+    }
+   
+    .features article {
+        padding: 1.5rem;
+    }
+   
+    .posts article {
+        padding: 1rem;
+    }
+   
+    .floating-icon {
+        font-size: 1.5rem;
+    }
+   
+    .menu-toggle {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        min-height: 45px;
     }
     
-    body.sidebar-open .sidebar-toggle {
-        right: 0.75rem !important;
+    .phet-modal-close-text {
+        max-width: 180px;
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
     }
+}
 
-    .phet-modal-close {
-        top: 0.75rem;
-        right: 0.75rem;
-        width: 36px;
-        height: 36px;
+/* Desktop - Ensure no overflow */
+@media screen and (min-width: 769px) {
+    .menu-toggle {
+        display: none !important;
     }
-
+   
+    .sidebar-overlay {
+        display: none !important;
+    }
+   
+    #sidebar {
+        transform: translateX(0) !important;
+        position: fixed;
+    }
+   
     #main {
-        padding: 3.5rem 1rem 1rem;
+        margin-left: var(--sidebar-width) !important;
+        width: calc(100% - var(--sidebar-width)) !important;
     }
-
-    #banner .content header h1 {
-        font-size: 1.75rem;
+    
+    .phet-modal-close-text {
+        display: none !important;
     }
 }
 
 /* Landscape mode on mobile */
-@media screen and (max-width: 812px) and (orientation: landscape) {
-    .sidebar-toggle {
-        top: 0.5rem !important;
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    #sidebar {
+        width: 270px;
     }
-    
-    #main {
-        padding-top: 3rem;
-    }
-
-    .phet-modal-header {
-        padding: 0.5rem 1rem;
-    }
-
-    .phet-modal-close {
+   
+    .menu-toggle {
         top: 0.5rem;
         right: 0.5rem;
     }
 }
 
 /* ============================================
-   11. STATE MANAGEMENT CLASSES
+   11. PERFORMANCE OPTIMIZATIONS
    ============================================ */
-
-/* Body states */
-body.modal-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-}
-
-body.sidebar-open {
-    overflow: hidden;
-}
-
-/* Prevent sidebar from opening when modal closes */
-body.modal-closing #sidebar {
-    transform: translateX(-100%) !important;
-    transition: none !important;
-}
-
-body.modal-closing .sidebar-overlay {
-    display: none !important;
-}
-
-/* Animation classes */
-.fade-in {
-    animation: fadeIn 0.3s ease;
-}
-
-.fade-out {
-    animation: fadeOut 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 /* ============================================
@@ -1144,8 +1807,7 @@ body.modal-closing .sidebar-overlay {
    ============================================ */
 button:focus-visible,
 a:focus-visible,
-.button:focus-visible,
-.sidebar-toggle:focus-visible {
+.button:focus-visible {
     outline: 3px solid var(--highlight);
     outline-offset: 2px;
 }
@@ -1170,7 +1832,6 @@ a:focus-visible,
    ============================================ */
 @media print {
     #sidebar,
-    .sidebar-toggle,
     .menu-toggle,
     .floating-icons,
     .particles {
