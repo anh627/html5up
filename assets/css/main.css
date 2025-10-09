@@ -2024,6 +2024,46 @@ section:has(.simulation-item) {
 .phet-simulation:hover::before {
     opacity: 1;
 }
+/* Tích hợp lưới mô phỏng từ mã HTML đầu tiên */
+.sim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.sim-card {
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-spring);
+}
+
+.sim-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.sim-card h3 {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: 0;
+    font-size: 1.3rem;
+    font-family: var(--font-heading);
+}
+
+.sim-card p {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Đảm bảo nút expand-btn hiển thị đúng */
+.sim-card .expand-btn {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+}
 
 
 
