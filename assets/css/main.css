@@ -1073,321 +1073,187 @@ ul.actions {
 }
 
 /* ============================================
-   8. PHET SIMULATIONS - IMPROVED
+  /* ============================================
+   8. PHET SIMULATIONS - CARD LAYOUT
    ============================================ */
-/* Counter fallback */
-.simulations,
-section:has(.simulation-item) {
-    counter-reset: sim-counter;
+
+/* Lưới chứa các thẻ mô phỏng */
+.sim-grid {
+    display: grid;
+    /* Tạo các cột tự động, mỗi cột rộng tối thiểu 300px */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem; /* Khoảng cách giữa các thẻ */
+    margin-bottom: 3rem;
 }
 
-.simulation-item {
-    margin-bottom: 4rem;
-    padding: 2.5rem;
-    background: rgba(30, 33, 57, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+/* Kiểu dáng cho mỗi thẻ mô phỏng (thay thế .simulation-item cũ) */
+.sim-card {
+    background: rgba(30, 33, 57, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-xl);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: var(--transition-spring);
-    position: relative;
-    overflow: hidden;
-    counter-increment: sim-counter;
+    overflow: hidden; /* Quan trọng để bo góc hình ảnh */
+    position: relative; /* Để định vị nút expand */
+    display: flex;
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
 }
 
+/* Hiệu ứng kính mờ (nếu trình duyệt hỗ trợ) */
 @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
-    .simulation-item {
-        background: rgba(255, 255, 255, 0.12);
+    .sim-card {
+        background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
     }
 }
 
-.simulation-item:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+/* Hiệu ứng khi di chuột vào thẻ */
+.sim-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.simulation-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-vibrant);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+/* Hình ảnh của thẻ */
+.sim-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    transition: transform 0.4s ease;
 }
 
-.simulation-item:hover::before {
-    transform: scaleX(1);
+.sim-card:hover img {
+    transform: scale(1.05); /* Hiệu ứng phóng to ảnh khi hover */
 }
 
-.simulation-item h3 {
+/* Tiêu đề thẻ (đã bỏ padding-left và ::before) */
+.sim-card h3 {
     color: var(--white);
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    font-family: var(--font-heading);
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(135deg, #FFFFFF 0%, #FFD700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: inline-block;
-    position: relative;
-    padding-left: 3rem;
-}
-
-/* Number counter on the left - IMPROVED */
-.simulation-item h3::before {
-    content: counter(sim-counter, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
     font-size: 1.3rem;
-    font-weight: 800;
-    opacity: 0.4;
-    color: var(--white);
+    font-family: var(--font-heading);
+    margin: 0;
+    padding: 1rem 1.5rem 0.5rem; /* Canh lề cho tiêu đề */
 }
 
-.simulation-item p {
+/* Mô tả thẻ (đã bỏ padding-left) */
+.sim-card p {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    font-family: var(--font-primary);
-    padding-left: 3rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0 1.5rem 1.5rem;
+    flex-grow: 1; /* Giúp các thẻ có cùng chiều cao */
 }
 
-/* PhET iframe container */
-.phet-simulation {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    height: 0;
-    padding-bottom: 65%;
-    margin: 1.5rem auto;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    animation: glowPulse 4s ease-in-out infinite;
-    cursor: pointer;
-}
-
-@keyframes glowPulse {
-    0%, 100% {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
-                    0 0 30px rgba(102, 126, 234, 0.3);
-    }
-    50% {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
-                    0 0 50px rgba(118, 75, 162, 0.5);
-    }
-}
-
-.phet-simulation iframe {
+/* Nút mở rộng toàn màn hình */
+.expand-btn {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    border-radius: inherit;
-    transition: transform 0.3s ease;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-base);
+    opacity: 0.7;
 }
 
-.phet-simulation:hover iframe {
-    transform: scale(1.02);
+.sim-card:hover .expand-btn {
+    opacity: 1;
+    transform: scale(1.1);
+    background: var(--primary);
 }
 
-/* Click hint for mobile */
-@media screen and (max-width: 768px) {
-    .phet-simulation::after {
-        content: "👆 Nhấn để xem toàn màn hình";
-        position: absolute;
-        bottom: 1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: var(--radius-full);
-        font-size: 0.85rem;
-        font-weight: 600;
-        z-index: 10;
-        animation: pulse 2s ease-in-out infinite;
-    }
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-}
 
 /* ============================================
-   9. FULLSCREEN MODAL - DESKTOP NO SIDEBAR OVERLAP
+   9. FULLSCREEN MODAL - SIMPLIFIED
    ============================================ */
 .phet-modal {
-    display: none;
+    display: none; /* Mặc định ẩn */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
     z-index: var(--z-modal);
     opacity: 0;
     transition: opacity 0.3s ease;
-}
-
-/* Desktop: Modal starts after sidebar */
-@media screen and (min-width: 1025px) {
-    .phet-modal {
-        left: var(--sidebar-width);
-        width: calc(100% - var(--sidebar-width));
-    }
-    
-    /* Optional: Disable sidebar when modal is open */
-    body:has(.phet-modal.active) #sidebar {
-        pointer-events: none;
-        filter: brightness(0.7);
-        transition: filter 0.3s ease;
-    }
-}
-
-.phet-modal.active {
-    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Lớp .active sẽ được thêm bằng JS để hiện modal */
+.phet-modal.active {
+    display: flex;
     opacity: 1;
 }
 
 .phet-modal-content {
     position: relative;
     width: 95%;
-    height: 90%;
-    max-width: 1400px;
-    background: rgba(30, 33, 57, 0.98);
-    border-radius: var(--radius-xl);
-    padding: 1rem;
+    height: 95%;
+    max-width: 1600px;
+    background: #1e2139; /* Nền tối hơn */
+    border-radius: var(--radius-lg);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-    transform: scale(0.7);
+    transform: scale(0.8);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
+    padding: 1rem;
 }
 
 .phet-modal.active .phet-modal-content {
-    transform: scale(1);
+    transform: scale(1); /* Hiệu ứng phóng to khi hiện ra */
 }
 
 .phet-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
-    margin-bottom: 0.5rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 0 0.5rem 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0; /* Header không co lại */
 }
 
 .phet-modal-title {
     color: var(--white);
-    font-size: 1.3rem;
-    font-weight: 700;
-    font-family: var(--font-heading);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
-/* Close Button for Desktop */
+/* Nút đóng modal (cho cả desktop và mobile) */
 .phet-modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 60px;
-    height: 60px;
-    min-width: 60px;
-    min-height: 60px;
-    background: rgba(239, 68, 68, 0.8);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    color: var(--white);
-    font-size: 2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-base);
-    z-index: var(--z-modal-close);
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Safe area for devices with notch */
-@supports (top: env(safe-area-inset-top)) {
-    .phet-modal-close {
-        top: calc(1rem + env(safe-area-inset-top));
-        right: calc(1rem + env(safe-area-inset-right));
-    }
-}
-
-.phet-modal-close:hover,
-.phet-modal-close:active {
-    background: rgba(239, 68, 68, 1);
-    border-color: rgba(255, 255, 255, 0.7);
-    transform: scale(1.1);
-}
-
-/* Close Button for Mobile */
-.phet-modal-close-text {
-    display: none;
-    width: 100%;
-    max-width: 200px;
-    margin: 1rem auto 0.5rem;
-    padding: 0.8rem 2rem;
-    background: var(--gradient-fire);
+    background: transparent;
     border: none;
-    border-radius: var(--radius-full);
-    color: var(--white);
-    font-size: 1.1rem;
-    font-weight: 700;
-    font-family: var(--font-primary);
-    text-align: center;
+    color: var(--gray-400);
+    font-size: 1.5rem;
     cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
     transition: var(--transition-base);
-    z-index: var(--z-modal-close);
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
-    position: relative;
 }
 
-.phet-modal-close-text::before {
-    content: "✕";
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-right: 0.5rem;
-}
-
-.phet-modal-close-text:hover,
-.phet-modal-close-text:active {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+.phet-modal-close:hover {
+    color: var(--white);
+    transform: rotate(90deg);
 }
 
 .phet-modal-body {
-    flex: 1 1 auto;
-    width: 100%;
-    position: relative;
+    flex-grow: 1; /* Body chiếm hết không gian còn lại */
+    margin-top: 1rem;
     border-radius: var(--radius-md);
-    overflow: hidden;
+    overflow: hidden; /* Quan trọng để iframe bo góc */
     background: #000;
 }
 
@@ -1397,6 +1263,22 @@ section:has(.simulation-item) {
     border: none;
 }
 
+/* Gợi ý thoát (nếu cần) */
+.phet-modal-hint {
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Trên desktop, modal không che sidebar */
+@media screen and (min-width: 1025px) {
+    .phet-modal {
+        left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+}
 /* ============================================
    10. RESPONSIVE DESIGN
    ============================================ */
@@ -1771,4 +1653,5 @@ a:focus-visible,
         background: transparent !important;
     }
 }
+
 
