@@ -1174,10 +1174,11 @@ ul.actions {
 
 
 /* ============================================
-   9. FULLSCREEN MODAL - SIMPLIFIED
+   9. FULLSCREEN MODAL - FIXED VERSION
    ============================================ */
+
 .phet-modal {
-    display: none; /* Mặc định ẩn */
+    display: none; /* Ẩn mặc định */
     position: fixed;
     top: 0;
     left: 0;
@@ -1192,7 +1193,7 @@ ul.actions {
     justify-content: center;
 }
 
-/* Lớp .active sẽ được thêm bằng JS để hiện modal */
+/* Khi active */
 .phet-modal.active {
     display: flex;
     opacity: 1;
@@ -1203,27 +1204,28 @@ ul.actions {
     width: 95%;
     height: 95%;
     max-width: 1600px;
-    background: #1e2139; /* Nền tối hơn */
+    background: #1e2139;
     border-radius: var(--radius-lg);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-    transform: scale(0.8);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(0.85);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
     padding: 1rem;
 }
 
 .phet-modal.active .phet-modal-content {
-    transform: scale(1); /* Hiệu ứng phóng to khi hiện ra */
+    transform: scale(1);
 }
 
+/* Header */
 .phet-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0.5rem 0.8rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    flex-shrink: 0; /* Header không co lại */
+    flex-shrink: 0;
 }
 
 .phet-modal-title {
@@ -1232,7 +1234,7 @@ ul.actions {
     font-weight: 600;
 }
 
-/* Nút đóng modal (cho cả desktop và mobile) */
+/* Close button */
 .phet-modal-close {
     background: transparent;
     border: none;
@@ -1242,6 +1244,7 @@ ul.actions {
     padding: 0.5rem;
     line-height: 1;
     transition: var(--transition-base);
+    z-index: var(--z-modal-close);
 }
 
 .phet-modal-close:hover {
@@ -1249,11 +1252,12 @@ ul.actions {
     transform: rotate(90deg);
 }
 
+/* Modal body */
 .phet-modal-body {
-    flex-grow: 1; /* Body chiếm hết không gian còn lại */
+    flex-grow: 1;
     margin-top: 1rem;
+    overflow: hidden;
     border-radius: var(--radius-md);
-    overflow: hidden; /* Quan trọng để iframe bo góc */
     background: #000;
 }
 
@@ -1263,7 +1267,7 @@ ul.actions {
     border: none;
 }
 
-/* Gợi ý thoát (nếu cần) */
+/* Hint dưới modal */
 .phet-modal-hint {
     text-align: center;
     color: var(--gray-500);
@@ -1272,7 +1276,7 @@ ul.actions {
     padding-bottom: 0.5rem;
 }
 
-/* Trên desktop, modal không che sidebar */
+/* --- Desktop: không che sidebar --- */
 @media screen and (min-width: 1025px) {
     .phet-modal {
         left: var(--sidebar-width);
@@ -1280,96 +1284,79 @@ ul.actions {
     }
 }
 /* ============================================
-   10. RESPONSIVE DESIGN
+   10. RESPONSIVE DESIGN - FIXED VERSION
    ============================================ */
+
 /* Tablet */
 @media screen and (max-width: 1024px) {
     :root {
         --sidebar-width: 260px;
         --content-padding: 1.5rem;
     }
-   
+
     #main {
         padding: var(--content-padding);
         width: calc(100% - var(--sidebar-width));
     }
-   
+
     #banner {
         grid-template-columns: 1fr;
         padding: 3rem;
     }
-   
+
     #banner .content header h1 {
         font-size: 2.5rem;
     }
-   
-    .features {
-        grid-template-columns: repeat(2, 1fr);
-    }
-   
-    .posts {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-   
-    .floating-icon:nth-child(n+6) {
-        display: none;
-    }
-    
-    /* Modal on tablet - full screen */
+
+    .features { grid-template-columns: repeat(2, 1fr); }
+    .posts { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+    .floating-icon:nth-child(n+6) { display: none; }
+
+    /* Modal full màn hình trên tablet */
     .phet-modal {
-        left: 0 !important;
-        width: 100% !important;
+        left: 0;
+        width: 100%;
+        z-index: var(--z-modal);
     }
-    
-    .phet-modal-close {
-        display: none;
-    }
-    
-    .phet-modal-close-text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
+
     .phet-modal-content {
         width: 100%;
         height: 100%;
         border-radius: 0;
         padding: 0;
+        transform: none !important;
+        transition: none !important;
     }
-    
+
     .phet-modal-body {
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
+        margin-top: 0;
     }
 }
 
 /* Mobile */
 @media screen and (max-width: 768px) {
+    /* Sidebar cơ bản */
     #sidebar {
         position: fixed;
-        left: 0;
         top: 0;
-        width: 300px;
+        left: 0;
+        width: 280px;
         height: 100vh;
-        transform: translateX(0);
+        transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: var(--z-sidebar);
     }
-   
-    #sidebar.inactive {
-        transform: translateX(-100%);
-    }
-   
+    #sidebar.active { transform: translateX(0); }
+
+    /* Toggle menu - góc phải trên */
     .menu-toggle {
         position: fixed;
         top: 1rem;
         right: 1rem;
         z-index: var(--z-menu-toggle);
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-        min-height: 50px;
+        width: 48px;
+        height: 48px;
         background: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(10px);
         border: 2px solid rgba(255, 255, 255, 0.3);
@@ -1381,218 +1368,112 @@ ul.actions {
         font-size: 1.5rem;
         cursor: pointer;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
-        user-select: none;
     }
-    
-    /* Safe area for menu toggle */
+
+    /* Đảm bảo safe-area trên iPhone */
     @supports (top: env(safe-area-inset-top)) {
         .menu-toggle {
             top: calc(1rem + env(safe-area-inset-top));
             right: calc(1rem + env(safe-area-inset-right));
         }
     }
-   
-    .menu-toggle:active {
-        transform: scale(0.95);
-    }
-   
+
+    .menu-toggle:active { transform: scale(0.95); }
+
+    /* Overlay che nền */
     .sidebar-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         background: rgba(0, 0, 0, 0.5);
-        z-index: var(--z-sidebar-overlay);
         display: none;
         opacity: 0;
         transition: opacity 0.3s ease;
-        pointer-events: none;
+        z-index: var(--z-sidebar-overlay);
     }
-   
     .sidebar-overlay.active {
         display: block;
         opacity: 1;
-        pointer-events: auto;
     }
-   
+
     #main {
         margin-left: 0;
         padding: 1rem 1.5rem;
         width: 100%;
-        min-height: 100vh;
-        position: relative;
     }
-   
-    #wrapper {
-        display: block;
-        width: 100%;
-        min-height: 100vh;
-    }
-   
-    #banner {
-        padding: 2rem;
-        width: 100%;
-    }
-   
-    #banner .content header h1 {
-        font-size: 2rem;
-    }
-   
-    .features {
-        grid-template-columns: 1fr;
-    }
-   
-    .posts {
-        grid-template-columns: 1fr;
-    }
-   
-    .floating-icon:nth-child(n+4) {
-        display: none;
-    }
-   
-    .floating-icon {
-        font-size: 2rem;
-    }
-   
-    body {
-        overflow-x: hidden;
-    }
-   
-    .floating-icons {
+
+    #banner { padding: 2rem; }
+
+    .features, .posts { grid-template-columns: 1fr; }
+
+    /* Modal trên mobile */
+    .phet-modal {
         left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: var(--z-modal);
     }
-   
-    .particles {
-        left: 0;
-    }
-    
-    /* PhET Simulation on mobile */
-    .phet-simulation {
-        padding-bottom: 75%;
-    }
-   
-    .simulation-item {
-        padding: 1.5rem;
-        margin-bottom: 2.5rem;
-    }
-   
-    .simulation-item h3 {
-        font-size: 1.3rem;
-        padding-left: 2rem;
-    }
-    
-    .simulation-item h3::before {
-        font-size: 1rem;
-    }
-   
-    .simulation-item p {
-        padding-left: 2rem;
-        font-size: 0.95rem;
-    }
-    
-    /* Modal on mobile */
+
     .phet-modal-content {
         width: 100%;
         height: 100%;
-        max-width: none;
         border-radius: 0;
         padding: 0;
+        transform: none !important;
+        transition: none !important;
     }
-    
+
     .phet-modal-close {
-        display: none;
-    }
-    
-    .phet-modal-close-text {
         display: flex;
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 42px;
+        height: 42px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.6);
+        color: #fff;
         align-items: center;
         justify-content: center;
+        z-index: calc(var(--z-modal-close) + 1);
     }
+
+    /* Tránh close trùng toggle: push lên trên toggle một chút */
+    body.menu-open .phet-modal-close { top: 3.5rem; }
+
+    .phet-modal-body { flex: 1; margin-top: 0; }
+
+    .floating-icon, .particles { left: 0; }
 }
 
-/* Small Mobile */
+/* Very Small Mobile (≤480px) */
 @media screen and (max-width: 480px) {
-    #sidebar {
-        width: 260px;
+    .menu-toggle {
+        width: 42px; height: 42px;
+        font-size: 1.3rem;
     }
-   
-    #main {
-        padding: 1.5rem 1rem;
+
+    .phet-modal-close {
+        top: 0.5rem; right: 0.5rem;
+        width: 38px; height: 38px;
     }
-   
-    #banner {
-        padding: 1.5rem;
-    }
-   
+
     #banner .content header h1 {
         font-size: 1.5rem;
     }
-   
-    .features article {
-        padding: 1.5rem;
-    }
-   
-    .posts article {
-        padding: 1rem;
-    }
-   
-    .floating-icon {
-        font-size: 1.5rem;
-    }
-   
-    .menu-toggle {
-        width: 45px;
-        height: 45px;
-        min-width: 45px;
-        min-height: 45px;
-    }
-    
-    .phet-modal-close-text {
-        max-width: 180px;
-        font-size: 1rem;
-        padding: 0.7rem 1.5rem;
-    }
 }
 
-/* Desktop - Ensure no overflow */
+/* Desktop fallback */
 @media screen and (min-width: 769px) {
-    .menu-toggle {
-        display: none !important;
-    }
-   
-    .sidebar-overlay {
-        display: none !important;
-    }
-   
-    #sidebar {
-        transform: translateX(0) !important;
-        position: fixed;
-    }
-   
+    .menu-toggle, .sidebar-overlay { display: none !important; }
+    #sidebar { transform: translateX(0) !important; position: fixed; }
     #main {
-        margin-left: var(--sidebar-width) !important;
-        width: calc(100% - var(--sidebar-width)) !important;
-    }
-    
-    .phet-modal-close-text {
-        display: none !important;
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
     }
 }
 
-/* Landscape mode on mobile */
-@media screen and (max-width: 768px) and (orientation: landscape) {
-    #sidebar {
-        width: 270px;
-    }
-   
-    .menu-toggle {
-        top: 0.5rem;
-        right: 0.5rem;
-    }
-}
 
 /* ============================================
    11. PERFORMANCE OPTIMIZATIONS
@@ -1653,5 +1534,6 @@ a:focus-visible,
         background: transparent !important;
     }
 }
+
 
 
