@@ -495,26 +495,183 @@ strong, b {
 /* ============================================
    7. MAIN CONTENT - OPTIMIZED
    ============================================ */
+
+/* Biến động cho sidebar */
+:root {
+    --sidebar-collapsed-width: 60px;
+    --sidebar-expanded-width: 280px;
+    --sidebar-current-width: var(--sidebar-collapsed-width);
+}
+
+/* Sidebar - Phiên bản mới với collapse/expand */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-current-width);
+    height: 100vh;
+    background: rgba(20, 22, 40, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: var(--z-sidebar);
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar.expanded {
+    --sidebar-current-width: var(--sidebar-expanded-width);
+    width: var(--sidebar-expanded-width);
+}
+
+/* Nút toggle sidebar */
+.sidebar-toggle {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 60px;
+    background: rgba(20, 22, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: none;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--white);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.sidebar-toggle:hover {
+    background: rgba(91, 95, 222, 0.3);
+    right: -22px;
+}
+
+.sidebar-toggle i {
+    transition: transform 0.3s ease;
+}
+
+#sidebar.expanded .sidebar-toggle i {
+    transform: rotate(180deg);
+}
+
+/* Content trong sidebar */
+#sidebar .inner {
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+    padding: 2.5rem;
+}
+
+#sidebar.expanded .inner {
+    opacity: 1;
+}
+
+/* Logo khi collapsed */
+#sidebar:not(.expanded) #logo {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+}
+
+#sidebar:not(.expanded) #logo h1 {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+#sidebar:not(.expanded) #logo p {
+    display: none;
+}
+
+/* Navigation khi collapsed - chỉ hiện icon */
+#sidebar:not(.expanded) nav ul li {
+    position: relative;
+    margin: 0.5rem 0;
+}
+
+#sidebar:not(.expanded) nav ul li a {
+    padding: 1rem;
+    justify-content: center;
+}
+
+#sidebar:not(.expanded) nav ul li a span:last-child {
+    display: none;
+}
+
+#sidebar:not(.expanded) nav ul li a .icon {
+    margin-right: 0;
+    font-size: 1.3rem;
+}
+
+/* Tooltip cho icon khi collapsed */
+#sidebar:not(.expanded) nav ul li a::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 1rem;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#sidebar:not(.expanded) nav ul li a:hover::after {
+    opacity: 1;
+}
+
+/* Main content với sidebar động */
 #main {
-    margin-left: var(--sidebar-width);
+    margin-left: var(--sidebar-current-width);
     padding: 2rem 3rem;
     flex: 1;
     min-height: 100vh;
     position: relative;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
     background-size: 400% 400%;
-    animation: gradientShift 25s ease infinite;
+    animation: gradientShift 15s ease infinite;
     overflow: hidden;
-    width: calc(100% - var(--sidebar-width));
+    width: calc(100% - var(--sidebar-current-width));
     z-index: var(--z-base);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Gradient cải thiện */
 @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% { 
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg) brightness(1);
+    }
+    25% {
+        background-position: 50% 25%;
+        filter: hue-rotate(20deg) brightness(1.1);
+    }
+    50% { 
+        background-position: 100% 50%;
+        filter: hue-rotate(40deg) brightness(1);
+    }
+    75% {
+        background-position: 50% 75%;
+        filter: hue-rotate(20deg) brightness(0.95);
+    }
+    100% { 
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg) brightness(1);
+    }
 }
 
+/* Overlay tối hơn cho contrast tốt hơn */
 #main::before {
     content: '';
     position: absolute;
@@ -522,9 +679,18 @@ strong, b {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.1) 50%, 
+        rgba(0, 0, 0, 0.15) 100%);
     pointer-events: none;
     z-index: 1;
+}
+
+/* Khi sidebar expanded */
+body.sidebar-expanded #main {
+    margin-left: var(--sidebar-expanded-width);
+    width: calc(100% - var(--sidebar-expanded-width));
 }
 
 #main > * {
@@ -536,12 +702,17 @@ strong, b {
 .floating-icons {
     position: fixed;
     top: 0;
-    left: var(--sidebar-width);
+    left: var(--sidebar-current-width);
     right: 0;
     bottom: 0;
     overflow: hidden;
     pointer-events: none;
     z-index: var(--z-floating-icons);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.sidebar-expanded .floating-icons {
+    left: var(--sidebar-expanded-width);
 }
 
 .floating-icon {
@@ -582,11 +753,16 @@ strong, b {
 .particles {
     position: fixed;
     top: 0;
-    left: var(--sidebar-width);
+    left: var(--sidebar-current-width);
     right: 0;
     bottom: 0;
     pointer-events: none;
     z-index: var(--z-particles);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.sidebar-expanded .particles {
+    left: var(--sidebar-expanded-width);
 }
 
 .particle {
@@ -1073,7 +1249,6 @@ ul.actions {
 }
 
 /* ============================================
-  /* ============================================
    8. PHET SIMULATIONS - CARD LAYOUT
    ============================================ */
 
@@ -1276,13 +1451,6 @@ ul.actions {
     padding-bottom: 0.5rem;
 }
 
-/* --- Desktop: không che sidebar --- */
-@media screen and (min-width: 1025px) {
-    .phet-modal {
-        left: var(--sidebar-width);
-        width: calc(100% - var(--sidebar-width));
-    }
-}
 /* ============================================
    10. RESPONSIVE DESIGN - FIXED VERSION
    ============================================ */
@@ -1290,13 +1458,11 @@ ul.actions {
 /* Tablet */
 @media screen and (max-width: 1024px) {
     :root {
-        --sidebar-width: 260px;
         --content-padding: 1.5rem;
     }
 
     #main {
         padding: var(--content-padding);
-        width: calc(100% - var(--sidebar-width));
     }
 
     #banner {
@@ -1336,50 +1502,40 @@ ul.actions {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
-    /* Sidebar cơ bản */
+    /* Sidebar giống desktop nhưng nhỏ hơn */
     #sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 280px;
-        height: 100vh;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        z-index: var(--z-sidebar);
+        --sidebar-collapsed-width: 0px; /* Ẩn hoàn toàn khi collapsed trên mobile */
+        --sidebar-expanded-width: 280px;
     }
-    #sidebar.active { transform: translateX(0); }
-
-    /* Toggle menu - góc phải trên */
-    .menu-toggle {
+    
+    /* Toggle button cho mobile */
+    .sidebar-toggle {
         position: fixed;
+        right: auto;
+        left: 0;
         top: 1rem;
-        right: 1rem;
-        z-index: var(--z-menu-toggle);
+        transform: none;
         width: 48px;
         height: 48px;
         background: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(10px);
         border: 2px solid rgba(255, 255, 255, 0.3);
         border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--white);
-        font-size: 1.5rem;
-        cursor: pointer;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        touch-action: manipulation;
+        z-index: var(--z-menu-toggle);
     }
-
-    /* Đảm bảo safe-area trên iPhone */
-    @supports (top: env(safe-area-inset-top)) {
-        .menu-toggle {
-            top: calc(1rem + env(safe-area-inset-top));
-            right: calc(1rem + env(safe-area-inset-right));
-        }
+    
+    #sidebar:not(.expanded) .sidebar-toggle {
+        left: 1rem;
     }
-
-    .menu-toggle:active { transform: scale(0.95); }
+    
+    #sidebar.expanded .sidebar-toggle {
+        left: auto;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
 
     /* Overlay che nền */
     .sidebar-overlay {
@@ -1391,9 +1547,21 @@ ul.actions {
         transition: opacity 0.3s ease;
         z-index: var(--z-sidebar-overlay);
     }
-    .sidebar-overlay.active {
+    
+    #sidebar.expanded ~ .sidebar-overlay {
         display: block;
         opacity: 1;
+    }
+
+    /* Safe area cho iPhone */
+    @supports (top: env(safe-area-inset-top)) {
+        .sidebar-toggle {
+            top: calc(1rem + env(safe-area-inset-top));
+        }
+        
+        #sidebar:not(.expanded) .sidebar-toggle {
+            left: calc(1rem + env(safe-area-inset-left));
+        }
     }
 
     #main {
@@ -1439,9 +1607,6 @@ ul.actions {
         z-index: calc(var(--z-modal-close) + 1);
     }
 
-    /* Tránh close trùng toggle: push lên trên toggle một chút */
-    body.menu-open .phet-modal-close { top: 3.5rem; }
-
     .phet-modal-body { flex: 1; margin-top: 0; }
 
     .floating-icon, .particles { left: 0; }
@@ -1449,31 +1614,22 @@ ul.actions {
 
 /* Very Small Mobile (≤480px) */
 @media screen and (max-width: 480px) {
-    .menu-toggle {
-        width: 42px; height: 42px;
-        font-size: 1.3rem;
+    .sidebar-toggle {
+        width: 42px; 
+        height: 42px;
     }
 
     .phet-modal-close {
-        top: 0.5rem; right: 0.5rem;
-        width: 38px; height: 38px;
+        top: 0.5rem; 
+        right: 0.5rem;
+        width: 38px; 
+        height: 38px;
     }
 
     #banner .content header h1 {
         font-size: 1.5rem;
     }
 }
-
-/* Desktop fallback */
-@media screen and (min-width: 769px) {
-    .menu-toggle, .sidebar-overlay { display: none !important; }
-    #sidebar { transform: translateX(0) !important; position: fixed; }
-    #main {
-        margin-left: var(--sidebar-width);
-        width: calc(100% - var(--sidebar-width));
-    }
-}
-
 
 /* ============================================
    11. PERFORMANCE OPTIMIZATIONS
@@ -1491,7 +1647,8 @@ ul.actions {
    ============================================ */
 button:focus-visible,
 a:focus-visible,
-.button:focus-visible {
+.button:focus-visible,
+.sidebar-toggle:focus-visible {
     outline: 3px solid var(--highlight);
     outline-offset: 2px;
 }
@@ -1516,6 +1673,7 @@ a:focus-visible,
    ============================================ */
 @media print {
     #sidebar,
+    .sidebar-toggle,
     .menu-toggle,
     .floating-icons,
     .particles {
@@ -1534,6 +1692,3 @@ a:focus-visible,
         background: transparent !important;
     }
 }
-
-
-
