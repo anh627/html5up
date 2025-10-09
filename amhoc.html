@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Vật lý</title>
+    <title>Âm học & Sóng</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    
 </head>
 <body class="is-preload">
-
     <!-- Wrapper -->
     <div id="wrapper">
-
         <!-- Main -->
         <div id="main">
             <div class="inner">
-
                 <!-- Header -->
                 <header id="header">
                     <a href="index.html" class="logo"><strong>Vật lý</strong></a>
@@ -24,58 +20,59 @@
                         <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
                     </ul>
                 </header>
-
                 <!-- Content -->
                 <section>
                     <header class="major">
                         <h1>Âm học & Sóng</h1>
                         <p>Khám phá sóng âm, sóng cơ học qua các mô phỏng tương tác từ PhET. Quan sát sự lan truyền, giao thoa và các hiện tượng âm học thú vị.</p>
                     </header>
-
-                    <!-- Mô phỏng 1: Sóng trên dây đàn (Wave on a String) -->
-                    <div class="simulation-item">
-                        <h3>Sóng trên dây đàn (Wave on a String)</h3>
-                        <p>Thử nghiệm sóng ngang và dọc trên dây đàn, điều chỉnh tần số, biên độ để quan sát sự lan truyền sóng.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_vi.html" allowfullscreen></iframe>
+                    <!-- Lưới mô phỏng -->
+                    <div class="sim-grid">
+                        <div class="simulation-item sim-card" data-url="https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_vi.html" data-title="Sóng trên dây đàn">
+                            <img src="https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string-600.png" alt="Sóng trên dây đàn">
+                            <h3>Sóng trên dây đàn</h3>
+                            <p>Thử nghiệm sóng ngang và dọc trên dây đàn, điều chỉnh tần số, biên độ để quan sát sự lan truyền sóng.</p>
+                            <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                        <div class="simulation-item sim-card" data-url="https://phet.colorado.edu/sims/html/fourier/latest/fourier_vi.html" data-title="Tạo sóng Fourier">
+                            <img src="https://phet.colorado.edu/sims/html/fourier/latest/fourier-600.png" alt="Tạo sóng Fourier">
+                            <h3>Tạo sóng Fourier</h3>
+                            <p>Xây dựng sóng phức tạp từ các sóng sin cơ bản, hiểu về phân tích Fourier trong âm học.</p>
+                            <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                        <div class="simulation-item sim-card" data-url="https://phet.colorado.edu/sims/html/sound/latest/sound_vi.html" data-title="Sóng âm">
+                            <img src="https://phet.colorado.edu/sims/html/sound/latest/sound-600.png" alt="Sóng âm">
+                            <h3>Sóng âm</h3>
+                            <p>Quan sát sóng âm lan truyền qua không khí, thay đổi tần số để nghe âm thanh thay đổi.</p>
+                            <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                        <div class="simulation-item sim-card" data-url="https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_vi.html" data-title="Giao thoa sóng">
+                            <img src="https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference-600.png" alt="Giao thoa sóng">
+                            <h3>Giao thoa sóng</h3>
+                            <p>Khám phá giao thoa sóng nước, âm thanh và ánh sáng, quan sát vân sáng tối.</p>
+                            <button class="expand-btn"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
-
-                    <!-- Mô phỏng 2: Tạo sóng Fourier (Fourier: Making Waves) -->
-                    <div class="simulation-item">
-                        <h3>Tạo sóng Fourier (Fourier: Making Waves)</h3>
-                        <p>Xây dựng sóng phức tạp từ các sóng sin cơ bản, hiểu về phân tích Fourier trong âm học.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/fourier/latest/fourier_vi.html" allowfullscreen></iframe>
+                    <!-- Modal cho mô phỏng toàn màn hình -->
+                    <div class="phet-modal" id="phetModal">
+                        <div class="phet-modal-content">
+                            <div class="phet-modal-header">
+                                <span class="phet-modal-title" id="modalTitle"></span>
+                                <button class="phet-modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="phet-modal-body">
+                                <iframe id="modalIframe" src=""></iframe>
+                            </div>
+                            <span class="phet-modal-hint">Nhấn ESC để thoát</span>
                         </div>
                     </div>
-
-                    <!-- Mô phỏng 3: Sóng âm (Sound)</h3>-->
-                    <div class="simulation-item"> 
-                       <p>Quan sát sóng âm lan truyền qua không khí, thay đổi tần số để nghe âm thanh thay đổi.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/sound/latest/sound_vi.html" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <!-- Mô phỏng 4: Sóng nước (Wave Interference) -->
-                    <div class="simulation-item">
-                        <h3>Giao thoa sóng (Wave Interference)</h3>
-                        <p>Khám phá giao thoa sóng nước, âm thanh và ánh sáng, quan sát vân sáng tối.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_vi.html" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
                     <ul class="actions">
                         <li><a href="https://phet.colorado.edu/vi/simulations/category/physics/sound-waves-and-music" class="button" target="_blank">Khám phá thêm mô phỏng PhET</a></li>
                     </ul>
                 </section>
-
             </div>
         </div>
-
-        <!-- Sidebar (giống hệt các file khác) -->
+        <!-- Sidebar -->
         <div id="sidebar">
             <div class="inner">
                 <!-- Search -->
@@ -84,7 +81,6 @@
                         <input type="text" name="query" id="query" placeholder="Search" />
                     </form>
                 </section>
-
                 <!-- Menu -->
                 <nav id="menu">
                     <header class="major">
@@ -123,7 +119,6 @@
                         <li><a href="minigame.html">Mini game</a></li>
                     </ul>
                 </nav>
-
                 <section>
                     <header class="major">
                         <h2>Liên hệ</h2>
@@ -135,26 +130,55 @@
                         <li class="icon solid fa-home">1234 Somewhere Road #8254<br />Nashville, TN 00000-0000</li>
                     </ul>
                 </section>
-
                 <!-- Footer -->
                 <footer id="footer">
                     <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
                 </footer>
             </div>
         </div>
-
     </div>
-
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/nutnhan.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        // Mở modal với mô phỏng
+        function openModal(url, title) {
+            const modal = document.getElementById('phetModal');
+            const iframe = document.getElementById('modalIframe');
+            const titleElement = document.getElementById('modalTitle');
+            iframe.src = url;
+            titleElement.textContent = title;
+            modal.classList.add('active');
+            document.body.classList.add('menu-open'); // Ngăn cuộn khi modal mở
+        }
 
+        // Đóng modal
+        function closeModal() {
+            const modal = document.getElementById('phetModal');
+            const iframe = document.getElementById('modalIframe');
+            iframe.src = '';
+            modal.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+
+        // Gán sự kiện cho các thẻ sim-card
+        document.querySelectorAll('.sim-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const url = card.getAttribute('data-url');
+                const title = card.getAttribute('data-title');
+                openModal(url, title);
+            });
+        });
+
+        // Đóng modal bằng phím ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
