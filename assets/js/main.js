@@ -28,11 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function openModal(url, title) {
         if (!phetModal || !modalIframe || !modalTitle) return;
-        // Đóng menu nếu đang mở trên mobile hoặc tablet để tránh xung đột
         if (window.innerWidth <= 1024 && isMenuOpen) {
             closeMenu();
         }
-        // Ẩn menu-toggle trên mobile và tablet khi modal mở
         if (window.innerWidth <= 1024 && menuToggleBtn) {
             menuToggleBtn.style.display = 'none';
         }
@@ -54,11 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
         modalIframe.src = '';
         phetModal.classList.remove('active');
         isModalOpen = false;
-        // Hiển thị lại menu-toggle trên mobile và tablet khi đóng modal
         if (window.innerWidth <= 1024 && menuToggleBtn) {
             menuToggleBtn.style.display = 'flex';
         }
-        // Chỉ xóa overflow nếu menu cũng không mở
         if (!isMenuOpen) {
             document.body.classList.remove('modal-open', 'menu-open');
             document.body.style.overflow = '';
@@ -73,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Nút đóng modal (chỉ cho PC)
     const modalCloseBtn = document.querySelector('.phet-modal-close');
     if (modalCloseBtn) {
         modalCloseBtn.addEventListener('click', closeModal);
@@ -83,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: false });
     }
 
-    // Nút "Đóng" mới cho mobile và tablet
     const modalCloseTextBtn = document.querySelector('.phet-modal-close-text');
     if (modalCloseTextBtn) {
         modalCloseTextBtn.addEventListener('click', closeModal);
@@ -93,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: false });
     }
 
-    // Thoát modal bằng phím Escape (chỉ trên PC)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isModalOpen && window.innerWidth > 1024) {
             closeModal();
@@ -101,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Share simulation
     const modalShareBtn = document.querySelector('.phet-modal-share');
     if (modalShareBtn) {
         modalShareBtn.addEventListener('click', () => {
@@ -119,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // === Search Functionality for Simulations ===
+    // === Search Functionality ===
     const searchInput = document.getElementById('query');
     if (searchInput) {
         searchInput.addEventListener('input', function() {
@@ -132,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // === Mobile Menu Toggle ===
+    // === Mobile Menu ===
     let menuToggle = document.querySelector('.menu-toggle');
     let overlay = document.querySelector('.sidebar-overlay');
     let mobileMenuInitialized = false;
@@ -169,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (overlay) overlay.classList.remove('active');
         if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         isMenuOpen = false;
-        // Chỉ xóa overflow nếu modal cũng không mở
         if (!isModalOpen) {
             document.body.classList.remove('menu-open', 'modal-open');
             document.body.style.overflow = '';
@@ -181,11 +172,8 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
         }
-        if (isMenuOpen) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
+        if (isMenuOpen) closeMenu();
+        else openMenu();
     }
 
     function cleanupEventListeners() {
@@ -205,34 +193,22 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isMenuOpen) sidebar.classList.add('inactive');
             if (menuToggle) menuToggle.style.display = 'flex';
             if (!mobileMenuInitialized) {
-                const clickHandler = function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleMenu(e);
-                };
-                const touchHandler = function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleMenu(e);
-                };
+                const clickHandler = (e) => { e.preventDefault(); e.stopPropagation(); toggleMenu(e); };
+                const touchHandler = (e) => { e.preventDefault(); e.stopPropagation(); toggleMenu(e); };
                 if (menuToggle) {
                     menuToggle.addEventListener('click', clickHandler);
                     menuToggle.addEventListener('touchstart', touchHandler, { passive: false });
-                    eventListeners.push(
-                        { element: menuToggle, event: 'click', handler: clickHandler },
-                        { element: menuToggle, event: 'touchstart', handler: touchHandler }
-                    );
+                    eventListeners.push({ element: menuToggle, event: 'click', handler: clickHandler });
+                    eventListeners.push({ element: menuToggle, event: 'touchstart', handler: touchHandler });
                 }
                 if (overlay) {
-                    const overlayHandler = function() {
-                        closeMenu();
-                    };
+                    const overlayHandler = () => closeMenu();
                     overlay.addEventListener('click', overlayHandler);
                     eventListeners.push({ element: overlay, event: 'click', handler: overlayHandler });
                 }
                 const sidebarLinks = sidebar.querySelectorAll('a:not(.opener)');
                 sidebarLinks.forEach(link => {
-                    const linkHandler = function(e) {
+                    const linkHandler = function() {
                         const href = this.getAttribute('href');
                         if (href && href.startsWith('#')) {
                             setTimeout(closeMenu, 300);
@@ -274,6 +250,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('beforeunload', cleanupEventListeners);
 
+    // === Xử lý nút Back trên điện thoại ===
+    function pushHistoryState() {
+        try {
+            history.pushState(null, '', location.href);
+        } catch (e) {}
+    }
+
+    const originalOpenModal = openModal;
+    openModal = function(url, title) {
+        pushHistoryState();
+        originalOpenModal(url, title);
+    };
+
+    const originalOpenMenu = openMenu;
+    openMenu = function() {
+        pushHistoryState();
+        originalOpenMenu();
+    };
+
+    window.addEventListener('popstate', function() {
+        if (isModalOpen) {
+            closeModal();
+            history.pushState(null, '', location.href);
+            return;
+        }
+        if (isMenuOpen) {
+            closeMenu();
+            history.pushState(null, '', location.href);
+            return;
+        }
+    });
+
     // === Smooth Scrolling ===
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -285,20 +293,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (window.innerWidth <= 768) {
                     closeMenu();
                 }
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
-    // === Scroll Animation with Intersection Observer ===
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    const observer = new IntersectionObserver(function(entries) {
+    // === Scroll Animation ===
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -318,29 +320,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function(e) {
         const now = Date.now();
-        if (now - lastTouchEnd <= 300) {
-            e.preventDefault();
-        }
+        if (now - lastTouchEnd <= 300) e.preventDefault();
         lastTouchEnd = now;
     }, { passive: false });
 });
 
 // === Remove Preload Class ===
 window.addEventListener('load', function() {
-    setTimeout(function() {
-        document.body.classList.remove('is-preload');
-    }, 100);
+    setTimeout(() => document.body.classList.remove('is-preload'), 100);
 });
 
 // === Handle Visibility Change ===
 document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-        document.querySelectorAll('.floating-icon').forEach(icon => {
-            icon.style.animationPlayState = 'paused';
-        });
-    } else {
-        document.querySelectorAll('.floating-icon').forEach(icon => {
-            icon.style.animationPlayState = 'running';
-        });
-    }
+    const icons = document.querySelectorAll('.floating-icon');
+    icons.forEach(icon => {
+        icon.style.animationPlayState = document.hidden ? 'paused' : 'running';
+    });
 });
