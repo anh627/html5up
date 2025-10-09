@@ -1614,33 +1614,6 @@ ul.actions {
     position: relative;
 }
 
-.simulation-item::after {
-    content: 'TƯƠNG TÁC';
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    background: var(--gradient-fire);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    animation: badgePulse 2s ease-in-out infinite;
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-}
-
-@keyframes badgePulse {
-    0%, 100% { 
-        transform: scale(1);
-        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-    }
-    50% { 
-        transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
-    }
-}
-
 /* Numbering cho simulation items */
 .simulation-item {
     counter-increment: sim-counter;
@@ -2064,6 +2037,7 @@ section:has(.simulation-item) {
     top: var(--spacing-sm);
     right: var(--spacing-sm);
 }
+
 
 
 
