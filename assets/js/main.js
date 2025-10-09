@@ -301,3 +301,25 @@ document.addEventListener('visibilitychange', function() {
         });
     }
 });
+// === FIX: Ngăn iframe PhET chặn click khi menu mở ===
+const phetModalIframe = document.querySelector('#phetModal iframe');
+
+// Quan sát khi class 'menu-open' được thêm / xóa khỏi body
+const observer = new MutationObserver(() => {
+    if (!phetModalIframe) return;
+
+    if (document.body.classList.contains('menu-open')) {
+        // Khi menu mở → cho phép click xuyên qua iframe
+        phetModalIframe.style.pointerEvents = 'none';
+        phetModalIframe.style.opacity = '0.5';
+        phetModalIframe.style.transition = 'opacity 0.3s ease';
+    } else {
+        // Khi menu đóng → trả lại bình thường
+        phetModalIframe.style.pointerEvents = 'auto';
+        phetModalIframe.style.opacity = '1';
+    }
+});
+
+// Theo dõi thay đổi classList của body
+observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
