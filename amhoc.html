@@ -138,47 +138,9 @@
         </div>
     </div>
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/nutnhan.js"></script>
+ 
     <script src="assets/js/main.js"></script>
-    <script>
-        // Mở modal với mô phỏng
-        function openModal(url, title) {
-            const modal = document.getElementById('phetModal');
-            const iframe = document.getElementById('modalIframe');
-            const titleElement = document.getElementById('modalTitle');
-            iframe.src = url;
-            titleElement.textContent = title;
-            modal.classList.add('active');
-            document.body.classList.add('menu-open'); // Ngăn cuộn khi modal mở
-        }
-
-        // Đóng modal
-        function closeModal() {
-            const modal = document.getElementById('phetModal');
-            const iframe = document.getElementById('modalIframe');
-            iframe.src = '';
-            modal.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-
-        // Gán sự kiện cho các thẻ sim-card
-        document.querySelectorAll('.sim-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const url = card.getAttribute('data-url');
-                const title = card.getAttribute('data-title');
-                openModal(url, title);
-            });
-        });
-
-        // Đóng modal bằng phím ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
+   
 </body>
 </html>
+
