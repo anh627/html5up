@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function openModal(url, title) {
         if (!phetModal || !modalIframe || !modalTitle) return;
-        // Đóng menu nếu đang mở trên mobile để tránh xung đột
-        if (window.innerWidth <= 768 && isMenuOpen) {
+        // Đóng menu nếu đang mở trên mobile hoặc tablet để tránh xung đột
+        if (window.innerWidth <= 1024 && isMenuOpen) {
             closeMenu();
         }
-        // Ẩn menu-toggle trên mobile khi modal mở để tránh trùng nút đóng
-        if (window.innerWidth <= 768 && menuToggleBtn) {
+        // Ẩn menu-toggle trên mobile và tablet khi modal mở
+        if (window.innerWidth <= 1024 && menuToggleBtn) {
             menuToggleBtn.style.display = 'none';
         }
         modalIframe.classList.add('loading');
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
         modalIframe.src = '';
         phetModal.classList.remove('active');
         isModalOpen = false;
-        // Hiển thị lại menu-toggle trên mobile khi đóng modal
-        if (window.innerWidth <= 768 && menuToggleBtn) {
+        // Hiển thị lại menu-toggle trên mobile và tablet khi đóng modal
+        if (window.innerWidth <= 1024 && menuToggleBtn) {
             menuToggleBtn.style.display = 'flex';
         }
         // Chỉ xóa overflow nếu menu cũng không mở
@@ -73,14 +73,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Nút đóng modal (chỉ cho PC)
     const modalCloseBtn = document.querySelector('.phet-modal-close');
     if (modalCloseBtn) {
         modalCloseBtn.addEventListener('click', closeModal);
+        modalCloseBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            closeModal();
+        }, { passive: false });
     }
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && isModalOpen) {
+    // Nút "Đóng" mới cho mobile và tablet
+    const modalCloseTextBtn = document.querySelector('.phet-modal-close-text');
+    if (modalCloseTextBtn) {
+        modalCloseTextBtn.addEventListener('click', closeModal);
+        modalCloseTextBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
             closeModal();
+        }, { passive: false });
+    }
+
+    // Thoát modal bằng phím Escape (chỉ trên PC)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isModalOpen && window.innerWidth > 1024) {
+            closeModal();
+            e.preventDefault();
         }
     });
 
@@ -181,14 +198,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function initMobileMenu() {
         if (!sidebar) return;
         cleanupEventListeners();
-
         if (window.innerWidth <= 768) {
             createMobileMenu();
             menuToggle = document.querySelector('.menu-toggle');
             overlay = document.querySelector('.sidebar-overlay');
             if (!isMenuOpen) sidebar.classList.add('inactive');
             if (menuToggle) menuToggle.style.display = 'flex';
-
             if (!mobileMenuInitialized) {
                 const clickHandler = function(e) {
                     e.preventDefault();
@@ -292,7 +307,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-
     document.querySelectorAll('.features article, .posts article, .sim-card').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
