@@ -1,5 +1,9 @@
 // Main JavaScript for Vui Học STEM
 document.addEventListener('DOMContentLoaded', function() {
+    // Trạng thái để theo dõi modal và menu
+    let isModalOpen = false;
+    let isMenuOpen = false;
+
     // === Menu Functionality ===
     const openers = document.querySelectorAll('#menu .opener');
     openers.forEach(opener => {
@@ -20,14 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalTitle = document.getElementById('modalTitle');
     const simCards = document.querySelectorAll('.sim-card');
     const sidebar = document.getElementById('sidebar');
+    const menuToggleBtn = document.querySelector('.menu-toggle');
 
     function openModal(url, title) {
         if (!phetModal || !modalIframe || !modalTitle) return;
+        // Đóng menu nếu đang mở trên mobile để tránh xung đột
+        if (window.innerWidth <= 768 && isMenuOpen) {
+            closeMenu();
+        }
+        // Ẩn menu-toggle trên mobile khi modal mở để tránh trùng nút đóng
+        if (window.innerWidth <= 768 && menuToggleBtn) {
+            menuToggleBtn.style.display = 'none';
+        }
         modalIframe.classList.add('loading');
         modalIframe.src = url;
         modalTitle.textContent = title;
         phetModal.classList.add('active');
-        document.body.classList.add('modal-open'); // Sử dụng class riêng cho modal
+        isModalOpen = true;
+        document.body.classList.add('modal-open');
         document.body.style.overflow = 'hidden';
 
         modalIframe.onload = () => {
@@ -39,9 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!phetModal || !modalIframe) return;
         modalIframe.src = '';
         phetModal.classList.remove('active');
-        // Chỉ xóa modal-open và overflow nếu sidebar không mở
-        if (sidebar && sidebar.classList.contains('inactive')) {
-            document.body.classList.remove('modal-open');
+        isModalOpen = false;
+        // Hiển thị lại menu-toggle trên mobile khi đóng modal
+        if (window.innerWidth <= 768 && menuToggleBtn) {
+            menuToggleBtn.style.display = 'flex';
+        }
+        // Chỉ xóa overflow nếu menu cũng không mở
+        if (!isMenuOpen) {
+            document.body.classList.remove('modal-open', 'menu-open');
             document.body.style.overflow = '';
         }
     }
@@ -60,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && phetModal && phetModal.classList.contains('active')) {
+        if (e.key === 'Escape' && isModalOpen) {
             closeModal();
         }
     });
@@ -122,7 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.classList.remove('inactive');
         if (overlay) overlay.classList.add('active');
         if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-times"></i>';
-        document.body.classList.add('menu-open'); // Sử dụng class riêng cho menu
+        isMenuOpen = true;
+        document.body.classList.add('menu-open');
         document.body.style.overflow = 'hidden';
     }
 
@@ -131,9 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.classList.add('inactive');
         if (overlay) overlay.classList.remove('active');
         if (menuToggle) menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        // Chỉ xóa menu-open và overflow nếu modal không mở
-        if (!phetModal || !phetModal.classList.contains('active')) {
-            document.body.classList.remove('menu-open');
+        isMenuOpen = false;
+        // Chỉ xóa overflow nếu modal cũng không mở
+        if (!isModalOpen) {
+            document.body.classList.remove('menu-open', 'modal-open');
             document.body.style.overflow = '';
         }
     }
@@ -143,8 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
         }
-        const isOpen = !sidebar.classList.contains('inactive');
-        if (isOpen) {
+        if (isMenuOpen) {
             closeMenu();
         } else {
             openMenu();
@@ -166,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
             createMobileMenu();
             menuToggle = document.querySelector('.menu-toggle');
             overlay = document.querySelector('.sidebar-overlay');
-            sidebar.classList.add('inactive');
+            if (!isMenuOpen) sidebar.classList.add('inactive');
             if (menuToggle) menuToggle.style.display = 'flex';
 
             if (!mobileMenuInitialized) {
@@ -212,10 +232,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (menuToggle) menuToggle.style.display = 'none';
             if (overlay) overlay.classList.remove('active');
             sidebar.classList.remove('inactive');
-            // Chỉ khôi phục overflow nếu modal không mở
-            if (!phetModal || !phetModal.classList.contains('active')) {
+            isMenuOpen = false;
+            if (!isModalOpen) {
+                document.body.classList.remove('menu-open', 'modal-open');
                 document.body.style.overflow = '';
-                document.body.classList.remove('menu-open');
             }
             mobileMenuInitialized = false;
         }
@@ -288,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         }
         lastTouchEnd = now;
-    }, false);
+    }, { passive: false });
 });
 
 // === Remove Preload Class ===
