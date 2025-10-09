@@ -698,7 +698,7 @@ strong, b {
     flex: 1;
     min-height: 100vh;
     position: relative;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background: linear-gradient(88deg, #4251ce, #e73c7e, #23a6d5, #7a41ae);
     background-size: 400% 400%;
     animation: gradientShift 25s ease infinite;
     overflow: hidden;
@@ -1850,4 +1850,5 @@ a:focus-visible,
         background: transparent !important;
     }
 }
+
 
