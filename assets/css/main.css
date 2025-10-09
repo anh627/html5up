@@ -1394,6 +1394,7 @@ ul.actions {
     padding-left: 3rem;
 }
 /* PhET iframe container */
+
 .phet-simulation {
     position: relative;
     width: 100%;
@@ -1417,15 +1418,29 @@ ul.actions {
     }
 }
 /* PhET iframe */
+/* === Đặt iframe có kích thước y hệt banner === */
+.phet-simulation {
+  width: var(--banner-width, auto);
+  height: var(--banner-height, auto);
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 .phet-simulation iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: var(--radius-lg);
-    transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  border-radius: inherit; /* kế thừa border-radius từ container */
+  transition: transform 0.3s ease;
 }
 /* Hover effect cho iframe */
 .phet-simulation:hover iframe {
@@ -1453,31 +1468,7 @@ ul.actions {
 .simulation-item {
     position: relative;
 }
-.simulation-item::after {
-    content: 'TƯƠNG TÁC';
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    background: var(--gradient-fire);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    animation: badgePulse 2s ease-in-out infinite;
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-}
-@keyframes badgePulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
-    }
-}
+
 /* Numbering cho simulation items */
 .simulation-item {
     counter-increment: sim-counter;
@@ -1601,6 +1592,7 @@ section:has(.simulation-item) {
    FULLSCREEN MODAL FOR PHET SIMULATIONS
    ============================================ */
 /* Modal Overlay */
+/* Modal Overlay */
 .phet-modal {
     display: none;
     position: fixed;
@@ -1610,16 +1602,18 @@ section:has(.simulation-item) {
     height: 100%;
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
-    z-index:99999;
+    z-index: 99999;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
+
 .phet-modal.active {
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 1;
 }
+
 /* Modal Content Container */
 .phet-modal-content {
     position: relative;
@@ -1633,9 +1627,11 @@ section:has(.simulation-item) {
     transform: scale(0.7);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .phet-modal.active .phet-modal-content {
     transform: scale(1);
 }
+
 /* Modal Header */
 .phet-modal-header {
     display: flex;
@@ -1645,6 +1641,7 @@ section:has(.simulation-item) {
     margin-bottom: 0.5rem;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
+
 .phet-modal-title {
     color: var(--white);
     font-size: 1.3rem;
@@ -1652,28 +1649,97 @@ section:has(.simulation-item) {
     font-family: var(--font-heading);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
-/* Close Button */
+
+/* Close Button (chỉ cho PC) */
 .phet-modal-close {
-    width: 45px;
-    height: 45px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    background: rgba(239, 68, 68, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition-base);
-    position: relative;
+    z-index: 10001;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
-.phet-modal-close:hover {
+
+.phet-modal-close:hover,
+.phet-modal-close:active {
+    background: rgba(239, 68, 68, 1);
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
+}
+
+/* New Close Button (for mobile and tablet) */
+.phet-modal-close-text {
+    display: none; /* Ẩn trên PC */
+    width: 100%;
+    max-width: 200px;
+    margin: 1rem auto 0.5rem;
+    padding: 0.8rem 2rem;
     background: rgba(239, 68, 68, 0.8);
-    border-color: rgba(239, 68, 68, 1);
-    transform: rotate(90deg);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-full);
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-base);
+    z-index: 10001;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
-/* Modal Body - iframe container */
+
+.phet-modal-close-text:hover,
+.phet-modal-close-text:active {
+    background: rgba(239, 68, 68, 1);
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.05);
+}
+
+/* Tooltip cho nút Đóng trên mobile và tablet */
+.phet-modal-close-text::after {
+    content: 'Nhấn để thoát';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    animation: fadeInOut 4s ease-in-out 1s 2; /* Hiển thị 2 lần */
+}
+
+.phet-modal-close-text:hover::after,
+.phet-modal-close-text:active::after {
+    opacity: 1;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+}
+
+/* Modal Body */
 .phet-modal-body {
     width: 100%;
     height: calc(100% - 70px);
@@ -1682,10 +1748,47 @@ section:has(.simulation-item) {
     overflow: hidden;
     background: #000;
 }
+
 .phet-modal-body iframe {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    /* Ẩn nút X trên mobile và tablet */
+    .phet-modal-close {
+        display: none;
+    }
+
+    /* Hiển thị nút Đóng trên mobile và tablet */
+    .phet-modal-close-text {
+        display: block;
+    }
+
+    .phet-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .phet-modal-header {
+        padding: 1rem;
+    }
+
+    .phet-modal-body {
+        height: calc(100% - 110px); /* Dự phòng chỗ cho nút Đóng */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .phet-modal-close-text {
+        max-width: 180px;
+        font-size: 1.1rem;
+        padding: 0.7rem 1.5rem;
+    }
 }
 /* Expand Button on simulation */
 .expand-btn {
@@ -1900,3 +2003,4 @@ section:has(.simulation-item) {
 .phet-modal {
   z-index: 9999 !important;
 }
+
