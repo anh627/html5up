@@ -1,206 +1,242 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Vật lý</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <style>
-        /* CSS tùy chỉnh để làm iframe responsive */
-        .phet-simulation {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 75%; /* Tỷ lệ 4:3 cho simulation */
-            margin-bottom: 2em;
-        }
-        .phet-simulation iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .simulation-item {
-            margin-bottom: 3em;
-        }
-        .simulation-item h3 {
-            color: #333;
-            margin-bottom: 0.5em;
-        }
-        .simulation-item p {
-            margin-bottom: 1em;
-            color: #666;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Cơ học</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
+
 <body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <!-- Header -->
+        <header id="header">
+          <a href="index.html" class="logo"><strong>Vật lý</strong></a>
+        </header>
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+        <!-- Content -->
+        <section>
+          <header class="major">
+            <h1>Cơ học</h1>
+            <p>Khám phá các nguyên lý cơ học qua các mô phỏng tương tác từ PhET. Bạn có thể thử nghiệm, quan sát và hiểu rõ hơn về chuyển động, lực, năng lượng và momen.</p>
+          </header>
 
-        <!-- Main -->
-        <div id="main">
-            <div class="inner">
+          <!-- Lưới mô phỏng -->
+          <div class="sim-grid">
 
-                <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo"><strong>Vật lý</strong></a>
-                    <ul class="icons">
-                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    </ul>
-                </header>
-
-                <!-- Content -->
-                <section>
-                    <header class="major">
-                        <h1>Cơ học</h1>
-                        <p>Khám phá các nguyên lý cơ học qua các mô phỏng tương tác từ PhET. Bạn có thể thử nghiệm, quan sát và hiểu rõ hơn về chuyển động, lực, năng lượng.</p>
-                    </header>
-
-                    <!-- Mô phỏng 1: Chuyển động ném (Projectile Motion) -->
-                    <div class="simulation-item">
-                        <h3>Chuyển động ném (Projectile Motion)</h3>
-                        <p>Thử nghiệm cách các vật thể di chuyển dưới tác dụng của trọng lực. Điều chỉnh góc bắn, vận tốc ban đầu để quan sát quỹ đạo parabol.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_vi.html" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <!-- Mô phỏng 2: Lực và chuyển động cơ bản (Forces and Motion: Basics) -->
-                    <div class="simulation-item">
-                        <h3>Lực và chuyển động cơ bản (Forces and Motion: Basics)</h3>
-                        <p>Khám phá mối quan hệ giữa lực đẩy, ma sát và chuyển động của vật. Kéo vật để xem gia tốc thay đổi như thế nào.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_vi.html" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <!-- Mô phỏng 3: Ma sát (Friction) -->
-                    <div class="simulation-item">
-                        <h3>Ma sát (Friction)</h3>
-                        <p>Quan sát lực ma sát tĩnh và động ảnh hưởng đến chuyển động. Thử các bề mặt khác nhau để hiểu hệ số ma sát.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/friction/latest/friction_vi.html" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <!-- Mô phỏng 4: Vận động trượt năng lượng (Energy Skate Park) -->
-                    <div class="simulation-item">
-                        <h3>Vận động trượt năng lượng (Energy Skate Park)</h3>
-                        <p>Xây dựng đường trượt để khám phá bảo toàn năng lượng động học và thế năng. Theo dõi biểu đồ năng lượng thay đổi.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_vi.html" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <!-- Mô phỏng 5: Quay vòng (Ladybug Revolution) -->
-                    <div class="simulation-item">
-                        <h3>Quay vòng (Ladybug Revolution)</h3>
-                        <p>Quan sát chuyển động tròn đều và gia tốc hướng tâm qua hành trình của chú bọ cánh cứng.</p>
-                        <div class="phet-simulation">
-                            <iframe src="https://phet.colorado.edu/sims/html/ladybug-revolution/latest/ladybug-revolution_vi.html" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <ul class="actions">
-                        <li><a href="https://phet.colorado.edu/vi/simulations/category/physics/motion" class="button" target="_blank">Khám phá thêm mô phỏng PhET</a></li>
-                    </ul>
-                </section>
-
+            <!-- Mô phỏng 1 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_vi.html"
+                 data-title="Chuyển động ném">
+              <img src="https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion-600.png" alt="Chuyển động ném">
+              <h3>Chuyển động ném</h3>
+              <p>Thử nghiệm cách vật di chuyển dưới tác dụng của trọng lực. Điều chỉnh góc bắn, vận tốc ban đầu để quan sát quỹ đạo parabol.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
             </div>
-        </div>
 
-        <!-- Sidebar -->
-        <div id="sidebar">
-            <div class="inner">
-
-                <!-- Search -->
-                <section id="search" class="alt">
-                    <form method="post" action="#">
-                        <input type="text" name="query" id="query" placeholder="Search" />
-                    </form>
-                </section>
-
-                <!-- Menu -->
-                <nav id="menu">
-                    <header class="major">
-                        <h2>Menu</h2>
-                    </header>
-                    <ul>
-                        <li><a href="index.html">Trang chủ</a></li>
-
-                        <li>
-                            <span class="opener">Vật lý</span>
-                            <ul>
-                                <li><a href="cohoc.html">Cơ học</a></li>
-                                <li><a href="amhoc.html">Âm học & Sóng</a></li>
-                                <li><a href="cong-nangluong.html">Công, năng lượng & công suất</a></li>
-                                <li><a href="nhiethoc.html">Nhiệt & Nhiệt động lực học</a></li>
-                                <li><a href="luongtu.html">Hiện tượng lượng tử</a></li>
-                                <li><a href="quanghoc.html">Ánh sáng & Bức xạ</a></li>
-                                <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <span class="opener">Toán và Thống kê</span>
-                            <ul>
-                                <li><a href="toanhoc.html">Khái niệm toán học</a></li>
-                                <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <span class="opener">Hoá học</span>
-                            <ul>
-                                <li><a href="hoahoc.html">Hoá đại cương</a></li>
-                                <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
-                        <li><a href="sinhhoc.html">Sinh học</a></li>
-                        <li><a href="minigame.html">Mini game</a></li>
-                    </ul>
-                </nav>
-
-                
-
-                <!-- Section: Liên hệ -->
-                <section>
-                    <header class="major">
-                        <h2>Liên hệ</h2>
-                    </header>
-                    <p>Liên hệ với IBME Lab:</p>
-                    <ul class="contact">
-                        <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-                        <li class="icon solid fa-phone">(000) 000-0000</li>
-                        <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-                        Nashville, TN 00000-0000</li>
-                    </ul>
-                </section>
-
-                <!-- Footer -->
-                <footer id="footer">
-                    <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
-                </footer>
-
+            <!-- Mô phỏng 2 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_vi.html"
+                 data-title="Lực và chuyển động: Cơ bản">
+              <img src="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics-600.png" alt="Lực và chuyển động: Cơ bản">
+              <h3>Lực và chuyển động: Cơ bản</h3>
+              <p>Khám phá mối quan hệ giữa lực đẩy, ma sát và chuyển động của vật. Kéo vật để xem gia tốc thay đổi như thế nào.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
             </div>
-        </div>
 
+            <!-- Mô phỏng 3 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/friction/latest/friction_vi.html"
+                 data-title="Ma sát">
+              <img src="https://phet.colorado.edu/sims/html/friction/latest/friction-600.png" alt="Ma sát">
+              <h3>Ma sát</h3>
+              <p>Quan sát lực ma sát tĩnh và động ảnh hưởng đến chuyển động. Thử các bề mặt khác nhau để hiểu hệ số ma sát.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+            
+            <!-- Mô phỏng 4 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_vi.html"
+                 data-title="Công viên trượt ván: Năng lượng">
+              <img src="https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics-600.png" alt="Công viên trượt ván: Năng lượng">
+              <h3>Công viên trượt ván: Năng lượng</h3>
+              <p>Xây dựng đường trượt để khám phá bảo toàn năng lượng cơ học, quan sát sự chuyển hóa giữa động năng và thế năng.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+            
+            <!-- Mô phỏng 5 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/ladybug-revolution/latest/ladybug-revolution_vi.html"
+                 data-title="Chuyển động tròn">
+              <img src="https://phet.colorado.edu/sims/html/ladybug-revolution/latest/ladybug-revolution-600.png" alt="Chuyển động tròn">
+              <h3>Chuyển động tròn</h3>
+              <p>Quan sát chuyển động tròn đều, vận tốc góc, vận tốc dài và gia tốc hướng tâm qua hành trình của chú bọ cánh cứng.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+
+            <!-- Mô phỏng 6 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_vi.html"
+                 data-title="Va chạm">
+              <img src="https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab-600.png" alt="Va chạm">
+              <h3>Va chạm</h3>
+              <p>Khám phá định luật bảo toàn động lượng và năng lượng trong các va chạm đàn hồi và không đàn hồi.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+
+            <!-- Mô phỏng 7 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_vi.html"
+                 data-title="Giữ thăng bằng">
+              <img src="https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act-600.png" alt="Giữ thăng bằng">
+              <h3>Giữ thăng bằng</h3>
+              <p>Thử thách giữ thăng bằng trên một đòn bẩy. Tìm hiểu về momen lực và các điều kiện cân bằng của vật rắn.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+
+            <!-- Mô phỏng 8 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/gravity-force-lab-basics/latest/gravity-force-lab-basics_vi.html"
+                 data-title="Lực hấp dẫn: Cơ bản">
+              <img src="https://phet.colorado.edu/sims/html/gravity-force-lab-basics/latest/gravity-force-lab-basics-600.png" alt="Lực hấp dẫn: Cơ bản">
+              <h3>Lực hấp dẫn: Cơ bản</h3>
+              <p>Tìm hiểu định luật vạn vật hấp dẫn của Newton bằng cách thay đổi khối lượng và khoảng cách giữa các vật.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+
+            <!-- Mô phỏng 9 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/the-ramp/latest/the-ramp_vi.html"
+                 data-title="Mặt phẳng nghiêng">
+              <img src="https://phet.colorado.edu/sims/html/the-ramp/latest/the-ramp-600.png" alt="Mặt phẳng nghiêng">
+              <h3>Mặt phẳng nghiêng</h3>
+              <p>Khảo sát lực, năng lượng và công khi một vật trượt trên mặt phẳng nghiêng có hoặc không có ma sát.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+
+            <!-- Mô phỏng 10 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/torque/latest/torque_vi.html"
+                 data-title="Momen lực">
+              <img src="https://phet.colorado.edu/sims/html/torque/latest/torque-600.png" alt="Momen lực">
+              <h3>Momen lực</h3>
+              <p>Tìm hiểu cách momen lực làm cho các vật thể quay. Khám phá mối quan hệ giữa lực tác dụng và cánh tay đòn.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+          </div>
+
+          <!-- Modal hiển thị mô phỏng -->
+          <div class="phet-modal" id="phetModal">
+            <div class="phet-modal-content">
+              <!-- Header modal -->
+              <div class="phet-modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="phet-modal-close" onclick="closeModal()" title="Đóng mô phỏng">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <!-- Nội dung -->
+              <div class="phet-modal-body">
+                <iframe id="modalIframe" src="" allowfullscreen></iframe>
+              </div>
+              <span class="phet-modal-hint">Nhấn esc để thoát</span>
+            </div>
+          </div>
+
+          <!-- Nút xem thêm -->
+          <ul class="actions">
+            <li>
+              <a href="https://phet.colorado.edu/vi/simulations/filter?subjects=physics,physics-motion&type=html&sort=alpha&view=grid"
+                 class="button" target="_blank">
+                Khám phá thêm mô phỏng PhET
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <div class="inner">
 
+        <!-- Search -->
+        <section id="search" class="alt">
+          <form method="post" action="#">
+            <input type="text" name="query" id="query" placeholder="Tìm kiếm..." />
+          </form>
+        </section>
+
+        <!-- Menu -->
+        <nav id="menu">
+          <header class="major">
+            <h2>Menu</h2>
+          </header>
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li>
+              <span class="opener">Vật lý</span>
+              <ul>
+                <li><a href="cohoc.html">Cơ học</a></li>
+                <li><a href="amhoc.html">Âm học & Sóng</a></li>
+                <li><a href="cong-nangluong.html">Công, năng lượng & công suất</a></li>
+                <li><a href="nhiethoc.html">Nhiệt & Nhiệt động lực học</a></li>
+                <li><a href="luongtu.html">Hiện tượng lượng tử</a></li>
+                <li><a href="quanghoc.html">Ánh sáng & Bức xạ</a></li>
+                <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="opener">Toán và Thống kê</span>
+              <ul>
+                <li><a href="toanhoc.html">Khái niệm toán học</a></li>
+                <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="opener">Hoá học</span>
+              <ul>
+                <li><a href="hoahoc.html">Hoá đại cương</a></li>
+                <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
+              </ul>
+            </li>
+            <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
+            <li><a href="sinhhoc.html">Sinh học</a></li>
+            <li><a href="minigame.html">Mini game</a></li>
+          </ul>
+        </nav>
+
+        <!-- Liên hệ -->
+        <section>
+          <header class="major">
+            <h2>Liên hệ</h2>
+          </header>
+          <p>Liên hệ với IBME Lab:</p>
+          <ul class="contact">
+            <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+            <li class="icon solid fa-phone">(000) 000-0000</li>
+            <li class="icon solid fa-home">1234 Somewhere Road #8254<br />Nashville, TN 00000-0000</li>
+          </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+          <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
-
