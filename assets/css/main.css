@@ -367,7 +367,7 @@ p {
 strong, b {
     color: var(--highlight);
     font-weight: 600;
-    text-shadow: 12px 20px 45px rgb(255 255 255 / 30%);
+    text-shadow: 2px 3px 10px rgb(255 255 255 / 40%);
 }
 
 /* ============================================
@@ -1850,6 +1850,7 @@ a:focus-visible,
         background: transparent !important;
     }
 }
+
 
 
 
