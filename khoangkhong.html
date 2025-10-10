@@ -1,190 +1,212 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Trái đất và không gian</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <style>
-        .phet-simulation { position: relative; width: 100%; height: 0; padding-bottom: 75%; margin-bottom: 2em; }
-        .phet-simulation iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .simulation-item { margin-bottom: 3em; }
-        .simulation-item h3 { color: #333; margin-bottom: 0.5em; }
-        .simulation-item p { margin-bottom: 1em; color: #666; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Trái đất và Không gian</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
+
 <body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <!-- Header -->
+        <header id="header">
+          <a href="index.html" class="logo"><strong>Trái đất và không gian</strong></a>
+        </header>
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+        <!-- Content -->
+        <section>
+          <header class="major">
+            <h1>Trái đất và Không gian</h1>
+            <p>Khám phá quỹ đạo các hành tinh trong hệ mặt trời, tìm hiểu về khí hậu, mảng kiến tạo và các hiện tượng địa chất trên Trái Đất qua mô phỏng PhET.</p>
+          </header>
 
-        <!-- Main -->
-        <div id="main">
-            <div class="inner">
+          <!-- Lưới mô phỏng -->
+          <div class="sim-grid">
 
-                <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo"><strong>Vật lý</strong></a>
-                    <ul class="icons">
-                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    </ul>
-                </header>
-
-                <!-- Content -->
-<section>
-    <header class="major">
-        <h1>Trái đất và Không gian</h1>
-        <p>Khám phá hệ mặt trời, khí hậu và Trái đất qua các mô phỏng khoa học Trái đất từ PhET.</p>
-    </header>
-
-    <!-- Mô phỏng 1: Hệ mặt trời (My Solar System) -->
-    <div class="simulation-item">
-        <h3>Hệ mặt trời của tôi (My Solar System)</h3>
-        <p>Xây dựng và mô phỏng quỹ đạo hành tinh, vệ tinh theo định luật Kepler.</p>
-        <div class="phet-simulation">
-            <iframe src="https://phet.colorado.edu/sims/html/my-solar-system/latest/my-solar-system_vi.html" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <!-- Mô phỏng 2: Hiệu ứng nhà kính (The Greenhouse Effect) -->
-    <div class="simulation-item">
-        <h3>Hiệu ứng nhà kính (The Greenhouse Effect)</h3>
-        <p>Quan sát sự nóng lên toàn cầu qua khí CO2 và bức xạ hồng ngoại.</p>
-        <div class="phet-simulation">
-            <iframe src="https://phet.colorado.edu/sims/html/greenhouse-effect/latest/greenhouse-effect_vi.html" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <!-- Mô phỏng 3: Mô hình khí hậu (Global Warming: Carbon Cycle) -->
-    <div class="simulation-item">
-        <h3>Biến đổi khí hậu: Chu trình carbon (Global Warming: Carbon Cycle)</h3>
-        <p>Theo dõi chu trình carbon và tác động của con người đến khí hậu.</p>
-        <div class="phet-simulation">
-            <iframe src="https://phet.colorado.edu/sims/html/carbon-cycle/latest/carbon-cycle_vi.html" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <!-- Mô phỏng 4: Trái đất như hệ thống (Earth as a System) -->
-    <div class="simulation-item">
-        <h3>Trái đất như hệ thống (Earth as a System)</h3>
-        <p>Khám phá các lớp Trái đất và dòng năng lượng từ Mặt trời.</p>
-        <div class="phet-simulation">
-            <iframe src="https://phet.colorado.edu/sims/html/earth-as-a-system/latest/earth-as-a-system_vi.html" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <ul class="actions">
-        <li><a href="https://phet.colorado.edu/vi/simulations/category/earth-science" class="button" target="_blank">Khám phá thêm mô phỏng PhET</a></li>
-    </ul>
-</section>
+            <!-- Mô phỏng 1 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_vi.html"
+                 data-title="Lực hấp dẫn và Quỹ đạo">
+              <img src="https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits-600.png" alt="Lực hấp dẫn và Quỹ đạo">
+              <h3>Lực hấp dẫn và Quỹ đạo</h3>
+              <p>Khám phá cách lực hấp dẫn điều khiển chuyển động của các hành tinh, Mặt Trăng và vệ tinh nhân tạo.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
             </div>
-        </div>
 
-        <!-- Sidebar (giống hệt các file khác) -->
-        <div id="sidebar">
-            <div class="inner">
-                <!-- Search -->
-                <section id="search" class="alt">
-                    <form method="post" action="#">
-                        <input type="text" name="query" id="query" placeholder="Search" />
-                    </form>
-                </section>
-
-                <!-- Menu -->
-                <nav id="menu">
-                    <header class="major">
-                        <h2>Menu</h2>
-                    </header>
-                    <ul>
-                        <li><a href="index.html">Trang chủ</a></li>
-                        <li>
-                            <span class="opener">Vật lý</span>
-                            <ul>
-                                <li><a href="cohoc.html">Cơ học</a></li>
-                                <li><a href="amhoc.html">Âm học & Sóng</a></li>
-                                <li><a href="cong-nangluong.html">Công, năng lượng & công suất</a></li>
-                                <li><a href="nhiethoc.html">Nhiệt & Nhiệt động lực học</a></li>
-                                <li><a href="luongtu.html">Hiện tượng lượng tử</a></li>
-                                <li><a href="quanghoc.html">Ánh sáng & Bức xạ</a></li>
-                                <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="opener">Toán và Thống kê</span>
-                            <ul>
-                                <li><a href="toanhoc.html">Khái niệm toán học</a></li>
-                                <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="opener">Hoá học</span>
-                            <ul>
-                                <li><a href="hoahoc.html">Hoá đại cương</a></li>
-                                <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
-                        <li><a href="sinhhoc.html">Sinh học</a></li>
-                        <li><a href="minigame.html">Mini game</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Section: Một số Mini game -->
-                <section>
-                    <header class="major">
-                        <h2>Một số Mini game</h2>
-                    </header>
-                    <div class="posts">
-                        <article>
-                            <a href="#" class="image"><img src="images/pic01.jpg" alt="Game bắn bóng" /></a>
-                            <h3>🎯 Game Bắn Bóng</h3>
-                            <p>Đọc câu hỏi ở trên cùng, ngắm và bắn vào quả bóng mang đáp án đúng để ghi điểm. Càng bắn nhanh, càng nhiều điểm!</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button">Chơi ngay</a></li>
-                            </ul>
-                        </article>
-                        <article>
-                            <a href="#" class="image"><img src="images/pic02.jpg" alt="Game sắp xếp số" /></a>
-                            <h3>🔢 Game Sắp Xếp Số</h3>
-                            <p>Kéo thả hoặc nhấp để sắp xếp các con số theo thứ tự tăng hoặc giảm. Luyện tư duy logic và khả năng quan sát nhanh!</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button">Chơi ngay</a></li>
-                            </ul>
-                        </article>
-                    </div>
-                    <ul class="actions">
-                        <li><a href="minigame.html" class="button">Xem thêm</a></li>
-                    </ul>
-                </section>
-
-                <!-- Section: Liên hệ -->
-                <section>
-                    <header class="major">
-                        <h2>Liên hệ</h2>
-                    </header>
-                    <p>Liên hệ với IBME Lab:</p>
-                    <ul class="contact">
-                        <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-                        <li class="icon solid fa-phone">(000) 000-0000</li>
-                        <li class="icon solid fa-home">1234 Somewhere Road #8254<br />Nashville, TN 00000-0000</li>
-                    </ul>
-                </section>
-
-                <!-- Footer -->
-                <footer id="footer">
-                    <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
-                </footer>
+            <!-- Mô phỏng 2 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/my-solar-system/latest/my-solar-system_vi.html"
+                 data-title="Hệ mặt trời của tôi">
+              <img src="https://phet.colorado.edu/sims/html/my-solar-system/latest/my-solar-system-600.png" alt="Hệ mặt trời của tôi">
+              <h3>Hệ mặt trời của tôi</h3>
+              <p>Xây dựng hệ mặt trời của riêng bạn, quan sát quỹ đạo và tìm hiểu các định luật Kepler về chuyển động thiên thể.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
             </div>
-        </div>
 
+            <!-- Mô phỏng 3 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/greenhouse-effect/latest/greenhouse-effect_vi.html"
+                 data-title="Hiệu ứng nhà kính">
+              <img src="https://phet.colorado.edu/sims/html/greenhouse-effect/latest/greenhouse-effect-600.png" alt="Hiệu ứng nhà kính">
+              <h3>Hiệu ứng nhà kính</h3>
+              <p>Tìm hiểu cách các khí nhà kính làm Trái Đất ấm lên. So sánh nhiệt độ Trái Đất với các Kỷ Băng hà.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+            
+            <!-- Mô phỏng 4 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/plate-tectonics/latest/plate-tectonics_vi.html"
+                 data-title="Mảng kiến tạo">
+              <img src="https://phet.colorado.edu/sims/html/plate-tectonics/latest/plate-tectonics-600.png" alt="Mảng kiến tạo">
+              <h3>Mảng kiến tạo</h3>
+              <p>Quan sát cách các mảng kiến tạo di chuyển, gây ra động đất, núi lửa và hình thành các dãy núi.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+            
+            <!-- Mô phỏng 5 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/season-reasons/latest/season-reasons_vi.html"
+                 data-title="Nguyên nhân gây ra các mùa">
+              <img src="https://phet.colorado.edu/sims/html/season-reasons/latest/season-reasons-600.png" alt="Nguyên nhân gây ra các mùa">
+              <h3>Nguyên nhân gây ra các mùa</h3>
+              <p>Khám phá nguyên nhân Trái Đất có các mùa trong năm, liên quan đến độ nghiêng của trục quay khi quay quanh Mặt Trời.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+
+            <!-- Mô phỏng 6 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/glaciers/latest/glaciers_vi.html"
+                 data-title="Sông băng">
+              <img src="https://phet.colorado.edu/sims/html/glaciers/latest/glaciers-600.png" alt="Sông băng">
+              <h3>Sông băng</h3>
+              <p>Tạo ra những dòng sông băng khổng lồ và quan sát cách chúng bào mòn địa hình, di chuyển thung lũng qua hàng ngàn năm.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+            
+            <!-- Mô phỏng 7 -->
+            <div class="simulation-item sim-card"
+                 data-url="https://phet.colorado.edu/sims/html/density/latest/density_vi.html"
+                 data-title="Khối lượng riêng">
+              <img src="https://phet.colorado.edu/sims/html/density/latest/density-600.png" alt="Khối lượng riêng">
+              <h3>Khối lượng riêng</h3>
+              <p>Tìm hiểu tại sao vật lại nổi hoặc chìm. Khám phá mối quan hệ giữa khối lượng, thể tích và khối lượng riêng.</p>
+              <button class="expand-btn" title="Mở rộng"><i class="fas fa-expand"></i></button>
+            </div>
+
+          </div>
+
+          <!-- Modal hiển thị mô phỏng -->
+          <div class="phet-modal" id="phetModal">
+            <div class="phet-modal-content">
+              <!-- Header modal -->
+              <div class="phet-modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="phet-modal-close" onclick="closeModal()" title="Đóng mô phỏng">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <!-- Nội dung -->
+              <div class="phet-modal-body">
+                <iframe id="modalIframe" src="" allowfullscreen></iframe>
+              </div>
+              <span class="phet-modal-hint">Nhấn esc để thoát</span>
+            </div>
+          </div>
+
+          <!-- Nút xem thêm -->
+          <ul class="actions">
+            <li>
+              <a href="https://phet.colorado.edu/vi/simulations/filter?subjects=earth-science&type=html&sort=alpha&view=grid"
+                 class="button" target="_blank">
+                Khám phá thêm mô phỏng PhET
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <div class="inner">
+        <!-- Search -->
+        <section id="search" class="alt">
+          <form method="post" action="#">
+            <input type="text" name="query" id="query" placeholder="Tìm kiếm..." />
+          </form>
+        </section>
 
+        <!-- Menu -->
+        <nav id="menu">
+          <header class="major">
+            <h2>Menu</h2>
+          </header>
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li>
+              <span class="opener">Vật lý</span>
+              <ul>
+                <li><a href="cohoc.html">Cơ học</a></li>
+                <li><a href="amhoc.html">Âm học & Sóng</a></li>
+                <li><a href="cong-nangluong.html">Công, năng lượng & công suất</a></li>
+                <li><a href="nhiethoc.html">Nhiệt & Nhiệt động lực học</a></li>
+                <li><a href="luongtu.html">Hiện tượng lượng tử</a></li>
+                <li><a href="quanghoc.html">Ánh sáng & Bức xạ</a></li>
+                <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="opener">Toán và Thống kê</span>
+              <ul>
+                <li><a href="toanhoc.html">Khái niệm toán học</a></li>
+                <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="opener">Hoá học</span>
+              <ul>
+                <li><a href="hoahoc.html">Hoá đại cương</a></li>
+                <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
+              </ul>
+            </li>
+            <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
+            <li><a href="sinhhoc.html">Sinh học</a></li>
+            <li><a href="minigame.html">Mini game</a></li>
+          </ul>
+        </nav>
+
+        <!-- Liên hệ -->
+        <section>
+          <header class="major">
+            <h2>Liên hệ</h2>
+          </header>
+          <p>Liên hệ với IBME Lab:</p>
+          <ul class="contact">
+            <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+            <li class="icon solid fa-phone">(000) 000-0000</li>
+            <li class="icon solid fa-home">1234 Somewhere Road #8254<br />Nashville, TN 00000-0000</li>
+          </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+          <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
