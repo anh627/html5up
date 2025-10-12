@@ -4,8 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>Nhiệt & Nhiệt động lực học</title>
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOMq3Z4b1pVq+U9q6QvF4GmX1Fz0z1e6z8g6v9t3gJ8m3d4g8y0v9v8Z7Yk2DQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="is-preload">
@@ -102,81 +104,94 @@
       </div>
     </div>
 
-    <!-- Sidebar -->
-    <div id="sidebar">
-      <div class="inner">
-        <!-- Search -->
-        <section id="search" class="alt">
-          <form method="post" action="#">
-            <input type="text" name="query" id="query" placeholder="Tìm kiếm..." />
-          </form>
-        </section>
+     <!-- Sidebar -->
+        <aside id="sidebar" role="complementary" aria-label="Thanh điều hướng">
+            <div class="inner">
 
-        <!-- Menu -->
-        <nav id="menu">
-          <header class="major">
-            <h2>Menu</h2>
-          </header>
-          <ul>
-            <li><a href="index.html">Trang chủ</a></li>
-            <li>
-              <span class="opener">Vật lý</span>
-              <ul>
-                <li><a href="cohoc.html">Cơ học</a></li>
-                <li><a href="amhoc.html">Âm học & Sóng</a></li>
-                <li><a href="cong-nangluong.html">Công, năng lượng & công suất</a></li>
-                <li><a href="nhiethoc.html">Nhiệt & Nhiệt động lực học</a></li>
-                <li><a href="luongtu.html">Hiện tượng lượng tử</a></li>
-                <li><a href="quanghoc.html">Ánh sáng & Bức xạ</a></li>
-                <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
-              </ul>
-            </li>
-            <li>
-              <span class="opener">Toán và Thống kê</span>
-              <ul>
-                <li><a href="toanhoc.html">Khái niệm toán học</a></li>
-                <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
-              </ul>
-            </li>
-            <li>
-              <span class="opener">Hoá học</span>
-              <ul>
-                <li><a href="hoahoc.html">Hoá đại cương</a></li>
-                <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
-              </ul>
-            </li>
-            <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
-            <li><a href="sinhhoc.html">Sinh học</a></li>
-            <li><a href="minigame.html">Mini game</a></li>
-          </ul>
-        </nav>
+                <!-- Search -->
+                <section id="search" class="alt" aria-label="Tìm kiếm">
+                    <form method="get" action="#" role="search">
+                        <input type="text" name="query" id="query" placeholder="Tìm kiếm...">
+                    </form>
+                </section>
 
-        <!-- Liên hệ -->
-        <section>
-          <header class="major">
-            <h2>Liên hệ</h2>
-          </header>
-          <p>Liên hệ với IBME Lab:</p>
-          <ul class="contact">
-            <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-            <li class="icon solid fa-phone">(000) 000-0000</li>
-            <li class="icon solid fa-home">1234 Somewhere Road #8254<br />Nashville, TN 00000-0000</li>
-          </ul>
-        </section>
+                <!-- Menu -->
+                <nav id="menu" role="navigation" aria-label="Menu chính">
+                    <header class="major"><h2>Menu</h2></header>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
 
-        <!-- Footer -->
-        <footer id="footer">
-          <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
-        </footer>
-      </div>
+                        <li>
+                            <span class="opener" role="button" tabindex="0">Vật lý</span>
+                            <ul>
+                                <li><a href="cohoc.html">Cơ học</a></li>
+                                <li><a href="amhoc.html">Âm học & Sóng</a></li>
+                                <li><a href="cong-nangluong.html">Công, năng lượng & công suất</a></li>
+                                <li><a href="nhiethoc.html">Nhiệt & Nhiệt động lực học</a></li>
+                                <li><a href="luongtu.html">Hiện tượng lượng tử</a></li>
+                                <li><a href="quanghoc.html">Ánh sáng & Bức xạ</a></li>
+                                <li><a href="dientu.html">Điện, Từ & Mạch điện</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <span class="opener" role="button" tabindex="0">Toán và Thống kê</span>
+                            <ul>
+                                <li><a href="toanhoc.html">Khái niệm toán học</a></li>
+                                <li><a href="toan-ungdung.html">Ứng dụng toán học</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <span class="opener" role="button" tabindex="0">Hoá học</span>
+                            <ul>
+                                <li><a href="hoahoc.html">Hoá đại cương</a></li>
+                                <li><a href="hoaluongtu.html">Hoá lượng tử</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="khoangkhong.html">Trái đất và Không gian</a></li>
+                        <li><a href="sinhhoc.html">Sinh học</a></li>
+                        <li><a href="minigame.html">Mini game</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Liên hệ -->
+                <section aria-label="Liên hệ">
+                    <header class="major"><h2>Liên hệ</h2></header>
+                    <p>Liên hệ với IBME Lab:</p>
+                    <ul class="contact">
+                        <li>
+                            <i class="fa-solid fa-envelope icon" aria-hidden="true"></i>
+                            <a href="mailto:information@untitled.tld">information<br>@untitled.tld</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone icon" aria-hidden="true"></i>
+                            <span>(000) 000-0000</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-house icon" aria-hidden="true"></i>
+                            <span>1234 Somewhere Road #8254<br>Nashville, TN 00000-0000</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Footer -->
+                <footer id="footer" role="contentinfo">
+                    <p class="copyright">&copy; Design: Nguyễn Quang Ảnh.</p>
+                </footer>
+
+            </div>
+        </aside>
+
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/nutnhan.js"></script>
+    <script src="assets/js/main.js"></script>
+
 </body>
 </html>
