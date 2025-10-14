@@ -337,3 +337,171 @@ document.addEventListener('visibilitychange', function() {
         icon.style.animationPlayState = document.hidden ? 'paused' : 'running';
     });
 });
+/* anti-devtools.js Mục đích: giảm khả năng người dùng casual mở DevTools (F12) hoặc copy nội dung. Lưu ý quan trọng: không có cách nào hoàn toàn bảo vệ mã JS trên client. Kỹ thuật này chỉ khiến việc mở/giải mã khó hơn đối với người dùng thông thường.
+
+Cách dùng: chèn <script src="/path/to/anti-devtools.js"></script> ngay trước </body>. */ (function () { 'use strict';
+
+// Cấu hình const config = { detectIntervalMs: 800,    // tần suất kiểm tra devtools sizeThreshold: 160,       // ngưỡng khác biệt outer/inner để nghi ngờ devtools redirectOnDetect: false,  // nếu true sẽ chuyển hướng khi phát hiện devtools redirectUrl: 'about:blank', wipeContentOnDetect: true // nếu true sẽ xóa nội dung trang khi phát hiện devtools };
+
+// --- Chặn hành vi sao chép / chọn / chuột phải --- function blockCopySelection() { // chặn menu chuột phải document.addEventListener('contextmenu', function (e) { e.preventDefault(); }, { passive: false });
+
+// chặn chọn văn bản
+document.addEventListener('selectstart', function (e) {
+  e.preventDefault();
+}, { passive: false });
+
+// chặn copy / cut / paste
+['copy', 'cut', 'paste'].forEach(evt => {
+  document.addEventListener(evt, function (e) {
+    e.preventDefault();
+  }, { passive: false });
+});
+
+// chặn kéo thả văn bản
+document.addEventListener('dragstart', function (e) { e.preventDefault(); }, { passive: false });
+
+}
+
+// --- Chặn phím tắt devtools phổ biến --- function blockShortcuts() { window.addEventListener('keydown', function (e) { // F12 if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); e.stopPropagation(); return false; }
+
+// Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+
+  // Ctrl+U (view-source), Ctrl+S, Ctrl+Shift+K
+  if (e.ctrlKey && (e.key === 'U' || e.key === 'S' || e.key === 'u' || e.key === 's')) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+
+  // Ctrl+Shift+K (Firefox console)
+  if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+}, true);
+
+}
+
+// --- Phát hiện DevTools (nhiều chiến thuật kết hợp) --- function createDevtoolsDetector() { let devtoolsOpen = false;
+
+// 1) kiểm tra khác biệt kích thước cửa sổ (thủ thuật đơn giản)
+function sizeCheck() {
+  try {
+    const widthDiff = Math.abs(window.outerWidth - window.innerWidth);
+    const heightDiff = Math.abs(window.outerHeight - window.innerHeight);
+    return (widthDiff > config.sizeThreshold || heightDiff > config.sizeThreshold);
+  } catch (e) {
+    return false;
+  }
+}
+
+// 2) kiểm tra console getter trick
+function consoleCheck() {
+  try {
+    const re = /dev/; // dummy
+    const el = new Image();
+    let opened = false;
+    Object.defineProperty(el, 'id', {
+      get: function () {
+        opened = true;
+        return '';
+      }
+    });
+    // Gọi console.log sẽ kích hoạt getter nếu Console đang mở và in object
+    // (những trình duyệt hiện đại có thể khác nhau)
+    console.log(el);
+    // Một số console không trigger getter; opened có thể là false.
+    return opened;
+  } catch (e) {
+    return false;
+  }
+}
+
+// 3) timing check với debugger statement (có thể gây pause khi breakpoint)
+function timingCheck() {
+  try {
+    const start = performance.now();
+    // The following 'debugger' will pause only when DevTools has the pause-on-exception
+    // or user set breakpoints; it's a heuristic — use cautiously.
+    // eslint-disable-next-line no-debugger
+    debugger;
+    const end = performance.now();
+    return (end - start) > 100; // nếu mất nhiều thời gian, có thể DevTools đang mở
+  } catch (e) {
+    return false;
+  }
+}
+
+function isOpen() {
+  // kết hợp nhiều kiểm tra để giảm false positive
+  if (sizeCheck()) return true;
+  if (consoleCheck()) return true;
+  // timingCheck có thể gây side-effect; để tùy chọn
+  try {
+    // tắt timingCheck theo mặc định để tránh pause lạ
+    // if (timingCheck()) return true;
+  } catch (e) { /* ignore */ }
+  return false;
+}
+
+function startObserver(onDetect) {
+  setInterval(function () {
+    const open = isOpen();
+    if (open && !devtoolsOpen) {
+      devtoolsOpen = true;
+      onDetect();
+    } else if (!open && devtoolsOpen) {
+      devtoolsOpen = false;
+    }
+  }, config.detectIntervalMs);
+}
+
+return { startObserver };
+
+}
+
+// --- Hành động khi phát hiện DevTools --- function onDevtoolsDetected() { try { // Xóa nội dung trang if (config.wipeContentOnDetect) { document.documentElement.innerHTML = ''; // thêm 1 thông điệp nhẹ (nếu muốn giữ) - comment nếu không cần // document.body.innerHTML = '<h1>Access denied</h1>'; }
+
+// Chuyển hướng nếu cấu hình yêu cầu
+  if (config.redirectOnDetect) {
+    window.location.replace(config.redirectUrl);
+  }
+
+  // Ngoài ra: ta có thể gửi event tới server (fetch) để log — cẩn trọng với quyền riêng tư
+  // navigator.sendBeacon('/log-devtools', JSON.stringify({ts: Date.now(), url: location.href}));
+} catch (e) {
+  // ignore
+}
+
+}
+
+// --- Khởi chạy --- function init() { blockCopySelection(); blockShortcuts();
+
+const detector = createDevtoolsDetector();
+detector.startObserver(onDevtoolsDetected);
+
+// Tối ưu UX: nếu cần cho admin/developer, cho phép mở bằng một mật khẩu tạm thời
+// (ví dụ: Ctrl+Shift+Alt+D để tắt lớp bảo vệ) — dùng cẩn thận.
+let adminTogglePressed = 0;
+window.addEventListener('keydown', function (e) {
+  if (e.ctrlKey && e.shiftKey && e.altKey && (e.key === 'D' || e.key === 'd')) {
+    adminTogglePressed = (adminTogglePressed + 1) % 2;
+    if (adminTogglePressed === 1) {
+      // disable protections
+      window.removeEventListener('keydown', () => {});
+    }
+  }
+});
+
+}
+
+// chạy khi DOM sẵn sàng if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+
+})();
+
